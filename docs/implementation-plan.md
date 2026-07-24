@@ -124,31 +124,40 @@ Ordered by how much they block a launch.
 1. **Nothing has run against WordPress.** No install, database or browser was
    available. Every functional claim needs verification on staging with
    `WP_DEBUG` on. See `docs/launch-checklist.md`.
-2. **Homepage still reads `inc/sample-data.php`**, not the Tour Manager CPTs, so
-   editing a tour does not change the homepage. The build brief requires content
-   editable through WordPress. Front-page sections 3 and 4 need converting to
-   `WP_Query` against `wpistic_destination` and `wpistic_tour`.
-3. **Tour card link mismatch.** Cards link `/tours/{slug}/`; the CPT single
-   rewrite is `/tour/{slug}/`. Either change the rewrite to `tours` (with a 301
-   from `tour`) or fix the links. Pre-existing, not introduced here.
-4. **Owner-supplied content**: photography, verified testimonials, Tourflows
+2. **Owner-supplied content**: photography, verified testimonials, Tourflows
    endpoint and secret, Google/TripAdvisor profile URLs, the legacy URL export,
    legal review of the three policy pages.
 
 ### Non-blocking
 
-5. Destination pillar and tour detail pages need real copy in the CPTs.
-6. Journal starter posts — drafts and seeds only; no fabricated articles.
-7. Exhausted Tourflows deliveries are visible only in `wpistic_connection_log`.
+3. Destination pillar and tour detail pages need real copy in the CPTs. The
+   templates and the homepage now read from those CPTs, so this is data entry
+   rather than development.
+4. The alternate homepage variants (`parts/home-v2.php`, `parts/home-v3.php`),
+   `single-destination.php`, `page-travel-from.php` and the tours archive's
+   empty-state fallback still read `inc/sample-data.php`. The default homepage
+   (V1) and the archive's real loop are CPT-driven; the variants were left for a
+   separate change because they are not on the launch path.
+5. Journal starter posts — drafts and seeds only; no fabricated articles.
+6. Exhausted Tourflows deliveries are visible only in `wpistic_connection_log`.
    An admin notice or portal flag after three failures would be better.
-8. Consent-gated analytics: the Customizer fields exist; the loader that gates
+7. Consent-gated analytics: the Customizer fields exist; the loader that gates
    GA4/Pixel/Clarity behind the cookie banner is not yet written.
-9. `themes/wpistic/_preview-*.html` — 13 export artifacts inside the theme.
+8. `themes/wpistic/_preview-*.html` — 13 export artifacts inside the theme.
    Should not reach production. Pre-existing; removal left as a separate change.
-10. `home.php` and `page-laos-travel-guide.php` are two journal indexes;
-    `page-build-my-trip.php` and `page-plan-my-laos-trip.php` are two copies of
-    one page. Consolidate.
-11. No automated test suite for the ingestion path. The idempotency guard is the
+9. `home.php` and `page-laos-travel-guide.php` are two journal indexes;
+   `page-build-my-trip.php` and `page-plan-my-laos-trip.php` are two copies of
+   one page. Consolidate.
+10. No automated test suite for the ingestion path. The idempotency guard is the
     highest-value thing to cover — assert that firing the captured action twice
     for one submission yields exactly one booking.
-12. PHPCS with WordPress standards is not configured in the repository.
+11. PHPCS with WordPress standards is not configured in the repository.
+
+### Resolved after the plan was first written
+
+- Homepage now reads the `wpistic_tour` and `wpistic_destination` CPTs, falling
+  back to samples only while they are empty.
+- Tour card links follow the CPT's registered rewrite via `get_permalink()`,
+  fixing cards that pointed at `/tours/{slug}/` against a `/tour/{slug}/` rewrite.
+- Form seeding no longer depends on activation running before `init`.
+- A form submission arriving before the schema upgrade can no longer be lost.

@@ -83,9 +83,11 @@ Recorded here because each one is a correctness issue, not a preference:
    so selecting a filter reloaded the same unfiltered list. Now wired.
 4. **Homepage sections read from hard-coded sample arrays** (`inc/sample-data.php`)
    rather than the Tour Manager CPTs, so editing a tour in the admin did not
-   change the homepage. Open item — see `docs/implementation-plan.md`.
+   change the homepage. **Fixed** — the homepage now reads the CPTs and falls
+   back to samples only while they are empty.
 5. **Tour card links pointed at `/tours/{slug}/`** while the CPT's single rewrite
-   is `/tour/{slug}/`. Sample links 404. Open item.
+   is `/tour/{slug}/`, so every card 404'd. **Fixed** — cards use
+   `get_permalink()` and therefore follow the registered rewrite.
 6. **Export artifacts in the parent theme.** 13 `_preview-*.html` files ship
    inside the theme directory. Left in place — they are pre-existing and outside
    this change's scope — but they should not reach production. Open item.
