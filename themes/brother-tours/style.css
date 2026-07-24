@@ -14,17 +14,23 @@ Text Domain: brother-tours
 */
 
 /*
- * Brother Tours inherits every WPistic token verbatim.
- * Brand-specific overrides (the founder signature, section rhythm, etc.) live here.
+ * The locked Brother Tours design system lives in assets/css/brand-tokens.css,
+ * which is enqueued ahead of this file and overrides the WPistic palette and
+ * type stack wholesale. Only small brand details belong here.
  */
 
 .site-footer__tagline {
 	color: var(--gold);
+	font-style: italic;
 }
 
-/* Founder signature uses the script face, reserved for this one use. */
+/*
+ * Founder signature. Caveat is reserved for this single use -- Ken's letter and
+ * its sign-off -- and appears nowhere else on the site.
+ */
 .founder-signature {
-	font-family: var(--font-script);
-	font-size: 2rem;
+	font-family: var(--hand);
+	font-size: 2.25rem;
+	line-height: 1.2;
 	color: var(--ink);
 }
