@@ -220,6 +220,25 @@ final class Wpistic_Formistic_BT_Forms {
 	 * ================================================================== */
 
 	/**
+	 * Seed once if activation never managed to.
+	 *
+	 * Called on `init`, where the form post type is definitely registered. Guards
+	 * on the option rather than re-running the seeder on every request, so the
+	 * cost after the first run is one cached option read. Without this, a site
+	 * whose activation seeding failed would show no forms at all and the only
+	 * remedy would be deactivating and reactivating the plugin.
+	 *
+	 * @return void
+	 */
+	public static function maybe_seed() {
+		if ( get_option( self::OPT_SEEDED, '' ) ) {
+			return;
+		}
+
+		self::seed();
+	}
+
+	/**
 	 * Create any Brother Tours form that does not exist yet.
 	 *
 	 * Safe to run repeatedly — on activation, from WP-CLI, or by hand. Existing

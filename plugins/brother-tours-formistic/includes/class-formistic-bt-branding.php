@@ -87,15 +87,19 @@ final class Wpistic_Formistic_BT_Branding {
 		global $menu, $submenu;
 
 		$page  = Wpistic_Formistic_Admin::PAGE;
-		$label = __( 'Brother Tours Forms', 'formistic' );
 		$short = __( 'Forms', 'formistic' );
 
 		if ( is_array( $menu ) ) {
 			foreach ( $menu as $i => $item ) {
 				if ( isset( $item[2] ) && $page === $item[2] ) {
-					// Index 0 carries the unread-count bubble markup; keep it.
-					$bubble      = '';
-					$current     = isset( $item[0] ) ? (string) $item[0] : '';
+					/*
+					 * Index 0 is the menu title with the unread-count bubble
+					 * appended: 'Formistic <span class="awaiting-mod">3</span>'.
+					 * Carry the bubble across so relabeling does not drop the
+					 * count an operator relies on.
+					 */
+					$bubble  = '';
+					$current = isset( $item[0] ) ? (string) $item[0] : '';
 					if ( preg_match( '/<span class="awaiting-mod.*$/s', $current, $m ) ) {
 						$bubble = $m[0];
 					}
@@ -108,9 +112,6 @@ final class Wpistic_Formistic_BT_Branding {
 		if ( isset( $submenu[ $page ][0][0] ) ) {
 			$submenu[ $page ][0][0] = __( 'Inbox', 'formistic' );
 		}
-
-		// Page title on the inbox screen.
-		unset( $label );
 	}
 
 	/**

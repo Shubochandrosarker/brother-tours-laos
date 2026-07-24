@@ -125,6 +125,14 @@ register_activation_hook(__FILE__, function () {
 	Wpistic_Formistic_Database::install();
 	Wpistic_Formistic_Newsletter::install();
 	Wpistic_Formistic_Gdpr::maybe_schedule();
+
+	/*
+	 * Register the form post type before seeding. Activation runs after `init`
+	 * has already fired, so the plugin's own `init` callback -- which normally
+	 * registers the CPT -- will not run during this request. Seeding against an
+	 * unregistered post type is unreliable, so register it explicitly here.
+	 */
+	(new Wpistic_Formistic_Forms())->register_cpt();
 	Wpistic_Formistic_BT_Forms::seed();
 });
 
@@ -136,3 +144,7 @@ add_action('init', function () {
 	Wpistic_Formistic_Plugin::instance()->boot();
 	Wpistic_Formistic_BT_Branding::instance()->boot();
 }, 5);
+
+/* Safety net if activation seeding never ran. Priority 20 keeps it after the
+ * form post type is registered on init. No-ops once seeding has succeeded. */
+add_action('init', ['Wpistic_Formistic_BT_Forms', 'maybe_seed'], 20);
