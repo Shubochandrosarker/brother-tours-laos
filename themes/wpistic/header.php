@@ -86,7 +86,7 @@ if ( ! in_array( $wpistic_default_mode, array( 'light', 'dark' ), true ) ) {
 	<div class="mobile-util">
 		<a href="<?php echo esc_url( wpistic_whatsapp_url() ); ?>" rel="noopener">WhatsApp</a>
 		<?php if ( $wpistic_toggle_on ) : ?>
-			<button class="theme-toggle-text" type="button" data-theme-toggle><?php esc_html_e( 'Light / Dark', 'wpistic' ); ?></button>
+			<button class="theme-toggle-text" type="button" aria-pressed="false" data-theme-toggle><?php esc_html_e( 'Light / Dark', 'wpistic' ); ?></button>
 		<?php endif; ?>
 	</div>
 </div>

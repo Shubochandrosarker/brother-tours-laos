@@ -11,12 +11,23 @@
 	/* ---- Light / dark toggle (persisted in localStorage) ---- */
 	var toggles = document.querySelectorAll( '[data-theme-toggle]' );
 	if ( toggles.length ) {
+		var syncPressed = function ( theme ) {
+			Array.prototype.forEach.call( toggles, function ( btn ) {
+				btn.setAttribute( 'aria-pressed', theme === 'dark' ? 'true' : 'false' );
+			} );
+		};
 		var applyTheme = function ( theme ) {
 			doc.setAttribute( 'data-theme', theme );
+			syncPressed( theme );
 			try {
 				window.localStorage.setItem( 'wpistic-theme', theme );
 			} catch ( e ) {}
 		};
+		// Sync the button's state to whatever the no-flash inline script in
+		// header.php already resolved before this file loaded, so a screen
+		// reader announces the correct state on first render, not just after
+		// the first click.
+		syncPressed( doc.getAttribute( 'data-theme' ) === 'dark' ? 'dark' : 'light' );
 		Array.prototype.forEach.call( toggles, function ( btn ) {
 			btn.addEventListener( 'click', function () {
 				var current = doc.getAttribute( 'data-theme' ) === 'dark' ? 'dark' : 'light';

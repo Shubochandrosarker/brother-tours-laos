@@ -269,7 +269,7 @@ function wpistic_logo( $class = 'nav-logo' ) {
  */
 function wpistic_theme_toggle() {
 	?>
-	<button class="theme-toggle" type="button" aria-label="<?php esc_attr_e( 'Toggle light or dark mode', 'wpistic' ); ?>" data-theme-toggle>
+	<button class="theme-toggle" type="button" aria-label="<?php esc_attr_e( 'Toggle light or dark mode', 'wpistic' ); ?>" aria-pressed="false" data-theme-toggle>
 		<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
 		<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5z"/></svg>
 	</button>

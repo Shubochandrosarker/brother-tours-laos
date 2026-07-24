@@ -108,6 +108,35 @@ function brother_tours_enqueue() {
 }
 
 /* =============================================================================
+ * Light / dark mode default
+ * ========================================================================== */
+
+/**
+ * Default new visitors to dark mode -- Brother Tours' primary, locked
+ * identity -- rather than the parent theme's own 'light' default.
+ *
+ * The toggle, no-flash script, and localStorage persistence are all parent
+ * theme mechanics (themes/wpistic/header.php); this only changes what an
+ * operator sees as the starting choice in Appearance -> Customize ->
+ * Colour Mode before they have ever saved one. An operator's own saved
+ * choice always wins.
+ *
+ * Reads the raw theme_mods array directly rather than calling
+ * get_theme_mod() again from inside this filter: get_theme_mod() applies
+ * this very filter before returning, so calling it here would re-enter this
+ * callback and recurse until the stack overflows.
+ *
+ * @param mixed $value Resolved value get_theme_mod() would otherwise return.
+ * @return mixed
+ */
+add_filter( 'theme_mod_wpistic_default_mode', 'brother_tours_default_mode' );
+
+function brother_tours_default_mode( $value ) {
+	$mods = get_theme_mods();
+	return isset( $mods['wpistic_default_mode'] ) ? $value : 'dark';
+}
+
+/* =============================================================================
  * Navigation and CTA
  * ========================================================================== */
 

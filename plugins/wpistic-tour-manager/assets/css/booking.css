@@ -1,8 +1,8 @@
 .wpistic-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
 .wpistic-booking-form .field { margin-bottom: 12px; }
 .wpistic-form-status { margin-top: 12px; font-family: var(--mono, monospace); font-size: .72rem; letter-spacing: .04em; min-height: 1em; }
-.wpistic-form-status.success { color: var(--green-bright, #2E8456); }
-.wpistic-form-status.error { color: #d66; }
+.wpistic-form-status.success { color: var(--color-success, #4FAE7C); }
+.wpistic-form-status.error { color: var(--color-danger, #E08469); }
 .wpistic-booking-form button[disabled] { opacity: .6; cursor: progress; }
 .wpistic-newsletter-row { display: flex; gap: 8px; }
 .wpistic-newsletter-row input { flex: 1; min-width: 0; padding: 10px 12px; background: var(--bg-raise, #161812); border: 1px solid var(--rule, rgba(237,230,211,.12)); color: var(--ink, #EDE6D3); }
