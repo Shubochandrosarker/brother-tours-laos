@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 </main>
 
+<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'footer' ) ) : ?>
 <footer class="site-footer" role="contentinfo">
 	<div class="wrap">
 		<div class="footer-grid">
@@ -98,6 +99,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	</div>
 </footer>
+<?php endif; ?>
 
 <?php wpistic_app_bar(); ?>
 

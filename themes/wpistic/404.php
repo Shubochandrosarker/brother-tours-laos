@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
+<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( '404' ) ) : ?>
 <section class="center-stage on-navy">
 	<span class="eyebrow center">404</span>
 	<h1>Not <em>found</em>.</h1>
@@ -21,6 +22,7 @@ get_header();
 		<a class="btn btn-ghost on-dark" href="<?php echo esc_url( home_url( '/' ) ); ?>">Back to home</a>
 	</div>
 </section>
+<?php endif; ?>
 
 <?php
 get_footer();

@@ -39,6 +39,7 @@ if ( ! in_array( $wpistic_default_mode, array( 'light', 'dark' ), true ) ) {
 <?php wp_body_open(); ?>
 <a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'wpistic' ); ?></a>
 
+<?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) : ?>
 <header class="site-head" id="site-head">
 	<?php wpistic_util_bar(); ?>
 
@@ -92,5 +93,6 @@ if ( ! in_array( $wpistic_default_mode, array( 'light', 'dark' ), true ) ) {
 </div>
 
 <div class="head-spacer" aria-hidden="true"></div>
+<?php endif; ?>
 
 <main id="main" class="site-main">

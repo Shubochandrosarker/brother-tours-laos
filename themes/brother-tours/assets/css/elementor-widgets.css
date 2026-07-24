@@ -1,0 +1,130 @@
+/**
+ * Brother Tours — Elementor widget additions.
+ *
+ * Most of the 18 widgets reuse markup + classes already styled by
+ * pages.css/components.css (.glance, .itinerary, .incl-grid, .gallery-grid,
+ * .faq-item, .tour-grid, .places-grid, .page-hero, .tours-toolbar, ...), so
+ * this file only covers the handful of patterns that are genuinely new.
+ * Registered (not enqueued) — see themes/brother-tours/inc/elementor/bootstrap.php
+ * — so it only loads on a page that actually places one of these widgets.
+ *
+ * Every color below is a var(--...) token from brand-tokens.css; nothing
+ * here introduces a literal color, so it already supports light/dark mode.
+ */
+
+.wpistic-ew-empty,
+.wpistic-ew-admin-notice {
+	padding: 18px 20px;
+	border: 1px dashed var(--rule-strong);
+	background: var(--bg-raise);
+	color: var(--ink-muted);
+	font-family: var(--serif-body);
+	font-size: 15px;
+}
+
+.wpistic-ew-admin-notice {
+	border-color: var(--gold);
+	color: var(--ink-soft);
+}
+
+/* Tour Grid widget: a fourth column option the base template never needed. */
+.tour-grid.cols-4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 860px) {
+
+	.tour-grid.cols-4 {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (max-width: 560px) {
+
+	.tour-grid.cols-4,
+	.tour-grid.cols-3 {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Tour Pricing widget */
+.bt-ew-pricing {
+	background: var(--bg-card);
+	border: 1px solid var(--rule);
+	border-radius: var(--radius);
+	padding: 28px 26px;
+}
+
+.bt-ew-pricing .bt-ew-pricing-price {
+	font-family: var(--serif-display);
+	font-size: 20px;
+	color: var(--ink);
+	margin: 0 0 6px;
+}
+
+.bt-ew-pricing .bt-ew-pricing-cap {
+	color: var(--ink-muted);
+	font-size: 14px;
+	margin: 0 0 20px;
+}
+
+.bt-ew-pricing .btn {
+	width: 100%;
+	justify-content: center;
+}
+
+/* Contact Information widget */
+.bt-ew-contact {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.bt-ew-contact a {
+	color: var(--ink);
+	text-decoration: none;
+}
+
+.bt-ew-contact a:hover,
+.bt-ew-contact a:focus-visible {
+	color: var(--gold);
+}
+
+.bt-ew-contact .bt-ew-contact-label {
+	display: block;
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--ink-muted);
+	margin-bottom: 4px;
+}
+
+/* Reviews widget */
+.bt-ew-reviews p {
+	color: var(--ink-soft);
+}
+
+/* Tour Facts widget: same visual language as .glance, but usable outside
+ * the fixed 6-item single-tour layout. */
+.bt-ew-facts {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1px;
+	background: var(--rule);
+	border: 1px solid var(--rule);
+	border-radius: var(--radius);
+	overflow: hidden;
+	margin: 0;
+}
+
+.bt-ew-facts .glance-item {
+	background: var(--bg-card);
+}
+
+@media (max-width: 860px) {
+
+	.bt-ew-facts {
+		grid-template-columns: 1fr 1fr;
+	}
+}

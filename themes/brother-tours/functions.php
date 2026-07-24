@@ -14,6 +14,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Elementor widget bootstrap (registration only runs when Elementor is active).
+ */
+$brother_tours_elementor_bootstrap = get_stylesheet_directory() . '/inc/elementor/bootstrap.php';
+if ( is_readable( $brother_tours_elementor_bootstrap ) ) {
+	require_once $brother_tours_elementor_bootstrap;
+}
+unset( $brother_tours_elementor_bootstrap );
+
+/**
  * Canonical Brother Tours routes.
  *
  * Kept in one place so navigation, CTAs, the sticky action and the page seeder

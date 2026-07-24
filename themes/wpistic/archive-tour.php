@@ -16,6 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
+if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'archive' ) ) {
+	get_footer();
+	return;
+}
+
 $wpistic_count = ( is_post_type_archive() && isset( $GLOBALS['wp_query'] ) ) ? (int) $GLOBALS['wp_query']->found_posts : 0;
 ?>
 

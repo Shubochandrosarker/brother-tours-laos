@@ -476,10 +476,16 @@ function wpistic_body_classes( $classes ) {
  * action somewhere else -- Brother Tours locks it to /build-my-trip/ -- so the
  * destination is filterable rather than hard-coded across templates.
  *
+ * Bug fix: this previously called itself while building its own default
+ * argument (`apply_filters( 'wpistic/cta_url', wpistic_cta_url() )`), which
+ * is unconditional infinite recursion -- every call would exhaust the PHP
+ * call stack. The base default is now a literal fallback route; a child
+ * theme (Brother Tours) still overrides it via the `wpistic/cta_url` filter.
+ *
  * @return string Absolute URL.
  */
 function wpistic_cta_url() {
-	return (string) apply_filters( 'wpistic/cta_url', wpistic_cta_url() );
+	return (string) apply_filters( 'wpistic/cta_url', home_url( '/plan-my-laos-trip/' ) );
 }
 
 /**
