@@ -1,10 +1,10 @@
 # The Brother Tours Formistic fork
 
 Brother Tours runs its own copy of Formistic at
-`plugins/brother-tours-formistic/`, presented in the admin as **Brother Tours
+`plugins/formistic/`, presented in the admin as **Brother Tours
 Forms**.
 
-`plugins/brother-tours-formistic/UPSTREAM.md` records the exact upstream commit,
+`plugins/formistic/UPSTREAM.md` records the exact upstream commit,
 licence and every local change. This document explains *why* the fork is shaped
 the way it is, and how to work on it safely.
 
@@ -61,7 +61,7 @@ rewritten bootstrap:
 
 | File | Role |
 |---|---|
-| `brother-tours-formistic.php` | Rewritten bootstrap: branding, duplicate guard, require list, activation |
+| `formistic.php` | Rewritten bootstrap: branding, duplicate guard, require list, activation |
 | `includes/class-formistic-bt-branding.php` | Admin relabel, sender/Reply-To, capture field aliases |
 | `includes/class-formistic-bt-forms.php` | The four form definitions and their idempotent seeder |
 
@@ -142,7 +142,7 @@ the Tourflows dispatch. Those belong to Tour Manager. The boundary is the
    `UPSTREAM.md`).
 2. Apply that diff to `includes/class-formistic-*.php` and `assets/`. These are
    unmodified, so it should be clean.
-3. Re-apply by hand only to `brother-tours-formistic.php`. Re-check three things:
+3. Re-apply by hand only to `formistic.php`. Re-check three things:
    the duplicate guard still runs before every `require_once`; the require list
    still includes `class-formistic-g2a-defaults.php`; the activation hook still
    calls the Brother Tours seeder.

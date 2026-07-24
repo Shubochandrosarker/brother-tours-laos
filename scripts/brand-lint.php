@@ -42,8 +42,8 @@
  *       "We do not sell journeys. We share the country we were born in."
  *       "Consistently top-rated on Google and TripAdvisor."
  *
- * Skipped entirely: .git/, node_modules/, vendor/, plugins/wpistic-crm/
- * (unrelated third-party CRM), themes/wpistic/_preview-*.html (static
+ * Skipped entirely: .git/, node_modules/, vendor/,
+ * themes/wpistic/_preview-*.html (static
  * design exports), this script itself (it necessarily contains every
  * banned term), and docs/ (the rulebook — it quotes the banned inventory
  * in order to define it; nothing in docs/ ships as site copy).
@@ -72,7 +72,6 @@ const BL_SKIP_DIR_NAMES = ['.git', 'node_modules', 'vendor'];
 
 /** Repo-root-relative path prefixes skipped entirely. */
 const BL_SKIP_PREFIXES = [
-    'plugins/wpistic-crm/', // unrelated third-party CRM
     // The brand rulebook / internal process docs. Like this script, they
     // necessarily quote every banned term and retired phrase in order to
     // define the rules, so scanning them would drown real copy findings.
@@ -106,19 +105,19 @@ const BL_SKIP_FILES = [
  *  - static design exports that never ship;
  *  - the vendored upstream Formistic source, which is third-party code kept
  *    byte-identical to its upstream commit so future merges stay mechanical
- *    (see plugins/brother-tours-formistic/UPSTREAM.md). Editing it to satisfy
+ *    (see plugins/formistic/UPSTREAM.md). Editing it to satisfy
  *    a brand rule would defeat that, and none of it is guest-facing copy --
  *    the matches there are an internal LLM prompt and the plugin's own
  *    readme metadata.
  *
  * The negative lookahead deliberately keeps the two Brother Tours-authored
- * files (class-formistic-bt-*.php) in scope: those are ours, and the four form
+ * files (class-formistic-bt-*.php) in scope: those are ours, and the five form
  * definitions they carry *are* guest-facing.
  */
 const BL_SKIP_PATTERNS = [
     '~^themes/wpistic/_preview-[^/]*\.html$~',
-    '~^plugins/brother-tours-formistic/includes/class-formistic-(?!bt-)~',
-    '~^plugins/brother-tours-formistic/(readme\.txt|README\.md|LICENSE)$~',
+    '~^plugins/formistic/includes/class-formistic-(?!bt-)~',
+    '~^plugins/formistic/(readme\.txt|README\.md|LICENSE)$~',
 ];
 
 /** Extensions whose content is HTML-ish: tags are blanked before scanning. */

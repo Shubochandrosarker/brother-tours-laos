@@ -248,7 +248,7 @@ Repo facts: `plugins/wpistic-tour-manager/src/Integration/SchemaData.php` emits 
 
 ### 5.1 Forms
 
-The four Brother Tours forms are seeded in code (`plugins/brother-tours-formistic/includes/class-formistic-bt-forms.php`) and routed to Tour Manager by `plugins/wpistic-tour-manager/src/Integration/FormisticIngestion.php`. None of this has ever executed — there is no WordPress install — so every submission-path row is untested.
+The four Brother Tours forms are seeded in code (`plugins/formistic/includes/class-formistic-bt-forms.php`) and routed to Tour Manager by `plugins/wpistic-tour-manager/src/Integration/FormisticIngestion.php`. None of this has ever executed — there is no WordPress install — so every submission-path row is untested.
 
 | # | Item | Status | Evidence / Next action |
 |---|---|---|---|

@@ -14,8 +14,7 @@ themes/
   brother-tours/            site-specific child theme
 plugins/
   wpistic-tour-manager/     tours, bookings, payments, connections, portal
-  brother-tours-formistic/  Brother Tours Forms (vendored Formistic fork)
-  wpistic-crm/              pre-existing, unrelated to this site
+  formistic/                Formistic (vendored fork, WordPressistic-authored)
 docs/                       architecture, integration and launch documentation
 scripts/                    brand-lint.php, release-check.sh
 ```
@@ -41,7 +40,7 @@ bundles `tour-core` under `lib/`.
 rsync -a themes/wpistic          /path/to/wp-content/themes/
 rsync -a themes/brother-tours    /path/to/wp-content/themes/
 rsync -a plugins/wpistic-tour-manager    /path/to/wp-content/plugins/
-rsync -a plugins/brother-tours-formistic /path/to/wp-content/plugins/
+rsync -a plugins/formistic /path/to/wp-content/plugins/
 ```
 
 ### 2. Activation order
@@ -210,7 +209,7 @@ Rollback: **`docs/rollback.md`**.
 | `docs/content-import-guide.md` | Editor guide: pages, tours, destinations, journal, images, brand rules |
 | `docs/launch-checklist.md` | Acceptance checklist with status and evidence |
 | `docs/rollback.md` | How to undo this change at three levels |
-| `plugins/brother-tours-formistic/UPSTREAM.md` | Fork provenance and every local change |
+| `plugins/formistic/UPSTREAM.md` | Fork provenance and every local change |
 
 ## Brand rules
 

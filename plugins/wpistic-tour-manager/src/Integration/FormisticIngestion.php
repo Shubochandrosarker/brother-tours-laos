@@ -9,7 +9,7 @@ use Wpistic\TourManager\Connections\ConnectionsManager;
 use Wpistic\TourManager\Install\Tables;
 
 /**
- * The single ingestion path from Brother Tours Forms (Formistic) into Tour Manager.
+ * The single ingestion path from Formistic into Tour Manager.
  *
  * One visitor submission produces exactly one local inquiry record and exactly
  * one Tourflows event. This class is the only place that turns a Formistic
@@ -18,7 +18,7 @@ use Wpistic\TourManager\Install\Tables;
  *
  * What guarantees "exactly once":
  *
- *  1. Routing — only the four named Brother Tours forms are ingested, resolved
+ *  1. Routing — only the five named Brother Tours forms are ingested, resolved
  *     through the stable `_brother_tours_form` slug rather than the editable
  *     form title. An unrecognized form is ignored outright, so a marketing form
  *     added later never silently creates inquiries.
@@ -33,9 +33,15 @@ use Wpistic\TourManager\Install\Tables;
  * subscribes the address and returns before Capture::store(), so it never fires
  * the captured action at all.
  *
- * Tour-page "Request Availability" is deliberately not handled here either. It
- * stays owned by CaptureController because it carries tour_id, departure and the
- * deposit workflow. It must not also be posted through a Formistic form.
+ * Two separate, non-overlapping paths can create a tour-availability booking:
+ * this class (for the Formistic-rendered "Request Availability" form, tour
+ * context carried in its hidden tour_id/tour_title fields — see
+ * Wpistic_Formistic_BT_Forms::render_request_availability()) and
+ * CaptureController (for Tour Manager's own booking-widget shortcode, which
+ * owns the deposit/payment follow-on workflow). They never process the same
+ * submission: one is driven by `wpistic_formistic_submission_captured`, the
+ * other by its own POST handler. See docs/formistic-brother-tours-integration.md
+ * for why both exist and how the boundary is kept airtight.
  */
 final class FormisticIngestion {
 
@@ -62,9 +68,10 @@ final class FormisticIngestion {
 	 */
 	private function type_map(): array {
 		return array(
-			'build-my-trip' => 'build_my_trip',
-			'contact'       => 'contact',
-			'travel-agent'  => 'agent',
+			'build-my-trip'         => 'build_my_trip',
+			'contact'               => 'contact',
+			'travel-agent'          => 'agent',
+			'request-availability'  => 'booking',
 		);
 	}
 
@@ -90,7 +97,7 @@ final class FormisticIngestion {
 		$map  = $this->type_map();
 
 		if ( '' === $slug || ! isset( $map[ $slug ] ) ) {
-			return; // Not one of the four Brother Tours forms; not ours to ingest.
+			return; // Not one of the five Brother Tours forms; not ours to ingest.
 		}
 
 		// Claim before creating. Losing this race means another pass already
@@ -109,10 +116,12 @@ final class FormisticIngestion {
 
 		$fields  = is_array( $fields ) ? $fields : array();
 		$context = $this->request_context( $submission );
+		$tour    = $this->extract_tour_context( $fields );
 
 		$booking_id = $this->bookings->create(
 			array(
 				'type'             => $map[ $slug ],
+				'tour_id'          => $tour['tour_id'] > 0 ? $tour['tour_id'] : null,
 				'customer_name'    => (string) ( $submission->sender_name ?? '' ),
 				'customer_email'   => (string) ( $submission->sender_email ?? '' ),
 				'customer_phone'   => (string) ( $submission->sender_phone ?? '' ),
@@ -123,7 +132,7 @@ final class FormisticIngestion {
 				// intact. Casting would silently reduce it to 2 and lose the ages.
 				'party_children'   => $this->field( $fields, array( 'children' ) ),
 				'hotel_pref'       => $this->field( $fields, array( 'hotel' ) ),
-				'special_requests' => $this->summary( $fields, $submission ),
+				'special_requests' => $this->summary( $tour['fields'], $submission ),
 				'source_url'       => (string) ( $submission->source_url ?? '' ),
 			)
 		);
@@ -154,6 +163,7 @@ final class FormisticIngestion {
 				'utm'           => $context['utm'],
 				'referrer'      => $context['referrer'],
 				'source_url'    => (string) ( $submission->source_url ?? '' ),
+				'tour_title'    => $tour['tour_title'],
 			)
 		);
 
@@ -277,6 +287,48 @@ final class FormisticIngestion {
 	/* ==============================================================
 	 * Field helpers
 	 * ============================================================== */
+
+	/**
+	 * Pull the hidden tour_id / tour_title pair out of a captured field map
+	 * by their exact seeded labels, and return the remaining fields with
+	 * those two removed.
+	 *
+	 * Exact (not fuzzy) label matching is deliberate: "Tour" and "Tour name"
+	 * are both seeded on the Request Availability form and one label is a
+	 * substring of the other, so the fuzzy `field()` matcher used for every
+	 * other lookup would collide between them here. These two labels are
+	 * defined by this codebase (Wpistic_Formistic_BT_Forms), not free-form
+	 * guest input, so an exact match is safe and unambiguous.
+	 *
+	 * The pair is removed from the returned fields so the free-text inquiry
+	 * summary never repeats a raw tour_id or the tour title as a guest-typed
+	 * note — `tour_id` becomes a real column instead, which the portal
+	 * resolves to the tour's post title for display.
+	 *
+	 * @param array<string, mixed> $fields Captured fields.
+	 * @return array{tour_id: int, tour_title: string, fields: array<string, mixed>}
+	 */
+	private function extract_tour_context( array $fields ): array {
+		$tour_id    = 0;
+		$tour_title = '';
+
+		foreach ( $fields as $label => $value ) {
+			$normalized = strtolower( trim( (string) $label ) );
+			if ( 'tour' === $normalized ) {
+				$tour_id = absint( is_array( $value ) ? '' : $value );
+				unset( $fields[ $label ] );
+			} elseif ( 'tour name' === $normalized ) {
+				$tour_title = is_array( $value ) ? '' : (string) $value;
+				unset( $fields[ $label ] );
+			}
+		}
+
+		return array(
+			'tour_id'    => $tour_id,
+			'tour_title' => $tour_title,
+			'fields'     => $fields,
+		);
+	}
 
 	/**
 	 * Pull a value out of the label => value map by fuzzy label match.

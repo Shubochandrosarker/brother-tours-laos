@@ -110,7 +110,7 @@ if the guard itself was edited or an older copy is present:
 ```sh
 # Rename the plugin directory over SSH/SFTP; WordPress deactivates it on the
 # next request and the admin becomes reachable again.
-mv wp-content/plugins/brother-tours-formistic wp-content/plugins/brother-tours-formistic.off
+mv wp-content/plugins/formistic wp-content/plugins/formistic.off
 ```
 
 Then reach the admin, deactivate the other Formistic, rename the directory back,
