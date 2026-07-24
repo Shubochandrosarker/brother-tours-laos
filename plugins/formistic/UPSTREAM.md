@@ -35,7 +35,7 @@ upstream defines them, and the fork adds no wrappers around them:
 
 Renaming any of them requires updating every consumer in this repository in the
 same commit and shipping a compatibility adapter. See
-`docs/formistic-fork.md`.
+`docs/formistic-brother-tours-integration.md`.
 
 ## Brother Tours changes
 

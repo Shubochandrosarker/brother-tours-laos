@@ -24,7 +24,11 @@
  *   5. rating-claim     Unverified rating/award claims
  *                       (AggregateRating, ratingValue, "5-star
  *                       rated", "rated #1", "#1 in Laos", ...)     -> error
- *   6. locked phrases   Presence report for the locked brand
+ *   6. unrelated-client Identifiers from another WordPressistic
+ *                       client project (the "G2A" firearms-retailer
+ *                       build this repo's Formistic fork originated
+ *                       from) that must never ship here             -> error
+ *   7. locked phrases   Presence report for the locked brand
  *                       sentences (informational, never a failure)
  *
  * False-positive guards:
@@ -117,7 +121,7 @@ const BL_SKIP_FILES = [
 const BL_SKIP_PATTERNS = [
     '~^themes/wpistic/_preview-[^/]*\.html$~',
     '~^plugins/formistic/includes/class-formistic-(?!bt-)~',
-    '~^plugins/formistic/(readme\.txt|README\.md|LICENSE)$~',
+    '~^plugins/formistic/(readme\.txt|README\.md|LICENSE|UPSTREAM\.md)$~',
 ];
 
 /** Extensions whose content is HTML-ish: tags are blanked before scanning. */
@@ -377,6 +381,53 @@ function bl_rule_sets(): array
                 // Outside the one locked review sentence (masked before
                 // scanning), "top-rated" is an unverified claim.
                 'top-rated' => ['rx' => '~\btop[\s-]+rated\b~i', 'label' => 'top-rated'],
+            ],
+        ],
+        [
+            // Identifiers from the unrelated "G2A" (Guns 2 Ammo) firearms
+            // retailer project this Formistic fork's upstream commit
+            // originated from. None of it is Brother Tours code, and unlike
+            // the banned-word/rating rules above (copy-quality concerns),
+            // finding any of these in a deployable file means literal
+            // wrong-client code or content shipped by mistake -- always an
+            // error, comment or not, since even a comment referencing another
+            // client's business in this repo is a mistake worth fixing.
+            'set'          => 'unrelated-client',
+            'severity'     => 'error',
+            'no_downgrade' => true,
+            'terms'        => [
+                'guns2ammo' => [
+                    'rx'    => '~guns[\s.-]*2[\s.-]*ammo~i',
+                    'label' => 'Guns 2 Ammo / guns2ammo',
+                ],
+                'g2a' => [
+                    'rx'    => $word('g2a'),
+                    'label' => 'g2a',
+                ],
+                'firearm' => [
+                    'rx'    => '~\bfirearms?\b~i',
+                    'label' => 'firearm',
+                ],
+                'shooting-range' => [
+                    'rx'    => '~\bshooting[\s-]+range\b~i',
+                    'label' => 'shooting range',
+                ],
+                'waiver' => [
+                    'rx'    => $word('waivers?'),
+                    'label' => 'waiver',
+                ],
+                'kiosk' => [
+                    'rx'    => $word('kiosks?'),
+                    'label' => 'kiosk',
+                ],
+                'class-student' => [
+                    'rx'    => '~\bclass[\s_-]?students?\b~i',
+                    'label' => 'class student',
+                ],
+                'range-booking' => [
+                    'rx'    => '~\brange[\s-]+booking\b~i',
+                    'label' => 'range booking',
+                ],
             ],
         ],
     ];
@@ -922,7 +973,7 @@ function bl_scan_file(string $abs, string $rel, array $ruleSets, array &$finding
 
                     $inComment = bl_in_ranges($gs, $ge, $comments);
                     $severity  = $ruleSet['severity'];
-                    if ($inComment && $severity === 'error') {
+                    if ($inComment && $severity === 'error' && empty($ruleSet['no_downgrade'])) {
                         $severity = 'warning'; // comments are not user-facing
                     }
 
@@ -967,7 +1018,7 @@ function bl_report_human(array $findings, array $locked, int $fileCount, string 
     echo "Scanned: $fileCount file(s)\n";
 
     $groups = [
-        'error'   => ['ERRORS', 'brand violations in user-facing copy'],
+        'error'   => ['ERRORS', 'brand violations in user-facing copy, and any unrelated-client code'],
         'warning' => ['WARNINGS', 'banned constructions + banned terms found in code comments'],
         'review'  => ['REVIEW', '"discover" / "explore" - confirm the use is literal, not figurative'],
     ];

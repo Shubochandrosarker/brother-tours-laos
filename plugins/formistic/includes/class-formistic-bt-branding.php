@@ -4,7 +4,7 @@
  *
  * Everything here is additive and hook-based. No upstream file is edited, so a
  * future upstream merge stays a clean fast-forward of includes/class-formistic-*.php
- * with this file layered on top. See ../UPSTREAM.md and docs/formistic-fork.md.
+ * with this file layered on top. See ../UPSTREAM.md and docs/formistic-brother-tours-integration.md.
  *
  * Responsibilities:
  *  - present the plugin as "Brother Tours Forms" in the admin;

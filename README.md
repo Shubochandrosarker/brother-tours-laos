@@ -204,7 +204,7 @@ Rollback: **`docs/rollback.md`**.
 |---|---|
 | `docs/source-inventory.md` | Supplied sources, precedence, conflicts resolved, defects found |
 | `docs/implementation-plan.md` | Architecture, data ownership, integration map, migration, risks, open items |
-| `docs/formistic-fork.md` | Why the fork is shaped this way; safe upstream merges |
+| `docs/formistic-brother-tours-integration.md` | Why the fork is shaped this way; safe upstream merges |
 | `docs/tourflows-integration.md` | Payload contract, signature, idempotency, retries, recovery |
 | `docs/content-import-guide.md` | Editor guide: pages, tours, destinations, journal, images, brand rules |
 | `docs/launch-checklist.md` | Acceptance checklist with status and evidence |
