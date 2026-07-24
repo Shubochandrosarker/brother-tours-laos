@@ -25,7 +25,7 @@ $wpistic_ken  = wpistic_demo_img( 'ken-portrait' );
 			<p class="hero-v2-lede">Lao-led. Globally understood.</p>
 			<p class="hero-v2-sub">Private, hosted journeys designed around you — built and led from the ground in Laos.</p>
 			<div class="hero-btns">
-				<a class="btn btn-solid" href="<?php echo esc_url( home_url( '/plan-my-laos-trip/' ) ); ?>">Plan My Laos Trip <span class="arr" aria-hidden="true">→</span></a>
+				<a class="btn btn-solid" href="<?php echo esc_url( wpistic_cta_url() ); ?>"><?php echo esc_html( wpistic_cta_label() ); ?> <span class="arr" aria-hidden="true">→</span></a>
 				<a class="btn btn-ghost" href="<?php echo esc_url( home_url( '/tours/' ) ); ?>">See Our Journeys</a>
 			</div>
 			<div class="hero-v2-stats">

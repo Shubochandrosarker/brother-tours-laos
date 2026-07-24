@@ -57,7 +57,7 @@ if ( ! in_array( $wpistic_default_mode, array( 'light', 'dark' ), true ) ) {
 				)
 			);
 			?>
-			<a class="nav-cta" href="<?php echo esc_url( home_url( '/plan-my-laos-trip/' ) ); ?>"><?php esc_html_e( 'Plan My Laos Trip', 'wpistic' ); ?></a>
+			<a class="nav-cta" href="<?php echo esc_url( wpistic_cta_url() ); ?>"><?php echo esc_html( wpistic_cta_label() ); ?></a>
 			<?php
 			if ( $wpistic_toggle_on ) {
 				wpistic_theme_toggle();
@@ -82,7 +82,7 @@ if ( ! in_array( $wpistic_default_mode, array( 'light', 'dark' ), true ) ) {
 		)
 	);
 	?>
-	<a class="btn btn-solid" href="<?php echo esc_url( home_url( '/plan-my-laos-trip/' ) ); ?>"><?php esc_html_e( 'Plan My Laos Trip', 'wpistic' ); ?> <span class="arr" aria-hidden="true">→</span></a>
+	<a class="btn btn-solid" href="<?php echo esc_url( wpistic_cta_url() ); ?>"><?php echo esc_html( wpistic_cta_label() ); ?> <span class="arr" aria-hidden="true">→</span></a>
 	<div class="mobile-util">
 		<a href="<?php echo esc_url( wpistic_whatsapp_url() ); ?>" rel="noopener">WhatsApp</a>
 		<?php if ( $wpistic_toggle_on ) : ?>

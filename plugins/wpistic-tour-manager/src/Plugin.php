@@ -49,6 +49,7 @@ final class Plugin {
 			( new Admin\MetaBoxes() )->register();
 			( new Admin\Portal( $bookings, $gateways, $connections ) )->register();
 			( new Admin\ContentSeeder() )->register();
+			( new Admin\SiteSeeder( $connections ) )->register();
 		}
 
 		add_action( 'init', array( $this, 'maybe_flush' ), 999 );

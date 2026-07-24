@@ -41,7 +41,7 @@ $wpistic_routes = array(
 		<h1>Laos, designed for the American <em>traveler</em>.</h1>
 		<p class="lede">Direct from Bangkok or Hanoi. Visa, flights, and in-country logistics — handled by a Lao-owned company in Vientiane.</p>
 		<div class="hero-actions">
-			<a class="btn btn-solid" href="<?php echo esc_url( home_url( '/plan-my-laos-trip/' ) ); ?>">Plan My Laos Trip <span class="arr" aria-hidden="true">→</span></a>
+			<a class="btn btn-solid" href="<?php echo esc_url( wpistic_cta_url() ); ?>"><?php echo esc_html( wpistic_cta_label() ); ?> <span class="arr" aria-hidden="true">→</span></a>
 			<a class="btn btn-ghost on-dark" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Schedule a US-hours call</a>
 		</div>
 		<p class="facts">

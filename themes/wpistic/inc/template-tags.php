@@ -92,7 +92,7 @@ function wpistic_breadcrumbs() {
  * @return void
  */
 function wpistic_build_my_trip_cta( $context = '' ) {
-	$url = home_url( '/plan-my-laos-trip/' );
+	$url = wpistic_cta_url();
 	if ( '' !== $context ) {
 		$url = add_query_arg( 'tour', rawurlencode( $context ), $url );
 	}
@@ -286,7 +286,7 @@ function wpistic_util_bar() {
 	<div class="util-bar">
 		<span class="util-locale"><?php echo esc_html( wpistic_contact( 'locale' ) ); ?></span>
 		<a class="util-wa" href="<?php echo esc_url( wpistic_whatsapp_url() ); ?>" rel="noopener">WhatsApp</a>
-		<a class="util-cta" href="<?php echo esc_url( home_url( '/plan-my-laos-trip/' ) ); ?>"><?php esc_html_e( 'Plan My Laos Trip', 'wpistic' ); ?></a>
+		<a class="util-cta" href="<?php echo esc_url( wpistic_cta_url() ); ?>"><?php echo esc_html( wpistic_cta_label() ); ?></a>
 	</div>
 	<?php
 }
@@ -310,7 +310,7 @@ function wpistic_app_bar() {
 			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="1.4" fill="currentColor"/><circle cx="14" cy="12" r="1.4" fill="currentColor"/><circle cx="10" cy="18" r="1.4" fill="currentColor"/></svg>
 			<?php esc_html_e( 'Tours', 'wpistic' ); ?>
 		</a>
-		<a href="<?php echo esc_url( home_url( '/plan-my-laos-trip/' ) ); ?>" class="app-cta">
+		<a href="<?php echo esc_url( wpistic_cta_url() ); ?>" class="app-cta">
 			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
 			<?php esc_html_e( 'Build', 'wpistic' ); ?>
 		</a>
@@ -399,12 +399,24 @@ function wpistic_tour_card( $args = array() ) {
  * @return void
  */
 function wpistic_primary_menu_fallback() {
-	$items = array(
-		'/destinations/'  => __( 'Destinations', 'wpistic' ),
-		'/tours/'         => __( 'Tours', 'wpistic' ),
-		'/about/'         => __( 'About', 'wpistic' ),
-		'/laos-travel-guide/' => __( 'Travel Guide', 'wpistic' ),
-		'/contact/'       => __( 'Contact', 'wpistic' ),
+	/**
+	 * Filter the fallback navigation shown when no `primary` menu is assigned.
+	 *
+	 * A child theme with a locked information architecture -- Brother Tours has
+	 * one -- can supply its own path => label map here, so a site that has not
+	 * yet built a menu in the admin still renders the intended navigation.
+	 *
+	 * @param array<string,string> $items Path => label.
+	 */
+	$items = (array) apply_filters(
+		'wpistic/primary_menu_fallback',
+		array(
+			'/destinations/'  => __( 'Destinations', 'wpistic' ),
+			'/tours/'         => __( 'Tours', 'wpistic' ),
+			'/about/'         => __( 'About', 'wpistic' ),
+			'/laos-travel-guide/' => __( 'Travel Guide', 'wpistic' ),
+			'/contact/'       => __( 'Contact', 'wpistic' ),
+		)
 	);
 	echo '<ul class="nav-links">';
 	foreach ( $items as $path => $label ) {
@@ -426,6 +438,14 @@ function wpistic_footer_menu_fallback( $args ) {
 		'footer-company' => array( '/about/' => __( 'About', 'wpistic' ), '/laos-travel-guide/' => __( 'Travel Guide', 'wpistic' ), '/contact/' => __( 'Contact', 'wpistic' ), '/plan-my-laos-trip/' => __( 'Plan My Trip', 'wpistic' ) ),
 		'footer-practical' => array( '/booking-conditions/' => __( 'Booking Conditions', 'wpistic' ), '/cancellation-policy/' => __( 'Cancellation Policy', 'wpistic' ), '/privacy-policy/' => __( 'Privacy Policy', 'wpistic' ), '/terms-and-conditions/' => __( 'Terms and Conditions', 'wpistic' ) ),
 	);
+	/**
+	 * Filter the fallback footer menus.
+	 *
+	 * @param array<string,array<string,string>> $menus    Location => (path => label).
+	 * @param string                             $location Current menu location.
+	 */
+	$menus = (array) apply_filters( 'wpistic/footer_menu_fallback', $menus, $location );
+
 	if ( empty( $menus[ $location ] ) ) { return; }
 	echo '<ul class="footer-links">';
 	foreach ( $menus[ $location ] as $path => $label ) { echo '<li><a href="' . esc_url( home_url( $path ) ) . '">' . esc_html( $label ) . '</a></li>'; }
@@ -447,4 +467,26 @@ function wpistic_body_classes( $classes ) {
 		$classes[] = 'has-dark-hero';
 	}
 	return $classes;
+}
+
+/**
+ * Canonical inquiry CTA destination.
+ *
+ * The base theme ships a "Plan My Laos Trip" route. A child theme may point the
+ * action somewhere else -- Brother Tours locks it to /build-my-trip/ -- so the
+ * destination is filterable rather than hard-coded across templates.
+ *
+ * @return string Absolute URL.
+ */
+function wpistic_cta_url() {
+	return (string) apply_filters( 'wpistic/cta_url', wpistic_cta_url() );
+}
+
+/**
+ * Canonical inquiry CTA label.
+ *
+ * @return string
+ */
+function wpistic_cta_label() {
+	return (string) apply_filters( 'wpistic/cta_label', __( 'Plan My Laos Trip', 'wpistic' ) );
 }

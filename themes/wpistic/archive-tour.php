@@ -100,7 +100,7 @@ $wpistic_count = ( is_post_type_archive() && isset( $GLOBALS['wp_query'] ) ) ? (
 				<div class="match-card">
 					<h3><?php esc_html_e( "Can't decide?", 'wpistic' ); ?></h3>
 					<p><?php esc_html_e( 'Tell us the shape of your trip and we will design it around you.', 'wpistic' ); ?></p>
-					<a class="btn btn-solid" href="<?php echo esc_url( home_url( '/plan-my-laos-trip/' ) ); ?>"><?php esc_html_e( 'Plan My Laos Trip', 'wpistic' ); ?></a>
+					<a class="btn btn-solid" href="<?php echo esc_url( wpistic_cta_url() ); ?>"><?php echo esc_html( wpistic_cta_label() ); ?></a>
 				</div>
 			</aside>
 

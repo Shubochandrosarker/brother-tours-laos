@@ -29,7 +29,7 @@ $wpistic_img   = array( 'tour-1', 'tour-2', 'tour-3', 'tour-4', 'tour-5' );
 				<h1 class="mag-h1">Experience Laos Through the People Who Call It <em>Home</em>.</h1>
 				<p class="mag-lede">Private journeys crafted by Lao guides who know the stories behind every temple, river, village, and mountain.</p>
 				<div class="hero-btns">
-					<a class="btn btn-solid" href="<?php echo esc_url( home_url( '/plan-my-laos-trip/' ) ); ?>">Plan My Laos Trip <span class="arr" aria-hidden="true">→</span></a>
+					<a class="btn btn-solid" href="<?php echo esc_url( wpistic_cta_url() ); ?>"><?php echo esc_html( wpistic_cta_label() ); ?> <span class="arr" aria-hidden="true">→</span></a>
 					<a class="btn btn-ghost on-dark" href="<?php echo esc_url( home_url( '/tours/' ) ); ?>">See Our Journeys</a>
 				</div>
 				<div class="mag-stats">

@@ -64,7 +64,7 @@ $wpistic_host_src = $wpistic_host_id ? wp_get_attachment_image_url( $wpistic_hos
 			<p class="hero-tagline">Lao-led. Globally understood.</p>
 			<p class="hero-sub">Private, hosted journeys designed around you — built and led from the ground in Laos.</p>
 			<div class="hero-btns">
-				<a class="btn btn-solid" href="<?php echo esc_url( home_url( '/plan-my-laos-trip/' ) ); ?>">Plan My Laos Trip <span class="arr" aria-hidden="true">→</span></a>
+				<a class="btn btn-solid" href="<?php echo esc_url( wpistic_cta_url() ); ?>"><?php echo esc_html( wpistic_cta_label() ); ?> <span class="arr" aria-hidden="true">→</span></a>
 				<a class="btn btn-ghost on-dark" href="<?php echo esc_url( home_url( '/tours/' ) ); ?>">See Our Journeys</a>
 			</div>
 			<p class="hero-trust">

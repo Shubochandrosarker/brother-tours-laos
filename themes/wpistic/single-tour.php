@@ -183,7 +183,7 @@ while ( have_posts() ) :
 					} else {
 						?>
 						<div class="ba-actions">
-							<a class="btn btn-navy" href="<?php echo esc_url( add_query_arg( 'tour', rawurlencode( get_the_title() ), home_url( '/plan-my-laos-trip/' ) ) ); ?>"><?php esc_html_e( 'Request Itinerary', 'wpistic' ); ?></a>
+							<a class="btn btn-navy" href="<?php echo esc_url( add_query_arg( 'tour', rawurlencode( get_the_title() ), wpistic_cta_url() ) ); ?>"><?php esc_html_e( 'Request Itinerary', 'wpistic' ); ?></a>
 							<a class="btn btn-green" href="<?php echo esc_url( wpistic_whatsapp_url( 'Hello — I would like to ask about the ' . get_the_title() . ' journey.' ) ); ?>" rel="noopener"><?php esc_html_e( 'Ask on WhatsApp', 'wpistic' ); ?></a>
 						</div>
 						<div class="ba-check">
@@ -213,7 +213,7 @@ while ( have_posts() ) :
 
 					<p class="secondary">
 						<?php esc_html_e( 'Not quite right?', 'wpistic' ); ?><br>
-						<a class="btn-link" href="<?php echo esc_url( add_query_arg( 'tour', rawurlencode( get_the_title() ), home_url( '/plan-my-laos-trip/' ) ) ); ?>"><?php esc_html_e( 'Design your own journey', 'wpistic' ); ?> <span class="arr" aria-hidden="true">→</span></a>
+						<a class="btn-link" href="<?php echo esc_url( add_query_arg( 'tour', rawurlencode( get_the_title() ), wpistic_cta_url() ) ); ?>"><?php esc_html_e( 'Design your own journey', 'wpistic' ); ?> <span class="arr" aria-hidden="true">→</span></a>
 					</p>
 				</aside>
 			</div>
