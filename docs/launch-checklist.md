@@ -460,8 +460,30 @@ together before sign-off.
 
 | # | Item | Status | Evidence / Next action |
 |---|---|---|---|
-| 1 | All four shipped components report version 2.0.0 | `PASS` | Verified by reading every version string: both theme `style.css` headers, both plugin headers, both `WPISTIC_*_VERSION` constants, both `readme.txt` Stable tags. |
+| 1 | All four shipped components report version 2.0.0 | `PASS` | Verified by reading every version string: both theme `style.css` headers, both plugin headers, both `WPISTIC_*_VERSION` constants, both `readme.txt` Stable tags. `scripts/build-release.sh` also re-checks this and refuses to package on a mismatch. |
 | 2 | No database schema silently claimed as migrated | `PASS` | Both `WPISTIC_FORMISTIC_DB_VERSION` and `WPISTIC_TM_DB_VERSION` deliberately left unchanged — no schema change in this release for either plugin (the connection-dispatch history reuses the existing audit log rather than a new column; documented inline at both version constants and in `docs/upgrade-to-2.0.0.md`). |
+
+### 10.7 Automated test pass (this session, no WordPress runtime available)
+
+These are the checks that can run without a live WordPress + MySQL + Elementor
+install. They are real command output, not asserted — re-run any of them
+yourself with the command shown. They do not replace the staging smoke test
+in `docs/release-checklist.md` section 6, which is the only check that
+exercises WordPress itself.
+
+| # | Item | Status | Evidence / Next action |
+|---|---|---|---|
+| 1 | PHP syntax — every file under `themes/` and `plugins/` | `PASS` | `find themes plugins -name '*.php' \| xargs -n1 php -l` — zero syntax errors across the full tree (PHP 8.4.19 CLI). |
+| 2 | JS syntax — every file under `themes/` and `plugins/` | `PASS` | `node --check` on every `.js` file — zero syntax errors. |
+| 3 | Brand lint (incl. `unrelated-client`/G2A rule) | `PASS` | `php scripts/brand-lint.php` — 0 errors. (5 pre-existing warnings and 3 review items are informational banned-word-in-comment / figurative-"explore" notes, unchanged by this release — see the script's own output for line numbers.) |
+| 4 | Release gate suite (5 gates) | `PASS` | `sh scripts/release-check.sh` — PHP lint, brand lint, secret scan, no tracked `.env`, independent unrelated-client scan: 5/5. |
+| 5 | Release packaging | `PASS` | `sh scripts/build-release.sh` — produced and verified all 5 zips (correct single root folder each, `sha256sum -c checksums.sha256` all `OK`). Spot-checked for G2A residue with a binary-aware scan of every packaged file; the only hits were coincidental byte sequences inside `.webp` demo images (not text) and the expected, policy-sanctioned historical mention in `formistic/UPSTREAM.md`. |
+| 6 | CSS structural sanity (brace balance) on the new light/dark and dashboard stylesheets | `PASS` | Brace counts balance in `brand-tokens.css`, `elementor-widgets.css`, `dashboard.css`. Not a substitute for rendering in a browser. |
+| 7 | JSON validity — every `.json` in `themes/`/`plugins/` (incl. `theme.json`) | `PASS` | `json_decode()` round-trip on every file — none failed to parse. |
+| 8 | WCAG AA contrast — every text/surface pairing in `brand-tokens.css` (frontend) and `dashboard.css` (admin), light and dark | `PASS` | Recomputed independently this session with the relative-luminance formula (not re-used from an earlier claim): all 20 pairings ≥ 4.5:1. Lowest frontend pairing 5.48:1 (light gold on paper); lowest admin pairing 4.76:1 (light muted text). |
+| 9 | Elementor widget class inventory vs. bootstrap registration | `PASS` | `grep` diff of every `class Brother_Tours_Widget_*` declaration against `bootstrap.php`'s registration list: exact match, all 18, nothing declared-but-unregistered or registered-but-undeclared. |
+| 10 | `tour-core` unit tests (`plugins/wpistic-tour-manager/lib/tour-core/tests`, vendored, unchanged this release) | `PARTIAL` | `composer install` + `phpunit`: `BookingStateMachineTest` — 6/6 pass. `DepositCalculatorTest` — 0/7 pass, all failing on `Call to undefined function bcadd()`. This is a missing `ext-bcmath` PHP extension in this development sandbox, not a code defect: `composer.json` correctly declares `require: ext-bcmath`, `Money.php` is unmodified since the initial vendoring commit (`git diff` against it is empty), and every failure is the identical missing-extension error, not an assertion failure. **Action for whoever runs this next:** re-run `phpunit` on a host with `ext-bcmath` installed (standard on most production PHP builds) before treating the deposit-calculation logic as verified. |
+| 11 | Manual/interactive tests requiring a live WordPress admin, Elementor editor, or browser (form submission end-to-end, dashboard rendering, widget drag-and-drop, screen reader, cross-browser, mobile) | `NOT RUN` | No WordPress runtime, MySQL, or browser is available in this environment. Every row above marked `NOT-YET-VERIFIABLE` throughout this document still requires the staging smoke test in `docs/release-checklist.md` section 6. Do not skip it. |
 
 ## Sign-off
 
