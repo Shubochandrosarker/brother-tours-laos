@@ -711,11 +711,14 @@ class Brother_Tours_Widget_Tour_Gallery extends Wpistic_Elementor_Widget_Base {
 /* =============================================================================
  * 9. Tour FAQ
  *
- * Gap: no `wpistic_faq` meta exists yet -- single-tour.php currently
- * hardcodes three generic questions for every tour. Same judgment call as
- * Included/Excluded above: define the `wpistic_faq` contract (array of
- * {q, a} pairs) and show an editor-only notice until it is populated,
- * rather than repeating one canned FAQ set as if it were per-tour content.
+ * `wpistic_faq` already exists as an editable repeater field on the Tour
+ * edit screen (Admin\MetaBoxes::box_tour() + save_repeater(), pre-dating
+ * this widget) -- confirmed by reading MetaBoxes.php before writing this,
+ * not assumed. single-tour.php itself still hardcodes three generic
+ * questions rather than reading the meta (a separate, smaller gap in that
+ * template, out of scope here). This widget reads the real field: once an
+ * editor fills in the repeater, the FAQ appears; until then it shows an
+ * editor-only notice rather than a fabricated brand claim.
  * ========================================================================= */
 
 class Brother_Tours_Widget_Tour_Faq extends Wpistic_Elementor_Widget_Base {
