@@ -144,6 +144,18 @@ $wpistic_count = ( is_post_type_archive() && isset( $GLOBALS['wp_query'] ) ) ? (
 								)
 							);
 						endwhile;
+					elseif ( wpistic_tour_filters_active() ) :
+						/*
+						 * A filter matched nothing. Falling through to the sample
+						 * journeys here would show every tour and read as though
+						 * the filter had been ignored.
+						 */
+						?>
+						<p class="tours-empty">
+							<?php esc_html_e( 'No journeys match that combination.', 'wpistic' ); ?>
+							<a href="<?php echo esc_url( get_post_type_archive_link( 'wpistic_tour' ) ); ?>"><?php esc_html_e( 'Clear filters', 'wpistic' ); ?></a>
+						</p>
+						<?php
 					else :
 						$wpistic_fb = array( 'tour-1', 'tour-2', 'tour-3', 'tour-4', 'tour-5' );
 						foreach ( wpistic_sample_tours() as $wpistic_i => $wpistic_tour ) :

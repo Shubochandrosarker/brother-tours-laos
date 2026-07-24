@@ -490,3 +490,140 @@ function wpistic_cta_url() {
 function wpistic_cta_label() {
 	return (string) apply_filters( 'wpistic/cta_label', __( 'Plan My Laos Trip', 'wpistic' ) );
 }
+
+/**
+ * Featured destinations for the homepage.
+ *
+ * Prefers real `wpistic_destination` posts so the homepage reflects what an
+ * editor changes in the admin. Falls back to the bundled sample set only while
+ * the CPT is still empty, so a fresh install shows a designed page rather than
+ * an empty grid.
+ *
+ * @param int $limit Maximum cards to return.
+ * @return array<int, array{name: string, tag: string, desc: string, url: string, image_url: string}>
+ */
+function wpistic_home_destinations( $limit = 6 ) {
+	$posts = get_posts(
+		array(
+			'post_type'        => 'wpistic_destination',
+			'post_status'      => 'publish',
+			'numberposts'      => (int) $limit,
+			'orderby'          => 'menu_order date',
+			'order'            => 'ASC',
+			'suppress_filters' => false,
+		)
+	);
+
+	if ( ! $posts ) {
+		$out = array();
+		foreach ( array_slice( wpistic_sample_destinations(), 0, (int) $limit ) as $sample ) {
+			$out[] = array(
+				'name'      => $sample['name'],
+				'tag'       => $sample['tag'],
+				'desc'      => $sample['desc'],
+				'url'       => home_url( '/destinations/' . $sample['slug'] . '/' ),
+				'image_url' => (string) wpistic_demo_img( 'dest-' . $sample['slug'] ),
+			);
+		}
+		return $out;
+	}
+
+	$out = array();
+	foreach ( $posts as $post ) {
+		$regions = wp_get_post_terms( $post->ID, 'region', array( 'fields' => 'names' ) );
+
+		$out[] = array(
+			'name'      => get_the_title( $post ),
+			'tag'       => is_array( $regions ) && $regions ? (string) $regions[0] : '',
+			'desc'      => (string) get_post_meta( $post->ID, 'wpistic_short_summary', true ),
+			'url'       => (string) get_permalink( $post ),
+			'image_url' => (string) get_the_post_thumbnail_url( $post->ID, 'bt-card' ),
+		);
+	}
+
+	return $out;
+}
+
+/**
+ * Featured journeys for the homepage.
+ *
+ * Same contract as wpistic_home_destinations(): real `wpistic_tour` posts win,
+ * samples fill in only while the CPT is empty. Using get_permalink() here also
+ * means the cards follow the CPT's registered rewrite rather than a hard-coded
+ * path that can drift out of step with it.
+ *
+ * @param int $limit Maximum cards to return.
+ * @return array<int, array<string, mixed>>
+ */
+function wpistic_home_tours( $limit = 6 ) {
+	$posts = get_posts(
+		array(
+			'post_type'        => 'wpistic_tour',
+			'post_status'      => 'publish',
+			'numberposts'      => (int) $limit,
+			'orderby'          => 'menu_order date',
+			'order'            => 'ASC',
+			'suppress_filters' => false,
+		)
+	);
+
+	if ( ! $posts ) {
+		$images = array( 'tour-1', 'tour-2', 'tour-3', 'tour-4', 'tour-5' );
+		$out    = array();
+		foreach ( array_slice( wpistic_sample_tours(), 0, (int) $limit ) as $i => $sample ) {
+			$out[] = array(
+				'name'      => $sample['name'],
+				'url'       => home_url( '/tours/' . $sample['slug'] . '/' ),
+				'region'    => 'Laos',
+				'meta'      => $sample['meta'],
+				'blurb'     => $sample['blurb'],
+				'tags'      => array( $sample['cap'] ),
+				'price'     => wpistic_price_line( '' ),
+				'image_url' => (string) wpistic_demo_img( $images[ $i % count( $images ) ] ),
+			);
+		}
+		return $out;
+	}
+
+	$out = array();
+	foreach ( $posts as $post ) {
+		$regions    = wp_get_post_terms( $post->ID, 'region', array( 'fields' => 'names' ) );
+		$duration   = (string) get_post_meta( $post->ID, 'wpistic_duration', true );
+		$availability = (string) get_post_meta( $post->ID, 'wpistic_availability', true );
+
+		$out[] = array(
+			'name'      => get_the_title( $post ),
+			'url'       => (string) get_permalink( $post ),
+			'region'    => is_array( $regions ) && $regions ? (string) $regions[0] : '',
+			'meta'      => $duration,
+			'blurb'     => (string) get_post_meta( $post->ID, 'wpistic_short_summary', true ),
+			// Capacity is communicated per tour, never as a company-wide number.
+			'tags'      => $availability ? array( $availability ) : array(),
+			'price'     => wpistic_price_line( (string) get_post_meta( $post->ID, 'wpistic_from_price', true ) ),
+			'image_url' => (string) get_the_post_thumbnail_url( $post->ID, 'bt-portrait' ),
+		);
+	}
+
+	return $out;
+}
+
+/**
+ * Whether the visitor has narrowed the tours archive.
+ *
+ * The archive falls back to the bundled sample journeys when the loop is empty,
+ * which is right for a site with no tours yet but wrong after a filter: showing
+ * every sample when a filter matched nothing reads as though the filter was
+ * ignored. Templates use this to tell the two cases apart.
+ *
+ * @return bool
+ */
+function wpistic_tour_filters_active() {
+	foreach ( array( 'category', 'destination', 'difficulty', 'duration', 'region', 'style', 'season' ) as $param ) {
+		// Read-only, shareable filter links; there is no form submission to nonce.
+		if ( ! empty( $_GET[ $param ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return true;
+		}
+	}
+
+	return false;
+}

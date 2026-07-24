@@ -161,13 +161,17 @@ $wpistic_host_src = $wpistic_host_id ? wp_get_attachment_image_url( $wpistic_hos
 		</div>
 		<div class="dest-grid">
 			<?php
-			foreach ( wpistic_sample_destinations() as $wpistic_dest ) :
+			foreach ( wpistic_home_destinations( 6 ) as $wpistic_dest ) :
 				?>
-				<a class="dest-card reveal" href="<?php echo esc_url( home_url( '/destinations/' . $wpistic_dest['slug'] . '/' ) ); ?>">
+				<a class="dest-card reveal" href="<?php echo esc_url( $wpistic_dest['url'] ); ?>">
 					<?php
-					$wpistic_di = wpistic_demo_img( 'dest-' . $wpistic_dest['slug'] );
-					if ( $wpistic_di ) {
-						printf( '<img src="%s" alt="" loading="lazy">', esc_url( $wpistic_di ) );
+					if ( ! empty( $wpistic_dest['image_url'] ) ) {
+						printf(
+							'<img src="%1$s" alt="%2$s" loading="lazy" decoding="async">',
+							esc_url( $wpistic_dest['image_url'] ),
+							/* translators: %s: destination name. */
+							esc_attr( sprintf( __( '%s, Laos', 'wpistic' ), $wpistic_dest['name'] ) )
+						);
 					}
 					?>
 					<span class="dest-tag"><?php echo esc_html( $wpistic_dest['tag'] ); ?></span>
@@ -193,20 +197,8 @@ $wpistic_host_src = $wpistic_host_id ? wp_get_attachment_image_url( $wpistic_hos
 		</div>
 		<div class="tour-grid">
 			<?php
-			$wpistic_tourimg = array( 'tour-1', 'tour-2', 'tour-3', 'tour-4', 'tour-5' );
-			foreach ( wpistic_sample_tours() as $wpistic_i => $wpistic_tour ) :
-				wpistic_tour_card(
-					array(
-						'name'      => $wpistic_tour['name'],
-						'url'       => home_url( '/tours/' . $wpistic_tour['slug'] . '/' ),
-						'region'    => 'Laos',
-						'meta'      => $wpistic_tour['meta'],
-						'blurb'     => $wpistic_tour['blurb'],
-						'tags'      => array( $wpistic_tour['cap'] ),
-						'price'     => wpistic_price_line( '' ),
-						'image_url' => wpistic_demo_img( $wpistic_tourimg[ $wpistic_i % count( $wpistic_tourimg ) ] ),
-					)
-				);
+			foreach ( wpistic_home_tours( 6 ) as $wpistic_tour ) :
+				wpistic_tour_card( $wpistic_tour );
 			endforeach;
 			?>
 		</div>
