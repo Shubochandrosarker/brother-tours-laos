@@ -48,9 +48,18 @@ Template copy in the repo carries these phrases, which is positive evidence — 
 
 ### 1.3 Banned words NOT present
 
-The source requires scanning **every page** — body copy, headlines, meta, alt text. No pages exist yet, so no row can pass. A repo scan of theme templates and the seeded form copy found no banned words in guest-facing template copy, **with one known exception recorded below**. Run `php scripts/brand-lint.php` and a full-site scan on staging before launch.
+The source requires scanning **every page** — body copy, headlines, meta, alt text. No pages exist yet, so no row can pass on rendered output. What *can* be stated: `php scripts/brand-lint.php` currently reports **0 errors** across the repository, with all eight locked phrases present.
 
-**Known repo-level hit:** the legacy demo content seeder `plugins/wpistic-tour-manager/src/Admin/ContentSeeder.php` contains demo tour entries whose titles/slugs include "Immersion", `...immersive...`, `...authentic...` and `...hidden-gems...` (lines 304, 306, 312). **Do not run the legacy demo content seeder on production.** If any of those legacy tours are recreated as real tours, retitle and re-slug them first.
+Re-run it, plus a full-site crawl covering rendered copy, meta descriptions and image alt text, on staging before launch.
+
+**Resolved since this checklist was first written:** the demo catalog seeder
+`plugins/wpistic-tour-manager/src/Admin/ContentSeeder.php` shipped demo tour titles and slugs containing "Immersion", "immersive", "authentic" and "hidden-gems" — values that become live URLs and page titles as soon as an admin runs the seeder. They have been retitled and re-slugged, and the brand lint now passes on that file.
+
+**What the lint does not cover**, and therefore still needs a human pass:
+
+- Content editors type into WordPress. The lint only sees the repository.
+- Four matches remain as warnings inside code comments (not guest-facing), and three as review items — the base theme's "Explore Laos" / "Explore destination" UI labels in `archive-wpistic_destination.php` and `taxonomy-region.php`. These were left for a human decision rather than silently rewritten, since "explore" is banned only in its figurative use.
+- The rulebook files themselves (`README.md`, `docs/content-import-guide.md`, `docs/launch-checklist.md`) and the vendored upstream Formistic source are excluded from the scan; see the header of `scripts/brand-lint.php` for why.
 
 | # | Item | Status | Evidence / Next action |
 |---|---|---|---|
