@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Wpistic\TourManager\Notifications;
 
-use Wpistic\TourManager\Booking\BookingService;
-
 /**
  * Routes operational email through Formistic with a wp_mail fallback.
  */
@@ -13,7 +11,21 @@ final class Notifier {
 
 	public function register(): void {
 		add_action( 'wpistic/notify', array( $this, 'handle' ) );
-		add_action( 'wpistic_formistic_submission_captured', array( $this, 'on_formistic' ), 50, 3 );
+
+		/*
+		 * This class deliberately no longer listens to
+		 * `wpistic_formistic_submission_captured`.
+		 *
+		 * It used to mirror every Formistic submission into a booking, which
+		 * broke the one-record-per-submission rule two ways: it created a
+		 * booking for *any* form on the site, and it had no idempotency guard,
+		 * so a replayed hook produced duplicates. That responsibility now lives
+		 * in Integration\FormisticIngestion, which routes by form and claims
+		 * each submission through a unique key before creating anything.
+		 *
+		 * Notifier still sends the mail — it just does so from the single
+		 * `wpistic/notify` inquiry.created event that ingestion fires once.
+		 */
 	}
 
 	/**
@@ -195,36 +207,6 @@ final class Notifier {
 				)
 			);
 		}
-	}
-
-	/**
-	 * Mirror a Formistic contact submission into the portal.
-	 *
-	 * @param int    $submission_id Submission id.
-	 * @param string $form_name     Form name.
-	 * @param array  $fields        Submitted fields.
-	 * @return void
-	 */
-	public function on_formistic( $submission_id, $form_name, $fields ): void {
-		if ( ! class_exists( '\\Wpistic_Formistic_Database' ) ) {
-			return;
-		}
-
-		$submission = \Wpistic_Formistic_Database::get_submission( (int) $submission_id );
-		if ( ! $submission ) {
-			return;
-		}
-
-		( new BookingService() )->create(
-			array(
-				'type'             => 'contact',
-				'customer_name'    => $submission->sender_name ?? '',
-				'customer_email'   => $submission->sender_email ?? '',
-				'customer_phone'   => $submission->sender_phone ?? '',
-				'special_requests' => $submission->message ?? '',
-				'source_url'       => $submission->source_url ?? '',
-			)
-		);
 	}
 
 	/**

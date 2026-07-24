@@ -114,6 +114,30 @@ final class Tables {
 			KEY connection_id (connection_id)
 		) {$charset};";
 
+		/*
+		 * Form ingestion ledger — the idempotency guard for the single-record
+		 * rule. One row per external form submission, claimed before the
+		 * booking is created.
+		 *
+		 * The UNIQUE KEY on (source, external_id) is the guard itself: a
+		 * replayed hook, a retried request, or two concurrent workers all race
+		 * on the same INSERT and exactly one wins. Checking "does a booking
+		 * already exist?" in PHP would leave a window open between the read and
+		 * the write; the database closes it.
+		 */
+		$schemas[] = "CREATE TABLE {$prefix}form_ingestions (
+			id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+			source VARCHAR(32) NOT NULL,
+			external_id VARCHAR(64) NOT NULL,
+			form_slug VARCHAR(64) NOT NULL DEFAULT '',
+			booking_id BIGINT UNSIGNED NULL,
+			dispatched TINYINT(1) NOT NULL DEFAULT 0,
+			created_at DATETIME NOT NULL,
+			PRIMARY KEY  (id),
+			UNIQUE KEY source_external (source, external_id),
+			KEY booking_id (booking_id)
+		) {$charset};";
+
 		foreach ( $schemas as $schema ) {
 			dbDelta( $schema );
 		}

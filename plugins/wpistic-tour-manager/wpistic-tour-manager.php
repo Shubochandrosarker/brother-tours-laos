@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'WPISTIC_TM_VERSION', '1.1.0' );
-define( 'WPISTIC_TM_DB_VERSION', '1.0.0' );
+define( 'WPISTIC_TM_DB_VERSION', '1.1.0' );
 define( 'WPISTIC_TM_FILE', __FILE__ );
 define( 'WPISTIC_TM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WPISTIC_TM_URL', plugin_dir_url( __FILE__ ) );
