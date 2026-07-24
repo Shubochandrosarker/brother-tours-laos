@@ -44,8 +44,9 @@
  *
  * Skipped entirely: .git/, node_modules/, vendor/, plugins/wpistic-crm/
  * (unrelated third-party CRM), themes/wpistic/_preview-*.html (static
- * design exports), and this script itself (it necessarily contains every
- * banned term).
+ * design exports), this script itself (it necessarily contains every
+ * banned term), and docs/ (the rulebook — it quotes the banned inventory
+ * in order to define it; nothing in docs/ ships as site copy).
  *
  * Usage (from the repo root):
  *   php scripts/brand-lint.php              scan the whole repository
@@ -72,13 +73,53 @@ const BL_SKIP_DIR_NAMES = ['.git', 'node_modules', 'vendor'];
 /** Repo-root-relative path prefixes skipped entirely. */
 const BL_SKIP_PREFIXES = [
     'plugins/wpistic-crm/', // unrelated third-party CRM
+    // The brand rulebook / internal process docs. Like this script, they
+    // necessarily quote every banned term and retired phrase in order to
+    // define the rules, so scanning them would drown real copy findings.
+    // Site copy never ships from docs/; drop this line to scan it anyway.
+    'docs/',
 ];
 
-/** Repo-root-relative files skipped entirely (this linter names every banned term). */
-const BL_SKIP_FILES = ['scripts/brand-lint.php'];
+/**
+ * Repo-root-relative files skipped entirely.
+ *
+ * These are the documents that *state* the brand rules, so they necessarily
+ * quote every banned word and retired phrase in order to forbid it. Scanning
+ * them reports the rulebook as a violation of itself and buries real findings
+ * under dozens of false positives.
+ *
+ * The trade-off is real and worth naming: a banned word used *as prose* in one
+ * of these files will not be caught here. They are short, hand-written, and
+ * reviewed, so that is an acceptable exchange for a signal that stays readable.
+ */
+const BL_SKIP_FILES = [
+    'scripts/brand-lint.php',       // names every banned term by definition
+    'README.md',                    // documents the brand rules
+    'docs/content-import-guide.md', // teaches editors the ban list
+    'docs/launch-checklist.md',     // checklist item per banned word
+];
 
-/** Repo-root-relative patterns for skipped files (static design exports). */
-const BL_SKIP_PATTERNS = ['~^themes/wpistic/_preview-[^/]*\.html$~'];
+/**
+ * Repo-root-relative patterns for skipped files.
+ *
+ * Two groups:
+ *  - static design exports that never ship;
+ *  - the vendored upstream Formistic source, which is third-party code kept
+ *    byte-identical to its upstream commit so future merges stay mechanical
+ *    (see plugins/brother-tours-formistic/UPSTREAM.md). Editing it to satisfy
+ *    a brand rule would defeat that, and none of it is guest-facing copy --
+ *    the matches there are an internal LLM prompt and the plugin's own
+ *    readme metadata.
+ *
+ * The negative lookahead deliberately keeps the two Brother Tours-authored
+ * files (class-formistic-bt-*.php) in scope: those are ours, and the four form
+ * definitions they carry *are* guest-facing.
+ */
+const BL_SKIP_PATTERNS = [
+    '~^themes/wpistic/_preview-[^/]*\.html$~',
+    '~^plugins/brother-tours-formistic/includes/class-formistic-(?!bt-)~',
+    '~^plugins/brother-tours-formistic/(readme\.txt|README\.md|LICENSE)$~',
+];
 
 /** Extensions whose content is HTML-ish: tags are blanked before scanning. */
 const BL_MARKUP_EXTS = ['php', 'html', 'htm', 'md', 'pot'];
@@ -220,10 +261,19 @@ function bl_rule_sets(): array
                 // Self-praise. "leading" skips obvious technical uses
                 // ("leading whitespace", "leading apostrophe", ...).
                 'leading' => [
-                    'rx'    => '~\bleading\b(?!\s*(?:white[\s-]?space|space|slash|zero|character|char\b|newline|blank|empty|dot|period|comma|dash|hyphen|underscore|apostrophe|quote|digit|"|\')~i',
+                    'rx'    => '~\bleading\b(?!\s*(?:white[\s-]?space|space|slash|zero|character|char\b|newline|blank|empty|dot|period|comma|dash|hyphen|underscore|apostrophe|quote|digit|"|\'))~i',
                     'label' => 'self-praise "leading"',
                 ],
-                'the-best'   => ['rx' => '~\bthe\s+best\b~i', 'label' => 'self-praise "the best"'],
+                /*
+                 * "the best" is only self-praise when the brand is the subject.
+                 * A bare match flags legitimate guest-facing copy such as the
+                 * FAQ question "What is the best month to visit Laos?", so
+                 * require a first-person marker close in front of it.
+                 */
+                'the-best'   => [
+                    'rx'    => '~\b(?:we|we\'re|we\s+are|our|brother\s+tours)\b[^.?!]{0,40}\bthe\s+best\b~i',
+                    'label' => 'self-praise "the best"',
+                ],
                 'number-one' => ['rx' => '~\bnumber\s+one\b~i', 'label' => 'self-praise "number one"'],
                 // Softening language.
                 'try-to'      => ['rx' => '~\btry\s+to\b~i', 'label' => 'softening "try to"'],
@@ -481,7 +531,7 @@ function bl_comment_ranges(string $content, string $ext): array
                 if ($c === "'" || $c === '"') {
                     $i = $skipString($i);
                 } elseif (($c === '/' && $next === '/') || ($c === '#' && $next !== '[')) {
-                    // Line comment: runs to end of line or a closing ?> tag.
+                    // Line comment: runs to end of line or a closing PHP tag.
                     $nl    = strpos($content, "\n", $i);
                     $close = strpos($content, '?>', $i);
                     if ($close !== false && ($nl === false || $close < $nl)) {
@@ -602,7 +652,7 @@ function bl_in_ranges(int $start, int $end, array $ranges): bool
  *
  * @return array<int,array{0:int,1:int}>
  */
-function bl_zones(string $line): array
+function bl_zones(string $line, string $ext = ''): array
 {
     static $regexes = [
         // URLs and e-mail addresses.
@@ -621,8 +671,15 @@ function bl_zones(string $line): array
         '~\b(?:class|id|name|for|rel|role|type|href|src|action|target|method|data-[\w\-]+)[ \t]*=[ \t]*("[^"]*"|\'[^\']*\')~i',
     ];
 
+    $apply = $regexes;
+    if ($ext === 'md') {
+        // Markdown inline code spans are mentions ("never emit
+        // `aggregateRating`"), not copy.
+        $apply[] = '~`[^`\n]+`~';
+    }
+
     $zones = [];
-    foreach ($regexes as $rx) {
+    foreach ($apply as $rx) {
         if (preg_match_all($rx, $line, $m, PREG_OFFSET_CAPTURE)) {
             foreach ($m[0] as $hit) {
                 $zones[] = [$hit[1], $hit[1] + strlen($hit[0])];
@@ -853,7 +910,7 @@ function bl_scan_file(string $abs, string $rel, array $ruleSets, array &$finding
                     }
                     // Skip URLs / e-mails / paths / machine attributes.
                     if ($term['zones'] ?? true) {
-                        $zones ??= bl_zones($scanLine);
+                        $zones ??= bl_zones($scanLine, $ext);
                         if (bl_in_ranges($s, $e, $zones)) {
                             continue;
                         }
@@ -1084,4 +1141,8 @@ function bl_main(array $argv): int
     return $exitCode;
 }
 
-exit(bl_main($_SERVER['argv'] ?? []));
+// Run only when invoked directly, so the functions above stay includable
+// from a test harness without triggering a scan.
+if (PHP_SAPI === 'cli' && realpath($_SERVER['argv'][0] ?? '') === __FILE__) {
+    exit(bl_main($_SERVER['argv']));
+}

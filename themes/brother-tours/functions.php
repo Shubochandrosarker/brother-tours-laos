@@ -433,7 +433,7 @@ function brother_tours_customize( $wp_customize ) {
 		'brother_tours_reviews',
 		array(
 			'title'       => __( 'Brother Tours — Reviews', 'brother-tours' ),
-			'description' => __( 'Profile links and an optional review widget embed. Rating numbers and AggregateRating schema stay off until the verified-review threshold is reached.', 'brother-tours' ),
+			'description' => __( 'Profile links and an optional review widget embed. Numeric ratings and review-score structured data stay switched off until the verified-review threshold is reached.', 'brother-tours' ),
 			'priority'    => 160,
 		)
 	);

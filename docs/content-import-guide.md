@@ -73,7 +73,7 @@ The site ships with four ready-made forms. Edit them at **WP admin → Brother T
 | Build My Trip | `build-my-trip` | Creates an inquiry in Tour Manager → Bookings & Inquiries |
 | Contact | `contact` | Creates an inquiry |
 | Newsletter | `newsletter` | Adds the address to the mailing list only — never creates an inquiry |
-| Travel Agent | `travel-agent` | Creates an inquiry marked as a trade/agent enquiry |
+| Travel Agent | `travel-agent` | Creates an inquiry marked as a trade/agent inquiry |
 
 ### What you may safely change
 
