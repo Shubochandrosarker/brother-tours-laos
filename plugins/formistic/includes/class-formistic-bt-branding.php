@@ -7,7 +7,8 @@
  * with this file layered on top. See ../UPSTREAM.md and docs/formistic-brother-tours-integration.md.
  *
  * Responsibilities:
- *  - present the plugin as "Brother Tours Forms" in the admin;
+ *  - relabel the admin submenu items (Forms/Inbox) for a shorter, cleaner
+ *    sidebar, without changing the plugin's own "Formistic" identity;
  *  - route outbound Formistic mail through a configurable sender / Reply-To
  *    (never a hard-coded credential);
  *  - teach the capture normalizer the field labels the Brother Tours forms use.

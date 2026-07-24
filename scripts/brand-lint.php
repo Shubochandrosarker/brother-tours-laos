@@ -100,6 +100,7 @@ const BL_SKIP_FILES = [
     'README.md',                    // documents the brand rules
     'docs/content-import-guide.md', // teaches editors the ban list
     'docs/launch-checklist.md',     // checklist item per banned word
+    'CHANGELOG.md',                 // records the G2A removal itself, by name
 ];
 
 /**

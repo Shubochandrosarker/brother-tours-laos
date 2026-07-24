@@ -153,13 +153,13 @@ echo "=== Gate 5/$GATES_TOTAL: Unrelated-client residue (all tracked files) ==="
 # here too over every tracked file regardless of extension -- a second,
 # independent net in case a future file type (JSON data, a config file, an
 # image alt-text sidecar) ships one of these and falls outside brand-lint's
-# scanned extensions. Excludes the two files that legitimately document the
+# scanned extensions. Excludes the files that legitimately document the
 # removal (this script and brand-lint.php necessarily name the patterns to
-# define them; plugins/formistic/UPSTREAM.md and readme.txt, and docs/ in
-# general, record the removal as history -- same rationale, and the same
-# docs/ exemption, as brand-lint.php's own skip list).
+# define them; plugins/formistic/UPSTREAM.md, readme.txt, and CHANGELOG.md,
+# and docs/ in general, record the removal as history -- same rationale, and
+# the same docs/ exemption, as brand-lint.php's own skip list).
 UC_PATTERN='guns[[:space:].-]*2[[:space:].-]*ammo|g2a|firearms?|shooting[[:space:]-]+range|waivers?|kiosks?|class[[:space:]_-]?students?|range[[:space:]-]+booking'
-UC_EXCLUDE=':!scripts/release-check.sh :!scripts/brand-lint.php :!plugins/formistic/UPSTREAM.md :!plugins/formistic/readme.txt :!docs/'
+UC_EXCLUDE=':!scripts/release-check.sh :!scripts/brand-lint.php :!plugins/formistic/UPSTREAM.md :!plugins/formistic/readme.txt :!CHANGELOG.md :!docs/'
 
 if git rev-parse --git-dir >/dev/null 2>&1; then
     # shellcheck disable=SC2086

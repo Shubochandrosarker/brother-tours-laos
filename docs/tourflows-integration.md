@@ -12,7 +12,7 @@ engine, not a bespoke integration. That means retries, signing, logging and the
 manual resend already exist and are shared with any other consumer.
 
 ```
-Brother Tours Forms (Formistic)
+Formistic (5 seeded forms)
         │  wpistic_formistic_submission_captured
         ▼
 FormisticIngestion            ← the only listener that may create a booking
@@ -21,11 +21,20 @@ FormisticIngestion            ← the only listener that may create a booking
         └─► ConnectionsManager::dispatch( 'inquiry.created' ) → Tourflows
 ```
 
-The tour-page **Request Availability** widget takes a parallel path through
-`CaptureController` (REST `POST /wp-json/wpistic/v1/booking`), because it carries
-`tour_id`, a departure and the deposit workflow. It ends at the same
-`dispatch()` call. A tour request must never also be posted through a Formistic
-form — that would be two records for one visitor action.
+Tour Manager's own booking widget (`[wpistic_booking_widget]`, the primary
+"Request Availability" call to action on a tour detail page) takes a
+parallel path through `CaptureController` (REST
+`POST /wp-json/wpistic/v1/booking`), because it carries `tour_id`, a
+departure and the deposit workflow. It ends at the same `dispatch()` call.
+
+As of v2.0.0, Formistic *also* seeds a `request-availability` form (for
+placements where the full booking widget doesn't fit, e.g. an Elementor
+widget on a lighter page) — this is a deliberate second entry point, not a
+duplicate. The two never process the same submission (different HTTP
+endpoints, different handlers), so there is still exactly one booking per
+visitor action either way. See
+`docs/formistic-brother-tours-integration.md`, "Request Tour Availability —
+a second, deliberate entry point" for the full reasoning.
 
 ## Configuration
 
@@ -142,12 +151,31 @@ attempt number. That log is the failure reason surface.
 
 ## Manual resend
 
-**Tour Manager → Bookings & Inquiries → open a booking → "Dispatch to
-connections"**. It re-dispatches `inquiry.created` and sets `portal_status` to
-`sent`. Protected by capability `edit_posts` and nonce `wpistic_tm_portal`.
+**Tour Manager → Bookings & Inquiries → open a booking → Connections tab →
+"Resend to connections"** (as of v2.0.0; previously a "Dispatch to
+connections" checkbox on the single catch-all action form). It re-dispatches
+`inquiry.created` to every enabled connection subscribed to that event.
+Protected by capability `edit_posts` and a per-booking nonce
+(`wpistic_tm_resend_connection_{id}`).
 
 Because Tourflows keys on `reference`, a resend of an inquiry Tourflows already
 holds must update rather than duplicate it.
+
+### Delivery history on the booking itself (v2.0.0)
+
+The Connections tab also shows this booking's own dispatch history — every
+event, status code, and connection it went to. `wpistic_connection_log` (the
+table `ConnectionsManager::log()` writes on every attempt) has no `booking_id`
+column, so that history is not readable from it directly. Rather than a schema
+migration, `ConnectionsManager::send()` fires a `wpistic_tm_connection_dispatched`
+action after every attempt, carrying the booking id extracted from the event
+payload (every booking-scoped event's `$payload` is the full booking row, so
+`$payload['id']` is always present). `BookingService::record_connection_dispatch()`
+listens and mirrors each dispatch into the existing `wpistic_audit_log` table
+(`object_type = 'booking'`, `action = 'connection_dispatch'`) — the same table
+and mechanism the Activity tab already reads. The Connections tab then filters
+the booking's own audit rows for that action; no new table, no new query
+shape.
 
 ## Testing the integration
 
