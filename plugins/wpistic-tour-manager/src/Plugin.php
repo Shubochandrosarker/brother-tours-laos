@@ -53,7 +53,14 @@ final class Plugin {
 		}
 
 		add_action( 'init', array( $this, 'maybe_flush' ), 999 );
-		add_action( 'admin_init', array( $this, 'maybe_upgrade' ) );
+		/*
+		 * On `init`, not `admin_init`: a visitor can submit a form before any
+		 * administrator loads a page after an upgrade. If the ingestion table
+		 * did not exist yet, that submission would fail to claim and the inquiry
+		 * would be lost. The version check below is a single cached option read,
+		 * so the cost on front-end requests is negligible.
+		 */
+		add_action( 'init', array( $this, 'maybe_upgrade' ), 1 );
 	}
 
 	public function maybe_flush(): void {

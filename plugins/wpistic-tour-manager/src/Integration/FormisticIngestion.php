@@ -6,6 +6,7 @@ namespace Wpistic\TourManager\Integration;
 
 use Wpistic\TourManager\Booking\BookingService;
 use Wpistic\TourManager\Connections\ConnectionsManager;
+use Wpistic\TourManager\Install\Tables;
 
 /**
  * The single ingestion path from Brother Tours Forms (Formistic) into Tour Manager.
@@ -117,7 +118,10 @@ final class FormisticIngestion {
 				'customer_phone'   => (string) ( $submission->sender_phone ?? '' ),
 				'customer_country' => $this->field( $fields, array( 'country' ) ),
 				'party_adults'     => (int) $this->field( $fields, array( 'adults' ) ),
-				'party_children'   => (int) $this->field( $fields, array( 'children' ) ),
+				// Deliberately not cast to int: the column is text and the form
+				// asks for "Children (and ages)", so "2 (ages 5, 8)" must survive
+				// intact. Casting would silently reduce it to 2 and lose the ages.
+				'party_children'   => $this->field( $fields, array( 'children' ) ),
 				'hotel_pref'       => $this->field( $fields, array( 'hotel' ) ),
 				'special_requests' => $this->summary( $fields, $submission ),
 				'source_url'       => (string) ( $submission->source_url ?? '' ),
@@ -178,10 +182,41 @@ final class FormisticIngestion {
 	 * @return bool True when this call won the claim and should proceed.
 	 */
 	private function claim( int $submission_id, string $slug ): bool {
+		if ( $this->insert_claim( $submission_id, $slug ) ) {
+			return true;
+		}
+
 		global $wpdb;
 
-		// Suppress the duplicate-key warning: losing the race is expected and
-		// handled, not an error worth surfacing.
+		/*
+		 * A duplicate-key collision is the guard working: another pass already
+		 * ingested this submission, so stop.
+		 */
+		if ( false !== stripos( (string) $wpdb->last_error, 'duplicate entry' ) ) {
+			return false;
+		}
+
+		/*
+		 * Any other failure means the ledger itself is unavailable -- most
+		 * likely the table is missing because the schema upgrade has not run on
+		 * this request yet. Losing a guest's inquiry is far worse than risking a
+		 * duplicate, so create the table and try once more rather than dropping
+		 * the submission on the floor.
+		 */
+		Tables::create();
+
+		return $this->insert_claim( $submission_id, $slug );
+	}
+
+	/**
+	 * Single insert attempt against the ledger.
+	 *
+	 * Errors are suppressed because a duplicate-key collision is an expected,
+	 * handled outcome rather than a fault worth surfacing to the visitor.
+	 */
+	private function insert_claim( int $submission_id, string $slug ): bool {
+		global $wpdb;
+
 		$suppress = $wpdb->suppress_errors( true );
 
 		$inserted = $wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
@@ -276,7 +311,14 @@ final class FormisticIngestion {
 	 * @param object               $submission Stored submission row.
 	 */
 	private function summary( array $fields, $submission ): string {
-		$skip  = array( 'consent', 'name', 'email' );
+		/*
+		 * Name and email already occupy their own booking columns, so repeating
+		 * them here is noise. Consent is matched on "i agree" as well as the
+		 * word itself because the consent field's *label* is the full sentence
+		 * the guest agreed to -- without that, a paragraph of legal copy would
+		 * land in the notes the team reads while triaging.
+		 */
+		$skip  = array( 'consent', 'i agree', 'name', 'email' );
 		$lines = array();
 
 		foreach ( $fields as $label => $value ) {
