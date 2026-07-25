@@ -89,6 +89,29 @@ final class ConnectionsManager {
 		$note = is_wp_error( $response ) ? $response->get_error_message() : wp_remote_retrieve_body( $response );
 		$this->log( (int) $connection['id'], $event, $code, (string) $note, $attempt );
 
+		/**
+		 * Fires after every dispatch attempt (success or failure), in addition
+		 * to the row already written to wpistic_connection_log by log() above.
+		 *
+		 * wpistic_connection_log has no booking_id column, so there is no way
+		 * to read "this booking's delivery history" from that table alone.
+		 * Rather than a schema migration, BookingService::register() listens
+		 * here and mirrors each dispatch into the existing audit_log
+		 * (object_type='booking', action='connection_dispatch'), which the
+		 * admin Connections tab then reads by filtering the booking's normal
+		 * audit rows. Every event fired through dispatch()/dispatch_notification()
+		 * carries the full booking row as $payload (see FormisticIngestion::ingest()
+		 * and BookingService::send_deposit_link()/send_balance_link()), so
+		 * `$payload['id']` is always the booking id for booking-scoped events.
+		 *
+		 * @param int    $booking_id    Booking id the event was about, or 0 if not booking-scoped.
+		 * @param string $event         Event name, e.g. 'inquiry.created'.
+		 * @param int    $status_code   HTTP status code returned (0 on transport failure).
+		 * @param int    $connection_id The connection that was dispatched to.
+		 * @param string $target_url    That connection's target URL.
+		 */
+		do_action( 'wpistic_tm_connection_dispatched', (int) ( $payload['id'] ?? 0 ), $event, $code, (int) ( $connection['id'] ?? 0 ), (string) ( $connection['target_url'] ?? '' ) );
+
 		if ( ( $code < 200 || $code >= 300 ) && $attempt < 3 ) {
 			wp_schedule_single_event( time() + ( 60 * $attempt * $attempt ), 'wpistic_tm_connection_retry', array( (int) $connection['id'], $event, $payload, $attempt + 1 ) );
 		}

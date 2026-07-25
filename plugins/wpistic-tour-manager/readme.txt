@@ -2,7 +2,7 @@
 Contributors: wordpressistic
 Requires at least: 6.4
 Requires PHP: 8.1
-Stable tag: 1.1.0
+Stable tag: 2.0.0
 License: GPLv2 or later
 
 Premium tour, booking, deposit and payment system for Brother Tours.
@@ -42,3 +42,15 @@ sibling `packages/` source is used directly during development.
 * Lightweight admin portal (dashboard, list, detail, workflow, CSV export)
 * SEOISTIC data filters (SEOISTIC emits the JSON-LD)
 * Emails via Formistic (wp_mail fallback)
+
+== Changelog ==
+
+= 2.0.0 =
+* New: modernized admin dashboard (KPI cards, date-range comparison, integration
+  health, paginated/filterable/sortable bookings list with bulk actions and CSV
+  export, tabbed booking detail screen). See docs/tour-manager-guide.md.
+* New: ingestion support for Formistic's fifth Brother Tours form, "Request
+  Tour Availability" — its hidden tour_id now populates the booking's tour_id
+  column directly instead of only ever coming from the booking widget.
+* Change: coordinated suite version bump to 2.0.0. No database schema change
+  in this release — WPISTIC_TM_DB_VERSION stays 1.1.0.

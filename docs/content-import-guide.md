@@ -64,9 +64,9 @@ A draft page is invisible to visitors. Each of these stays a draft until the wor
 
 ---
 
-## 3. The four forms
+## 3. The five forms
 
-The site ships with four ready-made forms. Edit them at **WP admin → Brother Tours Forms → Forms**.
+The site ships with five ready-made forms. Edit them at **WP admin → Formistic → Forms**.
 
 | Form | Routing slug | What a submission does |
 |---|---|---|
@@ -74,6 +74,7 @@ The site ships with four ready-made forms. Edit them at **WP admin → Brother T
 | Contact | `contact` | Creates an inquiry |
 | Newsletter | `newsletter` | Adds the address to the mailing list only — never creates an inquiry |
 | Travel Agent | `travel-agent` | Creates an inquiry marked as a trade/agent inquiry |
+| Request Tour Availability | `request-availability` | Creates an inquiry carrying the tour's id and title (a second entry point alongside the tour page's own booking widget — see `docs/formistic-brother-tours-integration.md`) |
 
 ### What you may safely change
 
@@ -85,14 +86,15 @@ The site ships with four ready-made forms. Edit them at **WP admin → Brother T
 Each form carries a hidden tag called `_brother_tours_form` (values in the table above). This tag — not the form's name — is how the system knows which submissions should become inquiries in Tour Manager. It is stored as hidden data on the form, so you will not see it on the edit screen.
 
 > **Warning: never delete and recreate a form.**
-> If you delete one of the four forms and build a new one by hand, the new form will **not** carry the routing tag. It will still look identical and still send email, but its submissions will silently stop appearing in Tour Manager → Bookings & Inquiries. Edit the existing forms in place instead.
+> If you delete one of the five forms and build a new one by hand, the new form will **not** carry the routing tag. It will still look identical and still send email, but its submissions will silently stop appearing in Tour Manager → Bookings & Inquiries. Edit the existing forms in place instead.
 >
-> **If a form has already been deleted:** ask a developer to deactivate and reactivate the Brother Tours Forms plugin. That recreates any missing form with its routing tag restored. Then copy your changes into the recreated form and delete the untagged copy. (A developer can also set the tag directly on a hand-made form.)
+> **If a form has already been deleted:** ask a developer to deactivate and reactivate the Formistic plugin. That recreates any missing form with its routing tag restored. Then copy your changes into the recreated form and delete the untagged copy. (A developer can also set the tag directly on a hand-made form.)
 
 Two more rules:
 
 - The **Newsletter** form's type must stay set to "newsletter". That setting is what keeps sign-ups out of the inquiries screen.
 - Never add a question about the guest's budget to any form. See the brand rules in section 8.
+- The **Request Tour Availability** form's two hidden fields (tour id and tour name) are populated automatically per placement — do not remove them or hand-edit their values; see `Wpistic_Formistic_BT_Forms::render_request_availability()`.
 
 ---
 

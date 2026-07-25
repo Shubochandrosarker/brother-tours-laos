@@ -18,7 +18,7 @@ Converted from **06 – Acceptance Test Checklist** ("Born Here. Guide Here." ·
 
 **Tally: 3 `PASS` · 24 `FAIL` · 155 `NOT-YET-VERIFIABLE` (182 items).**
 
-Repo evidence cited below was gathered by reading and searching the repository on 2026-07-24. "Repo scan" means a text search across the theme templates, the child theme, the Brother Tours Forms fork, and the Tour Manager plugin in this repository. A repo scan can never prove anything about pages an editor later writes into the database — final verification always requires the built site. Before launch, also run `scripts/release-check.sh` and `php scripts/brand-lint.php` (see `docs/content-import-guide.md`).
+Repo evidence cited below was gathered by reading and searching the repository on 2026-07-24, and re-verified for the v2.0.0 addendum (section 10) on the date that section was added. "Repo scan" means a text search across the theme templates, the child theme, the Formistic fork, and the Tour Manager plugin in this repository. A repo scan can never prove anything about pages an editor later writes into the database — final verification always requires the built site. Before launch, also run `scripts/release-check.sh` and `php scripts/brand-lint.php` (see `docs/content-import-guide.md`).
 
 ---
 
@@ -248,7 +248,7 @@ Repo facts: `plugins/wpistic-tour-manager/src/Integration/SchemaData.php` emits 
 
 ### 5.1 Forms
 
-The four Brother Tours forms are seeded in code (`plugins/brother-tours-formistic/includes/class-formistic-bt-forms.php`) and routed to Tour Manager by `plugins/wpistic-tour-manager/src/Integration/FormisticIngestion.php`. None of this has ever executed — there is no WordPress install — so every submission-path row is untested.
+**Updated for v2.0.0:** Formistic now seeds **five** forms (`plugins/formistic/includes/class-formistic-bt-forms.php`), routed to Tour Manager by `plugins/wpistic-tour-manager/src/Integration/FormisticIngestion.php`. The fifth, Request Tour Availability, is a second, Formistic-rendered entry point alongside — not instead of — Tour Manager's own booking widget; see `docs/formistic-brother-tours-integration.md` for why both exist safely. None of this has ever executed — there is no WordPress install — so every submission-path row is untested.
 
 | # | Item | Status | Evidence / Next action |
 |---|---|---|---|
@@ -257,9 +257,10 @@ The four Brother Tours forms are seeded in code (`plugins/brother-tours-formisti
 | 3 | Contact form submits successfully | `NOT-YET-VERIFIABLE` | Seed definition exists (slug `contact`). Test on staging. |
 | 4 | Newsletter signup submits successfully | `NOT-YET-VERIFIABLE` | Seeded as Formistic type `newsletter`, whose code path subscribes and returns without creating an inquiry. Confirm on staging: subscription recorded, no inquiry created. |
 | 5 | Travel agent form submits successfully | `NOT-YET-VERIFIABLE` | Seed definition exists (slug `travel-agent`). Test on staging. |
-| 6 | Form validations work on client and server side | `NOT-YET-VERIFIABLE` | Test required-field, email-format and consent validation in a browser. |
-| 7 | Confirmation message shown after submit | `NOT-YET-VERIFIABLE` | Success copy is seeded per form; verify displayed message in a browser. |
-| 8 | Thank-you page returns 200 | `NOT-YET-VERIFIABLE` | Page is seeded published with template `page-thank-you.php`; verify HTTP 200 on staging. |
+| 6 | Request Tour Availability (Formistic form) submits successfully | `NOT-YET-VERIFIABLE` | Seed definition exists (slug `request-availability`), hidden tour_id/tour_title populated by `Wpistic_Formistic_BT_Forms::render_request_availability()`. Test a real submission on staging via the Elementor widget, and confirm exactly one booking is created with the correct tour_id. |
+| 7 | Form validations work on client and server side | `NOT-YET-VERIFIABLE` | Test required-field, email-format and consent validation in a browser. |
+| 8 | Confirmation message shown after submit | `NOT-YET-VERIFIABLE` | Success copy is seeded per form; verify displayed message in a browser. |
+| 9 | Thank-you page returns 200 | `NOT-YET-VERIFIABLE` | Page is seeded published with template `page-thank-you.php`; verify HTTP 200 on staging. |
 
 ### 5.2 Tourflows integration
 
@@ -402,6 +403,87 @@ All eight rows are launch-stage human verification steps. None can occur before 
 | 8 | Old domain (brothertourslaos.com) redirects tested | `NOT-YET-VERIFIABLE` | Blocked on the redirect map (2.4) and DNS/host setup for the old domain. |
 
 ---
+
+## 10. v2.0.0 changes verification
+
+Added for the v2.0.0 coordinated release (G2A removal, Formistic rename,
+Elementor integration, Tour Manager dashboard rebuild, frontend + admin
+light/dark modes). These rows are in addition to the tally at the top of
+this document, which was last computed before this release; re-total both
+together before sign-off.
+
+### 10.1 G2A / unrelated-client removal
+
+| # | Item | Status | Evidence / Next action |
+|---|---|---|---|
+| 1 | `plugins/wpistic-crm` (confirmed unrelated Guns2Ammo firearms-retailer CRM) removed from the deployable tree | `PASS` | Verified by reading: directory no longer exists in the repository; confirmed before removal via its own `guns2ammo-crm` text domain and `G2A_CRM` package constant, and zero cross-references from any other plugin or theme. |
+| 2 | No G2A code path remains reachable in Formistic | `PASS` | `class-formistic-g2a-defaults.php` deleted (previously a *reachable* admin action seeding real G2A business facts — a live defect, not dead code); the `g2a_request`/`g2a_reservation` legacy capture path, its option, and its settings-screen row removed; `g2a_biz()`/`guns2ammo` template fallbacks in the email layer replaced. See `plugins/formistic/UPSTREAM.md`, "G2A removal (v2.0.0)". |
+| 3 | Automated scan confirms zero G2A residue in deployable files | `PASS` | `php scripts/brand-lint.php` (new `unrelated-client` rule) and `sh scripts/release-check.sh` (new Gate 5, an independent second scan over all tracked files) both report zero matches outside the two files that legitimately document the removal as history (`UPSTREAM.md`, `readme.txt`). Re-run both after any future merge from upstream Formistic. |
+
+### 10.2 Formistic naming
+
+| # | Item | Status | Evidence / Next action |
+|---|---|---|---|
+| 1 | Plugin presents as "Formistic" only, authored by "WordPressistic" | `NOT-YET-VERIFIABLE` | Plugin header, admin menu relabel (`Wpistic_Formistic_BT_Branding::rebrand_menu()`), and settings screens all say "Formistic"/"WordPressistic" in code. Verify the rendered wp-admin UI on staging. |
+| 2 | Customer-facing forms/emails remain Brother Tours branded | `NOT-YET-VERIFIABLE` | Guest-facing copy is unchanged by the rename (only the plugin's own admin identity changed). Verify rendered forms and delivered emails on staging. |
+| 3 | Only one Formistic plugin active; duplicate-load guard works | `NOT-YET-VERIFIABLE` | Guard exists in `formistic.php` (unchanged by the rename beyond the constant it checks). Test by installing both plugins side by side on a staging install and confirming the second to load shows the admin notice rather than fataling. |
+
+### 10.3 Elementor integration
+
+| # | Item | Status | Evidence / Next action |
+|---|---|---|---|
+| 1 | Theme locations (header/footer/single/archive/404) registered with PHP fallback | `NOT-YET-VERIFIABLE` | `elementor_theme_do_location()` wraps the relevant section in every listed template with a `function_exists()` guard; PHP fallback renders when Elementor is inactive or no template is assigned. Verify both states on a staging install with and without Elementor. |
+| 2 | `wpistic_tour`/`wpistic_destination`/`wpistic_experience` are Elementor-editable | `NOT-YET-VERIFIABLE` | `elementor_cpt_support` filter extends (never overwrites) the existing array. Verify in Elementor > Settings on staging that `page`/`post` (or any operator-enabled type) survived alongside the three new ones. |
+| 3 | All 18 Brother Tours widgets registered and render real data | `NOT-YET-VERIFIABLE` | All 18 class names exist and match `bootstrap.php`'s registration list; every widget's meta-key reads were checked against the templates that already read them in production (`single-tour.php`, `single-destination.php`) rather than assumed. Elementor editor rendering, drag-and-drop behavior, and actual on-screen output require a live WordPress + Elementor install. |
+| 4 | Widgets fail safely without Elementor or without their data source | `PASS` (code-evidenced) | Every widget class only registers inside the `elementor/widgets/register` hook Elementor itself fires; every `render()` method checks its data source and calls `render_empty_state()`/`render_admin_notice()` rather than emitting broken markup. Confirmed by reading every widget file; no fatal-error path found. Live verification still recommended on staging. |
+
+### 10.4 Tour Manager dashboard
+
+| # | Item | Status | Evidence / Next action |
+|---|---|---|---|
+| 1 | Dashboard KPIs render with real data sources | `NOT-YET-VERIFIABLE` | Every KPI's data source is documented inline in `Admin\Dashboard::render_kpis()`; "Upcoming departures" depends on the `wpistic_dep_date` field being filled in on each departure (correctly shows zero until then, not fabricated). Verify rendered values against known bookings on staging. |
+| 2 | Bookings list: pagination, search, filters, sort, bulk actions all function | `NOT-YET-VERIFIABLE` | Replaces the prior unpaginated `LIMIT 200` query; every filter is parameterized via `$wpdb->prepare()`, sort columns validated against an allow-list. Exercise every control on staging with a realistic number of bookings. |
+| 3 | Booking detail tabs (Overview/Traveler/Trip/Payments/Activity/Connections) all render | `NOT-YET-VERIFIABLE` | `BookingDetail.php` implements all six; the Trip tab resolves `tour_id` to the tour's real title (previously showed only a raw numeric id). Verify each tab against a real booking on staging. |
+| 4 | Connections tab shows real delivery history and manual resend works | `NOT-YET-VERIFIABLE` | Delivery history is read from the audit log via a new `wpistic_tm_connection_dispatched` hook (see `docs/tourflows-integration.md` for the full mechanism); manual resend is nonce/capability-protected and re-dispatches without re-creating the booking or re-sending the guest email — confirmed by reading the call chain. Blocked on Tourflows credentials (5.2 row 1) for an end-to-end test; the UI and audit trail can be verified without them using any configured connection. |
+| 5 | Admin light/dark theme toggle persists per user | `NOT-YET-VERIFIABLE` | Persisted via `user_meta`, AJAX round-trip nonce-protected. Verify the toggle and its persistence across a login session on staging. |
+
+### 10.5 Frontend + admin light/dark mode
+
+| # | Item | Status | Evidence / Next action |
+|---|---|---|---|
+| 1 | Frontend light mode is a genuine second palette, not a copy of dark mode | `PASS` (code-evidenced) | Previously `[data-theme="light"]` and `[data-theme="dark"]` resolved to identical values in `brand-tokens.css`; now genuinely distinct. Every text/background/fill pairing was checked against WCAG AA with a short script (documented inline in the CSS and in `docs/light-dark-mode.md`) rather than eyeballed. Visual review on staging still recommended. |
+| 2 | Frontend defaults to dark mode (Brother Tours' primary identity) for new visitors | `NOT-YET-VERIFIABLE` | `theme_mod_wpistic_default_mode` filter in the child theme; tested against a minimal WP-function stub for correctness and for the infinite-recursion bug an earlier draft would have caused. Verify on a fresh browser profile on staging. |
+| 3 | Admin dashboard light/dark tokens pass WCAG AA | `PASS` (code-evidenced) | Computed and verified the same way as the frontend tokens before writing `dashboard.css`; see the file's header comment. |
+| 4 | Theme toggle is keyboard-operable with correct `aria-pressed` state | `NOT-YET-VERIFIABLE` | Both the frontend toggle (`aria-pressed` added and synced on load/click) and the admin toggle set `aria-pressed` correctly in code. Verify with a screen reader and keyboard-only navigation on staging. |
+
+### 10.6 Version coordination
+
+| # | Item | Status | Evidence / Next action |
+|---|---|---|---|
+| 1 | All four shipped components report version 2.0.0 | `PASS` | Verified by reading every version string: both theme `style.css` headers, both plugin headers, both `WPISTIC_*_VERSION` constants, both `readme.txt` Stable tags. `scripts/build-release.sh` also re-checks this and refuses to package on a mismatch. |
+| 2 | No database schema silently claimed as migrated | `PASS` | Both `WPISTIC_FORMISTIC_DB_VERSION` and `WPISTIC_TM_DB_VERSION` deliberately left unchanged — no schema change in this release for either plugin (the connection-dispatch history reuses the existing audit log rather than a new column; documented inline at both version constants and in `docs/upgrade-to-2.0.0.md`). |
+
+### 10.7 Automated test pass (this session, no WordPress runtime available)
+
+These are the checks that can run without a live WordPress + MySQL + Elementor
+install. They are real command output, not asserted — re-run any of them
+yourself with the command shown. They do not replace the staging smoke test
+in `docs/release-checklist.md` section 6, which is the only check that
+exercises WordPress itself.
+
+| # | Item | Status | Evidence / Next action |
+|---|---|---|---|
+| 1 | PHP syntax — every file under `themes/` and `plugins/` | `PASS` | `find themes plugins -name '*.php' \| xargs -n1 php -l` — zero syntax errors across the full tree (PHP 8.4.19 CLI). |
+| 2 | JS syntax — every file under `themes/` and `plugins/` | `PASS` | `node --check` on every `.js` file — zero syntax errors. |
+| 3 | Brand lint (incl. `unrelated-client`/G2A rule) | `PASS` | `php scripts/brand-lint.php` — 0 errors. (5 pre-existing warnings and 3 review items are informational banned-word-in-comment / figurative-"explore" notes, unchanged by this release — see the script's own output for line numbers.) |
+| 4 | Release gate suite (5 gates) | `PASS` | `sh scripts/release-check.sh` — PHP lint, brand lint, secret scan, no tracked `.env`, independent unrelated-client scan: 5/5. |
+| 5 | Release packaging | `PASS` | `sh scripts/build-release.sh` — produced and verified all 5 zips (correct single root folder each, `sha256sum -c checksums.sha256` all `OK`). Spot-checked for G2A residue with a binary-aware scan of every packaged file; the only hits were coincidental byte sequences inside `.webp` demo images (not text) and the expected, policy-sanctioned historical mention in `formistic/UPSTREAM.md`. |
+| 6 | CSS structural sanity (brace balance) on the new light/dark and dashboard stylesheets | `PASS` | Brace counts balance in `brand-tokens.css`, `elementor-widgets.css`, `dashboard.css`. Not a substitute for rendering in a browser. |
+| 7 | JSON validity — every `.json` in `themes/`/`plugins/` (incl. `theme.json`) | `PASS` | `json_decode()` round-trip on every file — none failed to parse. |
+| 8 | WCAG AA contrast — every text/surface pairing in `brand-tokens.css` (frontend) and `dashboard.css` (admin), light and dark | `PASS` | Recomputed independently this session with the relative-luminance formula (not re-used from an earlier claim): all 20 pairings ≥ 4.5:1. Lowest frontend pairing 5.48:1 (light gold on paper); lowest admin pairing 4.76:1 (light muted text). |
+| 9 | Elementor widget class inventory vs. bootstrap registration | `PASS` | `grep` diff of every `class Brother_Tours_Widget_*` declaration against `bootstrap.php`'s registration list: exact match, all 18, nothing declared-but-unregistered or registered-but-undeclared. |
+| 10 | `tour-core` unit tests (`plugins/wpistic-tour-manager/lib/tour-core/tests`, vendored, unchanged this release) | `PARTIAL` | `composer install` + `phpunit`: `BookingStateMachineTest` — 6/6 pass. `DepositCalculatorTest` — 0/7 pass, all failing on `Call to undefined function bcadd()`. This is a missing `ext-bcmath` PHP extension in this development sandbox, not a code defect: `composer.json` correctly declares `require: ext-bcmath`, `Money.php` is unmodified since the initial vendoring commit (`git diff` against it is empty), and every failure is the identical missing-extension error, not an assertion failure. **Action for whoever runs this next:** re-run `phpunit` on a host with `ext-bcmath` installed (standard on most production PHP builds) before treating the deposit-calculation logic as verified. |
+| 11 | Manual/interactive tests requiring a live WordPress admin, Elementor editor, or browser (form submission end-to-end, dashboard rendering, widget drag-and-drop, screen reader, cross-browser, mobile) | `NOT RUN` | No WordPress runtime, MySQL, or browser is available in this environment. Every row above marked `NOT-YET-VERIFIABLE` throughout this document still requires the staging smoke test in `docs/release-checklist.md` section 6. Do not skip it. |
 
 ## Sign-off
 

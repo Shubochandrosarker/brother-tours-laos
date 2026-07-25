@@ -15,6 +15,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
+if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'single' ) ) {
+	get_footer();
+	return;
+}
+
 while ( have_posts() ) :
 	the_post();
 

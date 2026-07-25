@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WPISTIC_VERSION', '1.2.1' );
+define( 'WPISTIC_VERSION', '2.0.0' );
 define( 'WPISTIC_DIR', get_template_directory() );
 define( 'WPISTIC_URI', get_template_directory_uri() );
 

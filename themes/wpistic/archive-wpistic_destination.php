@@ -2,6 +2,11 @@
 /** Destination discovery archive. @package WPistic */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 get_header();
+
+if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'archive' ) ) {
+	get_footer();
+	return;
+}
 ?>
 <section class="page-hero"><div class="wrap"><?php wpistic_breadcrumbs(); ?><span class="eyebrow"><?php esc_html_e( 'Explore Laos', 'wpistic' ); ?></span><h1><?php esc_html_e( 'Destinations across northern, central and southern Laos.', 'wpistic' ); ?></h1><p class="lede"><?php esc_html_e( 'Choose a place to understand its character, practical details and the private tours that visit it.', 'wpistic' ); ?></p></div></section>
 <section class="section"><div class="wrap"><nav class="active-filters" aria-label="<?php esc_attr_e( 'Laos regions', 'wpistic' ); ?>"><?php $regions = get_terms( array( 'taxonomy' => 'region', 'hide_empty' => true ) ); if ( ! is_wp_error( $regions ) ) { foreach ( $regions as $region ) { echo '<a class="af" href="' . esc_url( get_term_link( $region ) ) . '">' . esc_html( $region->name ) . '</a>'; } } ?></nav>

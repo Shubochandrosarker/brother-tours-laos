@@ -8,14 +8,27 @@ section before running anything.
 | Layer | Change | Reversible by |
 |---|---|---|
 | Repository layout | Themes/plugins moved into `themes/` and `plugins/` | Git revert |
-| Code | Formistic fork, ingestion adapter, theme design system | Git revert |
-| Database schema | **One new table** `{prefix}wpistic_form_ingestions` | Left in place; harmless |
-| Database rows | Seeded pages, four forms, one disabled connection profile | Manual, see below |
-| Options | `wpistic_tm_db_version` bumped to `1.1.0`; new `brother_tours_*` options | Manual, see below |
+| Code | Formistic (renamed from "Brother Tours Forms" in v2.0.0), ingestion adapter, theme design system, Elementor integration, Tour Manager dashboard | Git revert |
+| Removed | `plugins/wpistic-crm` (unrelated G2A CRM); G2A code paths inside Formistic; `Admin\Portal` (Tour Manager, superseded by Dashboard/Bookings/BookingDetail) | Git revert restores them if truly needed, but see the note below — none of this should be restored |
+| Database schema | **One new table** `{prefix}wpistic_form_ingestions`. No schema change in v2.0.0. | Left in place; harmless |
+| Database rows | Seeded pages, five forms (four before v2.0.0), one disabled connection profile | Manual, see below |
+| Options | `wpistic_tm_db_version`; new `brother_tours_*` options | Manual, see below |
 
-Nothing is dropped, renamed or rewritten. No existing table, column, row, post,
-option or slug is destroyed by this change — which is why rollback is mostly a
-code operation.
+Nothing is dropped, renamed or rewritten by any *data* operation. No
+existing table, column, row, post, option or slug is destroyed — which is
+why rollback is mostly a code operation. The one true rename is the
+Formistic plugin directory itself (`brother-tours-formistic/` →
+`formistic/` in v2.0.0) — see the caveat below, that one needs a manual
+reactivation step either direction.
+
+**Do not restore `plugins/wpistic-crm` or any G2A code as part of a
+rollback**, even though `git revert` is technically capable of resurrecting
+deleted files. Those removals were a correctness fix, not a feature this
+site ever needed — reverting past them would reintroduce another client's
+business content and a live defect (a reachable admin action that seeded
+G2A business facts into the AI knowledge base). If a rollback target
+predates the G2A removal, cherry-pick around it or re-apply the removal
+immediately after reverting.
 
 ## Level 1 — revert the code
 
@@ -29,7 +42,9 @@ git push -u origin <branch>
 
 Then, on the site:
 
-1. Deactivate **Brother Tours Forms**.
+1. Deactivate **Formistic** (or **Brother Tours Forms**, if reverting past
+   the v2.0.0 rename — check which directory name is on disk after the
+   revert and match the plugin list entry to it).
 2. Reactivate the standalone Formistic plugin if that is what you are going back
    to. Both may be *installed* at once — the duplicate guard keeps whichever
    loads second dormant — but only one should be **active**.
@@ -42,11 +57,25 @@ idempotency history and risk duplicate bookings on replayed hooks.
 
 ### One caveat before reverting
 
-Reverting restores `Notifier::on_formistic()`, which creates a booking for
-**every** captured submission with no idempotency guard. If you revert while the
-four Brother Tours forms remain live, expect duplicate inquiries. Either
-deactivate Brother Tours Forms in the same maintenance window, or accept and
-de-duplicate afterwards.
+Reverting all the way past the single-ingestion adapter's introduction
+restores `Notifier::on_formistic()`, which creates a booking for **every**
+captured submission with no idempotency guard. If you revert that far
+while the Formistic forms remain live, expect duplicate inquiries. Either
+deactivate Formistic in the same maintenance window, or accept and
+de-duplicate afterwards. (Reverting only the v2.0.0 changes, and stopping
+before that earlier point, does not hit this caveat — `FormisticIngestion`
+predates v2.0.0 and stays in place either way.)
+
+### If reverting past the v2.0.0 Formistic rename specifically
+
+WordPress tracks an active plugin by its file path (`folder/file.php`).
+Renaming `plugins/formistic/formistic.php` back to
+`plugins/brother-tours-formistic/brother-tours-formistic.php` via a code
+revert means WordPress will show the plugin as **deactivated** the moment
+the old files land, even though nothing else changed — reactivate it
+promptly, in the plugins list, under its restored name. Forms, submissions
+and settings are unaffected; only the activation record needs a manual
+touch.
 
 ## Level 2 — undo the seeded content
 
@@ -110,7 +139,7 @@ if the guard itself was edited or an older copy is present:
 ```sh
 # Rename the plugin directory over SSH/SFTP; WordPress deactivates it on the
 # next request and the admin becomes reachable again.
-mv wp-content/plugins/brother-tours-formistic wp-content/plugins/brother-tours-formistic.off
+mv wp-content/plugins/formistic wp-content/plugins/formistic.off
 ```
 
 Then reach the admin, deactivate the other Formistic, rename the directory back,

@@ -135,7 +135,7 @@ final class MetaBoxes {
 			$options[ (string) $tour->ID ] = $tour->post_title;
 		}
 		$this->select( $post->ID, 'wpistic_dep_tour', __( 'Tour', 'wpistic-tour-manager' ), $options );
-		$this->text( $post->ID, 'wpistic_dep_date', __( 'Date', 'wpistic-tour-manager' ), 'YYYY-MM-DD' );
+		$this->date( $post->ID, 'wpistic_dep_date', __( 'Date', 'wpistic-tour-manager' ) );
 		$this->text( $post->ID, 'wpistic_dep_seats_total', __( 'Seats total', 'wpistic-tour-manager' ) );
 		$this->text( $post->ID, 'wpistic_dep_seats_left', __( 'Seats left', 'wpistic-tour-manager' ) );
 		$this->select(
@@ -233,6 +233,20 @@ final class MetaBoxes {
 		$value = (string) get_post_meta( $post_id, $key, true );
 		echo '<p class="wpistic-field"><label for="' . esc_attr( $key ) . '">' . esc_html( $label ) . '</label>';
 		echo '<input type="text" id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" class="widefat" value="' . esc_attr( $value ) . '" placeholder="' . esc_attr( $placeholder ) . '"></p>';
+	}
+
+	/**
+	 * Same as text(), but a native date input -- a browser date picker and
+	 * basic Y-m-d format validation, rather than a free-text field an editor
+	 * could enter any format into. Used for wpistic_dep_date, which the
+	 * Tour Manager dashboard's "Upcoming departures" KPI sorts and filters
+	 * on (see Admin\Dashboard::upcoming_departure_query()) and therefore
+	 * needs in a consistently parseable shape.
+	 */
+	private function date( int $post_id, string $key, string $label ): void {
+		$value = (string) get_post_meta( $post_id, $key, true );
+		echo '<p class="wpistic-field"><label for="' . esc_attr( $key ) . '">' . esc_html( $label ) . '</label>';
+		echo '<input type="date" id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" class="widefat" value="' . esc_attr( $value ) . '"></p>';
 	}
 
 	/**

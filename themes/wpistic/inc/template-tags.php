@@ -269,7 +269,7 @@ function wpistic_logo( $class = 'nav-logo' ) {
  */
 function wpistic_theme_toggle() {
 	?>
-	<button class="theme-toggle" type="button" aria-label="<?php esc_attr_e( 'Toggle light or dark mode', 'wpistic' ); ?>" data-theme-toggle>
+	<button class="theme-toggle" type="button" aria-label="<?php esc_attr_e( 'Toggle light or dark mode', 'wpistic' ); ?>" aria-pressed="false" data-theme-toggle>
 		<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
 		<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5z"/></svg>
 	</button>
@@ -476,10 +476,16 @@ function wpistic_body_classes( $classes ) {
  * action somewhere else -- Brother Tours locks it to /build-my-trip/ -- so the
  * destination is filterable rather than hard-coded across templates.
  *
+ * Bug fix: this previously called itself while building its own default
+ * argument (`apply_filters( 'wpistic/cta_url', wpistic_cta_url() )`), which
+ * is unconditional infinite recursion -- every call would exhaust the PHP
+ * call stack. The base default is now a literal fallback route; a child
+ * theme (Brother Tours) still overrides it via the `wpistic/cta_url` filter.
+ *
  * @return string Absolute URL.
  */
 function wpistic_cta_url() {
-	return (string) apply_filters( 'wpistic/cta_url', wpistic_cta_url() );
+	return (string) apply_filters( 'wpistic/cta_url', home_url( '/plan-my-laos-trip/' ) );
 }
 
 /**

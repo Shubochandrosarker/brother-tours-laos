@@ -30,12 +30,13 @@ final class Plugin {
 		$gateways->register();
 
 		$bookings    = new Booking\BookingService();
+		$bookings->register();
 		$connections = new Connections\ConnectionsManager();
 		$connections->register();
 
 		( new Notifications\Notifier() )->register();
 		( new Booking\CaptureController( $bookings, $connections ) )->register();
-		// The single path from Brother Tours Forms into an inquiry record.
+		// The single path from Formistic into an inquiry record.
 		// Nothing else may turn a Formistic submission into a booking.
 		( new Integration\FormisticIngestion( $bookings, $connections ) )->register();
 		( new Payments\WebhookController( $gateways, $bookings ) )->register();
@@ -47,7 +48,9 @@ final class Plugin {
 		if ( is_admin() ) {
 			( new Admin\Settings() )->register();
 			( new Admin\MetaBoxes() )->register();
-			( new Admin\Portal( $bookings, $gateways, $connections ) )->register();
+			( new Admin\AdminAssets() )->register();
+			( new Admin\Dashboard( $bookings, $connections ) )->register();
+			( new Admin\Bookings( $bookings, $gateways, $connections ) )->register();
 			( new Admin\ContentSeeder() )->register();
 			( new Admin\SiteSeeder( $connections ) )->register();
 		}

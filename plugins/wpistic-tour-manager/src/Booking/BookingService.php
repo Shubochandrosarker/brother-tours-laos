@@ -541,6 +541,473 @@ final class BookingService {
 		}
 	}
 
+	/* ==============================================================
+	 * Wiring
+	 * ============================================================== */
+
+	/**
+	 * Hook registration. Deliberately called unconditionally from
+	 * Plugin::boot() (not only under is_admin()): `wpistic_tm_connection_dispatched`
+	 * fires from front-end requests too (e.g. a Formistic submission dispatching
+	 * `inquiry.created` on the public site), so the listener that records dispatch
+	 * history into the audit log must be live outside wp-admin as well.
+	 */
+	public function register(): void {
+		add_action( 'wpistic_tm_connection_dispatched', array( $this, 'record_connection_dispatch' ), 10, 5 );
+	}
+
+	/**
+	 * Listener for `wpistic_tm_connection_dispatched`, fired by
+	 * ConnectionsManager::send() right after it writes to wpistic_connection_log.
+	 *
+	 * wpistic_connection_log has no booking_id column, so a booking's connection
+	 * delivery history cannot be read from that table directly. Rather than add a
+	 * schema migration, every dispatch is mirrored here into the existing,
+	 * already-working audit_log (object_type='booking', action='connection_dispatch').
+	 * The admin Connections tab then reads it by filtering the booking's normal
+	 * audit-log rows -- no new query, no new table.
+	 */
+	public function record_connection_dispatch( int $booking_id, string $event, int $status_code, int $connection_id, string $target_url ): void {
+		if ( $booking_id <= 0 ) {
+			return;
+		}
+		$this->audit(
+			'booking',
+			$booking_id,
+			'connection_dispatch',
+			array(
+				'event'         => $event,
+				'status_code'   => $status_code,
+				'connection_id' => $connection_id,
+				'target_url'    => $target_url,
+			)
+		);
+	}
+
+	/* ==============================================================
+	 * Admin list / dashboard query layer.
+	 *
+	 * Every dynamic value below is bound through $wpdb->prepare(). Sortable
+	 * columns, filter columns, and GROUP BY columns are validated against
+	 * fixed allow-lists before being interpolated as identifiers, since
+	 * prepare() can only parameterize values, never column/table names.
+	 * ============================================================== */
+
+	/** @var array<int, string> */
+	private const LIST_TYPES = array( 'build_my_trip', 'booking', 'contact', 'agent', 'inquiry' );
+
+	/** @var array<string, string> Public sort key => real column. */
+	private const SORTABLE_COLUMNS = array(
+		'reference'     => 'reference',
+		'created_at'    => 'created_at',
+		'customer_name' => 'customer_name',
+		'id'            => 'id',
+	);
+
+	/**
+	 * Lifecycle status groups used as a payment-status proxy filter, since the
+	 * booking lifecycle (see BookingStatus/BookingStateMachine) already tracks
+	 * payment progress deterministically -- mark_deposit_paid()/mark_balance_paid()
+	 * are the only ways a booking advances past these boundaries.
+	 *
+	 * @var array<string, array<int, string>>
+	 */
+	private const PAYMENT_STATUS_GROUPS = array(
+		'unpaid'       => array( 'inquiry', 'quoted', 'deposit_link_sent' ),
+		'deposit_paid' => array( 'deposit_paid', 'confirmed' ),
+		'balance_due'  => array( 'balance_due' ),
+		'paid_in_full' => array( 'paid_in_full', 'completed' ),
+	);
+
+	/**
+	 * @return array<int, string>
+	 */
+	public function known_types(): array {
+		return self::LIST_TYPES;
+	}
+
+	/**
+	 * @return array<string, array<int, string>>
+	 */
+	public function payment_status_groups(): array {
+		return self::PAYMENT_STATUS_GROUPS;
+	}
+
+	private function valid_date( string $value ): string {
+		$value = sanitize_text_field( $value );
+		if ( '' === $value ) {
+			return '';
+		}
+		$dt = \DateTime::createFromFormat( 'Y-m-d', $value );
+		return ( $dt && $dt->format( 'Y-m-d' ) === $value ) ? $value : '';
+	}
+
+	/**
+	 * Build the WHERE clause + bound params shared by query() and export_rows().
+	 * Every value is returned for binding via $wpdb->prepare() by the caller --
+	 * nothing here is interpolated directly into SQL.
+	 *
+	 * @param array<string, mixed> $args
+	 * @return array{0: string, 1: array<int, mixed>}
+	 */
+	private function build_where( array $args ): array {
+		global $wpdb;
+		$clauses = array();
+		$params  = array();
+
+		$search = isset( $args['search'] ) ? trim( sanitize_text_field( (string) $args['search'] ) ) : '';
+		if ( '' !== $search ) {
+			$like      = '%' . $wpdb->esc_like( $search ) . '%';
+			$clauses[] = '(reference LIKE %s OR customer_name LIKE %s OR customer_email LIKE %s)';
+			array_push( $params, $like, $like, $like );
+		}
+
+		$type = isset( $args['type'] ) ? sanitize_key( (string) $args['type'] ) : '';
+		if ( '' !== $type && in_array( $type, self::LIST_TYPES, true ) ) {
+			$clauses[] = 'type = %s';
+			$params[]  = $type;
+		}
+
+		$status = isset( $args['status'] ) ? sanitize_key( (string) $args['status'] ) : '';
+		if ( '' !== $status && null !== BookingStatus::tryFrom( $status ) ) {
+			$clauses[] = 'status = %s';
+			$params[]  = $status;
+		}
+
+		$portal_status = isset( $args['portal_status'] ) ? sanitize_key( (string) $args['portal_status'] ) : '';
+		if ( '' !== $portal_status && in_array( $portal_status, array( 'new', 'reviewed', 'sent', 'closed' ), true ) ) {
+			$clauses[] = 'portal_status = %s';
+			$params[]  = $portal_status;
+		}
+
+		$payment_status = isset( $args['payment_status'] ) ? sanitize_key( (string) $args['payment_status'] ) : '';
+		if ( '' !== $payment_status && isset( self::PAYMENT_STATUS_GROUPS[ $payment_status ] ) ) {
+			$statuses     = self::PAYMENT_STATUS_GROUPS[ $payment_status ];
+			$placeholders = implode( ', ', array_fill( 0, count( $statuses ), '%s' ) );
+			$clauses[]    = "status IN ({$placeholders})";
+			array_push( $params, ...$statuses );
+		}
+
+		$assigned_to = isset( $args['assigned_to'] ) ? absint( $args['assigned_to'] ) : 0;
+		if ( $assigned_to > 0 ) {
+			$clauses[] = 'assigned_to = %d';
+			$params[]  = $assigned_to;
+		}
+
+		$tour_id = isset( $args['tour_id'] ) ? absint( $args['tour_id'] ) : 0;
+		if ( $tour_id > 0 ) {
+			$clauses[] = 'tour_id = %d';
+			$params[]  = $tour_id;
+		}
+
+		$date_from = isset( $args['date_from'] ) ? $this->valid_date( (string) $args['date_from'] ) : '';
+		if ( '' !== $date_from ) {
+			$clauses[] = 'created_at >= %s';
+			$params[]  = $date_from . ' 00:00:00';
+		}
+
+		$date_to = isset( $args['date_to'] ) ? $this->valid_date( (string) $args['date_to'] ) : '';
+		if ( '' !== $date_to ) {
+			$clauses[] = 'created_at <= %s';
+			$params[]  = $date_to . ' 23:59:59';
+		}
+
+		$sql = $clauses ? ( ' WHERE ' . implode( ' AND ', $clauses ) ) : '';
+		return array( $sql, $params );
+	}
+
+	/**
+	 * Paginated, filtered, sorted list for the admin bookings screen. Replaces
+	 * the old fixed `LIMIT 200` raw query in Admin\Portal.
+	 *
+	 * @param array<string, mixed> $args search, type, status, portal_status,
+	 *                                    payment_status, assigned_to, tour_id,
+	 *                                    date_from, date_to, orderby, order, page, per_page.
+	 * @return array{rows: array<int, array<string, mixed>>, total: int, page: int, per_page: int}
+	 */
+	public function query( array $args ): array {
+		global $wpdb;
+		$table = $this->table( 'bookings' );
+
+		list( $where, $params ) = $this->build_where( $args );
+
+		$order_key = isset( $args['orderby'] ) ? sanitize_key( (string) $args['orderby'] ) : 'created_at';
+		$order_col = self::SORTABLE_COLUMNS[ $order_key ] ?? 'created_at';
+		$order_dir = isset( $args['order'] ) && 'asc' === strtolower( (string) $args['order'] ) ? 'ASC' : 'DESC';
+
+		$per_page = isset( $args['per_page'] ) ? max( 1, min( 100, absint( $args['per_page'] ) ) ) : 20;
+		$page     = isset( $args['page'] ) ? max( 1, absint( $args['page'] ) ) : 1;
+		$offset   = ( $page - 1 ) * $per_page;
+
+		$count_sql = "SELECT COUNT(*) FROM {$table}{$where}";
+		$total     = (int) ( $params ? $wpdb->get_var( $wpdb->prepare( $count_sql, $params ) ) : $wpdb->get_var( $count_sql ) ); // phpcs:ignore WordPress.DB
+
+		$list_sql    = "SELECT * FROM {$table}{$where} ORDER BY {$order_col} {$order_dir} LIMIT %d OFFSET %d"; // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $order_col/$order_dir are allow-listed above, never raw input.
+		$list_params = array_merge( $params, array( $per_page, $offset ) );
+		$rows        = $wpdb->get_results( $wpdb->prepare( $list_sql, $list_params ), ARRAY_A ) ?: array(); // phpcs:ignore WordPress.DB
+
+		return array(
+			'rows'     => $rows,
+			'total'    => $total,
+			'page'     => $page,
+			'per_page' => $per_page,
+		);
+	}
+
+	/**
+	 * All rows matching the same filters as query(), unpaginated, for CSV export.
+	 * Hard-capped so an unfiltered export can never exhaust memory on one request.
+	 *
+	 * @param array<string, mixed> $args
+	 * @return array<int, array<string, mixed>>
+	 */
+	public function export_rows( array $args ): array {
+		global $wpdb;
+		list( $where, $params ) = $this->build_where( $args );
+		$table = $this->table( 'bookings' );
+		$sql   = "SELECT reference, type, status, portal_status, customer_name, customer_email, customer_phone, customer_country, currency, price_amount, deposit_amount, created_at FROM {$table}{$where} ORDER BY id DESC LIMIT 5000";
+		return $params ? ( $wpdb->get_results( $wpdb->prepare( $sql, $params ), ARRAY_A ) ?: array() ) : ( $wpdb->get_results( $sql, ARRAY_A ) ?: array() ); // phpcs:ignore WordPress.DB
+	}
+
+	/**
+	 * @return array<int, array<string, mixed>>
+	 */
+	public function recent( int $limit = 10 ): array {
+		global $wpdb;
+		$limit = max( 1, min( 50, $limit ) );
+		return $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$this->table( 'bookings' )} ORDER BY id DESC LIMIT %d", $limit ), ARRAY_A ) ?: array(); // phpcs:ignore WordPress.DB
+	}
+
+	/**
+	 * @param array<int, int> $ids
+	 */
+	public function bulk_assign( array $ids, int $user_id ): int {
+		$ids = array_values( array_unique( array_filter( array_map( 'absint', $ids ) ) ) );
+		if ( ! $ids ) {
+			return 0;
+		}
+		global $wpdb;
+		$table        = $this->table( 'bookings' );
+		$placeholders = implode( ', ', array_fill( 0, count( $ids ), '%d' ) );
+		$sql          = "UPDATE {$table} SET assigned_to = %d WHERE id IN ({$placeholders})";
+		$updated      = (int) $wpdb->query( $wpdb->prepare( $sql, array_merge( array( $user_id ), $ids ) ) ); // phpcs:ignore WordPress.DB
+		foreach ( $ids as $id ) {
+			$this->audit( 'booking', $id, 'bulk_assign', array( 'assigned_to' => $user_id ) );
+		}
+		return $updated;
+	}
+
+	/**
+	 * @param array<int, int> $ids
+	 */
+	public function bulk_set_portal_status( array $ids, string $status ): int {
+		$allowed = array( 'new', 'reviewed', 'sent', 'closed' );
+		if ( ! in_array( $status, $allowed, true ) ) {
+			return 0;
+		}
+		$ids = array_values( array_unique( array_filter( array_map( 'absint', $ids ) ) ) );
+		if ( ! $ids ) {
+			return 0;
+		}
+		global $wpdb;
+		$table        = $this->table( 'bookings' );
+		$placeholders = implode( ', ', array_fill( 0, count( $ids ), '%d' ) );
+		$sql          = "UPDATE {$table} SET portal_status = %s WHERE id IN ({$placeholders})";
+		$updated      = (int) $wpdb->query( $wpdb->prepare( $sql, array_merge( array( $status ), $ids ) ) ); // phpcs:ignore WordPress.DB
+		foreach ( $ids as $id ) {
+			$this->audit( 'booking', $id, 'bulk_portal_status', array( 'to' => $status ) );
+		}
+		return $updated;
+	}
+
+	/**
+	 * Aggregate KPI data for the dashboard for a given date window (inclusive,
+	 * Y-m-d), plus a same-length prior window used for the percentage-delta
+	 * comparison on period-bound metrics.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function dashboard_stats( string $since, string $until ): array {
+		global $wpdb;
+		$bookings_table = $this->table( 'bookings' );
+
+		$since_dt = $this->valid_date( $since ) ?: gmdate( 'Y-m-d', strtotime( '-29 days' ) );
+		$until_dt = $this->valid_date( $until ) ?: gmdate( 'Y-m-d' );
+		if ( $since_dt > $until_dt ) {
+			list( $since_dt, $until_dt ) = array( $until_dt, $since_dt );
+		}
+
+		$period_days = (int) max( 1, ( strtotime( $until_dt ) - strtotime( $since_dt ) ) / DAY_IN_SECONDS + 1 );
+		$prev_until  = gmdate( 'Y-m-d', strtotime( $since_dt . ' -1 day' ) );
+		$prev_since  = gmdate( 'Y-m-d', strtotime( $prev_until . ' -' . ( $period_days - 1 ) . ' days' ) );
+
+		$new_inquiries      = $this->count_created_between( $since_dt, $until_dt );
+		$new_inquiries_prev = $this->count_created_between( $prev_since, $prev_until );
+
+		$revenue      = $this->sum_paid_transactions( $since_dt, $until_dt );
+		$revenue_prev = $this->sum_paid_transactions( $prev_since, $prev_until );
+
+		$deposits_paid      = $this->count_paid_transactions( 'deposit', $since_dt, $until_dt );
+		$deposits_paid_prev = $this->count_paid_transactions( 'deposit', $prev_since, $prev_until );
+
+		$failed      = $this->count_failed_dispatches( $since_dt, $until_dt );
+		$failed_prev = $this->count_failed_dispatches( $prev_since, $prev_until );
+
+		return array(
+			'since'      => $since_dt,
+			'until'      => $until_dt,
+			'prev_since' => $prev_since,
+			'prev_until' => $prev_until,
+
+			'new_inquiries'     => array( 'value' => $new_inquiries, 'delta' => $this->delta( (float) $new_inquiries, (float) $new_inquiries_prev ) ),
+			'awaiting_review'   => (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$bookings_table} WHERE portal_status = %s", 'new' ) ), // phpcs:ignore WordPress.DB
+			'awaiting_customer' => (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$bookings_table} WHERE portal_status = %s", 'sent' ) ), // phpcs:ignore WordPress.DB
+			'open_bookings'     => (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$bookings_table} WHERE status NOT IN (%s, %s, %s, %s)", 'completed', 'expired', 'refunded', 'cancelled' ) ), // phpcs:ignore WordPress.DB
+			'confirmed_bookings' => (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$bookings_table} WHERE status IN (%s, %s, %s)", 'confirmed', 'balance_due', 'paid_in_full' ) ), // phpcs:ignore WordPress.DB
+			'outstanding_balance' => (float) $wpdb->get_var( $wpdb->prepare( "SELECT COALESCE(SUM(CAST(balance_amount AS DECIMAL(14,2))), 0) FROM {$bookings_table} WHERE status = %s", 'balance_due' ) ), // phpcs:ignore WordPress.DB
+
+			'deposits_paid'     => array( 'value' => $deposits_paid, 'delta' => $this->delta( (float) $deposits_paid, (float) $deposits_paid_prev ) ),
+			'revenue'           => array( 'value' => $revenue, 'delta' => $this->delta( $revenue, $revenue_prev ) ),
+			'failed_deliveries' => array( 'value' => $failed, 'delta' => $this->delta( (float) $failed, (float) $failed_prev ) ),
+
+			'by_type'           => $this->group_counts( 'type', $since_dt, $until_dt ),
+			'by_portal_status'  => $this->group_counts( 'portal_status' ),
+			'gateway_breakdown' => $this->transactions_by_gateway( $since_dt, $until_dt ),
+		);
+	}
+
+	private function delta( float $current, float $previous ): ?float {
+		if ( $previous <= 0.0 ) {
+			return null;
+		}
+		return round( ( ( $current - $previous ) / $previous ) * 100, 1 );
+	}
+
+	private function count_created_between( string $since, string $until ): int {
+		global $wpdb;
+		return (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT(*) FROM {$this->table( 'bookings' )} WHERE created_at >= %s AND created_at <= %s",
+				$since . ' 00:00:00',
+				$until . ' 23:59:59'
+			)
+		); // phpcs:ignore WordPress.DB
+	}
+
+	private function sum_paid_transactions( string $since, string $until ): float {
+		global $wpdb;
+		return (float) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COALESCE(SUM(CAST(amount AS DECIMAL(14,2))), 0) FROM {$this->table( 'transactions' )} WHERE status = %s AND created_at >= %s AND created_at <= %s",
+				'paid',
+				$since . ' 00:00:00',
+				$until . ' 23:59:59'
+			)
+		); // phpcs:ignore WordPress.DB
+	}
+
+	private function count_paid_transactions( string $type, string $since, string $until ): int {
+		global $wpdb;
+		return (int) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT(*) FROM {$this->table( 'transactions' )} WHERE status = %s AND type = %s AND created_at >= %s AND created_at <= %s",
+				'paid',
+				$type,
+				$since . ' 00:00:00',
+				$until . ' 23:59:59'
+			)
+		); // phpcs:ignore WordPress.DB
+	}
+
+	/**
+	 * @return array<int, array<string, mixed>>
+	 */
+	private function group_counts( string $column, string $since = '', string $until = '' ): array {
+		global $wpdb;
+		$allowed = array( 'type', 'portal_status', 'status' );
+		if ( ! in_array( $column, $allowed, true ) ) {
+			return array();
+		}
+		$table = $this->table( 'bookings' );
+		if ( '' !== $since && '' !== $until ) {
+			$sql = $wpdb->prepare(
+				"SELECT {$column} AS label, COUNT(*) AS c FROM {$table} WHERE created_at >= %s AND created_at <= %s GROUP BY {$column} ORDER BY c DESC", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $column is allow-listed above.
+				$since . ' 00:00:00',
+				$until . ' 23:59:59'
+			);
+		} else {
+			$sql = "SELECT {$column} AS label, COUNT(*) AS c FROM {$table} GROUP BY {$column} ORDER BY c DESC"; // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $column is allow-listed above, no user input in this branch.
+		}
+		return $wpdb->get_results( $sql, ARRAY_A ) ?: array(); // phpcs:ignore WordPress.DB
+	}
+
+	/**
+	 * @return array<int, array<string, mixed>>
+	 */
+	private function transactions_by_gateway( string $since, string $until ): array {
+		global $wpdb;
+		return $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT gateway, type, COUNT(*) AS c, COALESCE(SUM(CAST(amount AS DECIMAL(14,2))), 0) AS total FROM {$this->table( 'transactions' )} WHERE status = %s AND created_at >= %s AND created_at <= %s GROUP BY gateway, type ORDER BY total DESC",
+				'paid',
+				$since . ' 00:00:00',
+				$until . ' 23:59:59'
+			),
+			ARRAY_A
+		) ?: array(); // phpcs:ignore WordPress.DB
+	}
+
+	private function count_failed_dispatches( string $since, string $until ): int {
+		$rows  = $this->connection_dispatch_log( 1000, $since, $until );
+		$count = 0;
+		foreach ( $rows as $row ) {
+			$code = (int) ( $row['status_code'] ?? 0 );
+			if ( $code < 200 || $code >= 300 ) {
+				++$count;
+			}
+		}
+		return $count;
+	}
+
+	/**
+	 * Connection-dispatch history read from the audit log -- see
+	 * `wpistic_tm_connection_dispatched` / record_connection_dispatch() above.
+	 * This is the source of truth for "who got dispatched where and how it went"
+	 * since wpistic_connection_log itself has no booking_id column.
+	 *
+	 * @return array<int, array<string, mixed>>
+	 */
+	public function connection_dispatch_log( int $limit = 300, string $since = '', string $until = '' ): array {
+		global $wpdb;
+		$limit = max( 1, min( 2000, $limit ) );
+		$table = $this->table( 'audit_log' );
+
+		if ( '' !== $since && '' !== $until ) {
+			$sql = $wpdb->prepare(
+				"SELECT * FROM {$table} WHERE object_type = %s AND action = %s AND created_at >= %s AND created_at <= %s ORDER BY id DESC LIMIT %d",
+				'booking',
+				'connection_dispatch',
+				$since . ' 00:00:00',
+				$until . ' 23:59:59',
+				$limit
+			);
+		} else {
+			$sql = $wpdb->prepare(
+				"SELECT * FROM {$table} WHERE object_type = %s AND action = %s ORDER BY id DESC LIMIT %d",
+				'booking',
+				'connection_dispatch',
+				$limit
+			);
+		}
+
+		$rows = $wpdb->get_results( $sql, ARRAY_A ) ?: array(); // phpcs:ignore WordPress.DB
+		foreach ( $rows as &$row ) {
+			$row['detail'] = json_decode( (string) $row['detail'], true ) ?: array();
+		}
+		unset( $row );
+		return $rows;
+	}
+
 	public function audit( string $object_type, int $object_id, string $action, array $detail = array() ): void {
 		global $wpdb;
 		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery
