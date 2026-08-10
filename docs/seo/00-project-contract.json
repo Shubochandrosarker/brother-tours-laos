@@ -1,0 +1,15 @@
+{
+  "project_id": "brother-tours-launch-seo",
+  "name": "Brother Tours — Tour-Only Website Migration and SEO Program",
+  "site_url": "https://www.brothertours.com/",
+  "staging_url": "https://staging.brothertours.com/",
+  "timezone": "Asia/Vientiane",
+  "owners": {
+    "strategy": "WordPressistic — Shuvo",
+    "implementation": "WordPressistic — Shuvo",
+    "approval": "MISSING — OWNER INPUT REQUIRED",
+    "reporting": "WordPressistic — Shuvo"
+  },
+  "scope_summary": "Initial contract; full scope in docs/brother-tours-seo-program.json",
+  "created": "2026-08-11T00:00:00Z"
+}

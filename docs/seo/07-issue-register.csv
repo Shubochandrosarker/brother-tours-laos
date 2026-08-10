@@ -1,0 +1,3 @@
+id,state,severity,evidence_level,evidence,affected_scope,priority_score,action,acceptance,owner,dependency,approval_required,notes
+
+BTL-MIG-001,validated,critical,E2,"Live site exposes legacy and multiple URL structures","site-wide",89,"Create migration map","Every legacy URL has reviewed action","WordPressistic — Shuvo","Crawls + GSC/GA4/backlinks",true,
