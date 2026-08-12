@@ -6,7 +6,7 @@
 - Production currently uses Rank Math sitemap output; the requested future owner is SEOISTIC.
 - Staging is publicly accessible, blocks all crawlers in `robots.txt`, and exposes an indexable/canonical homepage plus a public WordPress sitemap index.
 - Production publishes standalone visa, accommodation, guide, driver, rental and ticketing services outside the requested tour-only scope.
-- The inspected bundle is not a Git repository. Operations API is `1.0.0` with `bt-ops/v1`, not the reported `1.1.0` / `bridgistic-api/v1` release.
+- The inspected bundle is not a Git repository. Operations API is `1.0.0` with `bridgistic-api/v1`.
 
 ## MISSING - OWNER INPUT REQUIRED
 

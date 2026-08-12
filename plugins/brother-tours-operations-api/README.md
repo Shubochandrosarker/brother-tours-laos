@@ -5,7 +5,7 @@ Secure REST adapter for the Brother Tours management app at `app.brothertours.co
 **Version:** 1.0.0  
 **WordPress:** 6.4+  
 **PHP:** 8.1+  
-**REST namespace:** `/wp-json/bt-ops/v1`
+**REST namespace:** `/wp-json/bridgistic-api/v1`
 
 ## Purpose
 
@@ -30,7 +30,7 @@ No business tables are created by this plugin.
 4. Open:
 
 ```text
-https://brothertours.com/wp-json/bt-ops/v1/system/health
+https://brothertours.com/wp-json/bridgistic-api/v1/system/health
 ```
 
 The health endpoint is authenticated. Sign in through `/auth/session/login` first or use an administrator Application Password from a server-side client.
@@ -65,7 +65,7 @@ Never use `*` for credentialed CORS.
 ### Login
 
 ```http
-POST /wp-json/bt-ops/v1/auth/session/login
+POST /wp-json/bridgistic-api/v1/auth/session/login
 Content-Type: application/json
 
 {
@@ -108,7 +108,7 @@ The login endpoint permits five failed attempts per IP per 15-minute window.
 ### Auth
 
 | Method | Route | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | POST | `/auth/session/login` | Sign in with an authorized WordPress account |
 | GET | `/auth/session` | Hydrate current operations session |
 | POST | `/auth/session/logout` | Revoke current session |
@@ -129,7 +129,7 @@ Optional query:
 ### Tours
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/tours` |
 | POST | `/tours` |
 | GET | `/tours/{id}` |
@@ -143,7 +143,7 @@ Use the standard WordPress media REST API for media uploads, then provide the at
 ### Destinations
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/destinations` |
 | POST | `/destinations` |
 | GET | `/destinations/{id}` |
@@ -153,7 +153,7 @@ Use the standard WordPress media REST API for media uploads, then provide the at
 ### Experiences
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/experiences` |
 | POST | `/experiences` |
 | GET | `/experiences/{id}` |
@@ -163,7 +163,7 @@ Use the standard WordPress media REST API for media uploads, then provide the at
 ### Departures
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/departures` |
 | POST | `/departures` |
 | GET | `/departures/{id}` |
@@ -187,7 +187,7 @@ A departure with linked inquiry/booking rows cannot be deleted through this API.
 ### Inquiries / Bookings
 
 | Method | Route | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | GET | `/bookings` | Search/filter/paginate existing Tour Manager inquiry/booking records |
 | GET | `/bookings/{id}` | Full operations detail: traveler, trip, transactions, activity, connection history and allowed lifecycle actions |
 | GET | `/bookings/{id}/actions` | Read backend-approved actions |
@@ -209,7 +209,7 @@ The valid lifecycle remains the Tour Manager 2.0 contract.
 ### Formistic inbox
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/inbox/submissions` |
 | GET | `/inbox/submissions/{id}` |
 | POST | `/inbox/submissions/{id}/status` |
@@ -223,7 +223,7 @@ Reply sending reuses Formistic's existing internal mail transport and reply logg
 ### Connections / Tourflows webhooks
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/connections` |
 | POST | `/connections` |
 | PATCH | `/connections/{id}` |
@@ -248,7 +248,7 @@ Production webhook targets must use HTTPS.
 ### Reports
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/reports/overview` |
 | GET | `/reports/bookings` |
 | GET | `/reports/forms` |
@@ -258,16 +258,24 @@ Booking revenue is grouped by currency. The API does not incorrectly combine USD
 ### Team
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/team` |
 | GET | `/team/{id}` |
 
 The Team API is read-only in v1.0. Assignments are changed through the booking action endpoint. WordPress roles/capabilities remain authoritative.
 
+### Insightistic
+
+| Method | Route | Purpose |
+| --- | --- | --- |
+| GET | `/insightistic` | Read active Insightistic plugin status and version |
+
+This route exposes Insightistic availability and version information for the site.
+
 ### System
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/system/health` |
 
 Checks:
@@ -341,7 +349,7 @@ Those records already belong to WordPress/Tour Manager/Formistic.
 ## Recommended Horizons client configuration
 
 ```env
-VITE_BT_OPS_API_BASE=https://brothertours.com/wp-json/bt-ops/v1
+VITE_BT_OPS_API_BASE=https://brothertours.com/wp-json/bridgistic-api/v1
 ```
 
 This value is not a secret.

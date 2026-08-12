@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:       Brother Tours Operations API
  * Plugin URI:        https://brothertours.com/
@@ -21,29 +22,29 @@ namespace BrotherTours\OperationsApi;
 use WP_Error;
 use WP_REST_Response;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit;
 }
 
-define( 'BTOA_VERSION', '1.0.0' );
-define( 'BTOA_FILE', __FILE__ );
-define( 'BTOA_DIR', plugin_dir_path( __FILE__ ) );
-define( 'BTOA_NAMESPACE', 'bt-ops/v1' );
-define( 'BTOA_SESSION_COOKIE', 'bt_ops_session' );
-define( 'BTOA_SESSION_TTL', 12 * HOUR_IN_SECONDS );
+define('BTOA_VERSION', '1.0.0');
+define('BTOA_FILE', __FILE__);
+define('BTOA_DIR', plugin_dir_path(__FILE__));
+define('BTOA_NAMESPACE', 'bridgistic-api/v1');
+define('BTOA_SESSION_COOKIE', 'bt_ops_session');
+define('BTOA_SESSION_TTL', 12 * HOUR_IN_SECONDS);
 
 /**
  * Tiny PSR-4-style autoloader. Composer is intentionally not required.
  */
 spl_autoload_register(
-	static function ( string $class ): void {
+	static function (string $class): void {
 		$prefix = __NAMESPACE__ . '\\';
-		if ( ! str_starts_with( $class, $prefix ) ) {
+		if (! str_starts_with($class, $prefix)) {
 			return;
 		}
-		$relative = substr( $class, strlen( $prefix ) );
-		$file     = BTOA_DIR . 'src/' . str_replace( '\\', '/', $relative ) . '.php';
-		if ( is_readable( $file ) ) {
+		$relative = substr($class, strlen($prefix));
+		$file     = BTOA_DIR . 'src/' . str_replace('\\', '/', $relative) . '.php';
+		if (is_readable($file)) {
 			require_once $file;
 		}
 	}
@@ -56,9 +57,10 @@ spl_autoload_register(
  * @param int                 $status HTTP status.
  * @param array<string,mixed> $meta Additional metadata.
  */
-function response( mixed $data, int $status = 200, array $meta = array() ): WP_REST_Response {
+function response(mixed $data, int $status = 200, array $meta = array()): WP_REST_Response
+{
 	$default_meta = array(
-		'generatedAt' => gmdate( 'c' ),
+		'generatedAt' => gmdate('c'),
 		'timezone'    => wp_timezone_string(),
 		'apiVersion'  => BTOA_VERSION,
 	);
@@ -67,7 +69,7 @@ function response( mixed $data, int $status = 200, array $meta = array() ): WP_R
 		array(
 			'success' => true,
 			'data'    => $data,
-			'meta'    => array_merge( $default_meta, $meta ),
+			'meta'    => array_merge($default_meta, $meta),
 		),
 		$status
 	);
@@ -78,7 +80,8 @@ function response( mixed $data, int $status = 200, array $meta = array() ): WP_R
  *
  * @param array<string,mixed> $details Optional safe details.
  */
-function error( string $code, string $message, int $status = 400, array $details = array() ): WP_Error {
+function error(string $code, string $message, int $status = 400, array $details = array()): WP_Error
+{
 	return new WP_Error(
 		$code,
 		$message,
@@ -95,9 +98,10 @@ function error( string $code, string $message, int $status = 400, array $details
 /**
  * Check whether a WordPress table exists.
  */
-function table_exists( string $table ): bool {
+function table_exists(string $table): bool
+{
 	global $wpdb;
-	$found = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	$found = $wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $table)); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 	return $found === $table;
 }
 
@@ -107,23 +111,24 @@ function table_exists( string $table ): bool {
 add_action(
 	'plugins_loaded',
 	static function (): void {
-		if ( PHP_VERSION_ID < 80100 ) {
+		if (PHP_VERSION_ID < 80100) {
 			return;
 		}
 
-		( new Auth\SessionController() )->register();
-		( new Dashboard\DashboardController() )->register();
-		( new Tours\ToursController() )->register();
-		( new Tours\DestinationsController() )->register();
-		( new Tours\ExperiencesController() )->register();
-		( new Tours\DeparturesController() )->register();
-		( new Bookings\BookingsController() )->register();
-		( new Bookings\BookingActionsController() )->register();
-		( new Formistic\InboxController() )->register();
-		( new Connections\ConnectionsController() )->register();
-		( new Reports\ReportsController() )->register();
-		( new Team\TeamController() )->register();
-		( new System\HealthController() )->register();
+		(new Auth\SessionController())->register();
+		(new Dashboard\DashboardController())->register();
+		(new Tours\ToursController())->register();
+		(new Tours\DestinationsController())->register();
+		(new Tours\ExperiencesController())->register();
+		(new Tours\DeparturesController())->register();
+		(new Bookings\BookingsController())->register();
+		(new Bookings\BookingActionsController())->register();
+		(new Formistic\InboxController())->register();
+		(new Connections\ConnectionsController())->register();
+		(new Reports\ReportsController())->register();
+		(new Team\TeamController())->register();
+		(new Insightistic\InsightisticController())->register();
+		(new System\HealthController())->register();
 	},
 	30
 );
@@ -135,19 +140,19 @@ add_action(
 add_action(
 	'admin_notices',
 	static function (): void {
-		if ( ! current_user_can( 'activate_plugins' ) ) {
+		if (! current_user_can('activate_plugins')) {
 			return;
 		}
 		$missing = array();
-		if ( ! class_exists( '\\Wpistic\\TourManager\\Booking\\BookingService' ) ) {
+		if (! class_exists('\\Wpistic\\TourManager\\Booking\\BookingService')) {
 			$missing[] = 'WPistic Tour Manager 2.0+';
 		}
-		if ( ! class_exists( '\\Wpistic_Formistic_Database' ) ) {
+		if (! class_exists('\\Wpistic_Formistic_Database')) {
 			$missing[] = 'Formistic 2.0+';
 		}
-		if ( $missing ) {
-			echo '<div class="notice notice-warning"><p><strong>' . esc_html__( 'Brother Tours Operations API:', 'brother-tours-operations-api' ) . '</strong> ';
-			echo esc_html( sprintf( __( 'Some API modules are unavailable because these dependencies are missing: %s', 'brother-tours-operations-api' ), implode( ', ', $missing ) ) );
+		if ($missing) {
+			echo '<div class="notice notice-warning"><p><strong>' . esc_html__('Brother Tours Operations API:', 'brother-tours-operations-api') . '</strong> ';
+			echo esc_html(sprintf(__('Some API modules are unavailable because these dependencies are missing: %s', 'brother-tours-operations-api'), implode(', ', $missing)));
 			echo '</p></div>';
 		}
 	}

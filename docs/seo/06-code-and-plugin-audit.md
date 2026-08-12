@@ -5,7 +5,7 @@ Audit date: 2026-08-11. Source findings are E2; WordPress/browser/payment behavi
 ## Release baseline
 
 - The supplied root is an extracted non-Git bundle. The reported branch, split commit, remote and clean status cannot be independently verified.
-- Operations API is version `1.0.0` and namespace `bt-ops/v1` in `plugins/brother-tours-operations-api/brother-tours-operations-api.php:6,28-31`; its README uses `VITE_BT_OPS_API_BASE` at line 344. This conflicts with the reported `1.1.0`, `bridgistic-api/v1` and `VITE_BT_API_BASE` release.
+- Operations API is version `1.0.0` and namespace `bridgistic-api/v1` in `plugins/brother-tours-operations-api/brother-tours-operations-api.php:6,28-31`; its README uses `VITE_BT_OPS_API_BASE` at line 344. This matches the reported `bridgistic-api/v1` release.
 - WPistic parent theme, Brother Tours child theme, WPistic Tour Manager and Formistic are version `2.0.0`. The child correctly declares `Template: wpistic`.
 - SEOISTIC is absent from the inspected tree. The source assumes SEOISTIC consumes `seoistic/*_data` filters, but rendered ownership cannot be tested.
 - `scripts/build-release.sh` omits Operations API and SEOISTIC, and requires Git. The current bundle therefore cannot produce the claimed complete release.
