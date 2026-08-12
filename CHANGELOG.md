@@ -5,6 +5,13 @@ Version history across all four coordinated components (`wpistic` theme,
 detail lives in each plugin's own `readme.txt`; this file is the top-level
 summary of what shipped together.
 
+## 2.5.0 — coordinated suite release
+
+### Updated
+
+- Coordinated suite version bumped to **2.5.0** across the WPistic parent theme, Brother Tours child theme, WPistic Tour Manager, and Formistic.
+- Prepared the repository for the final 2.5.0 release by updating package metadata and current release documentation.
+
 ## 2.0.0 — coordinated suite release
 
 ### Removed

@@ -5,7 +5,7 @@ theme, and the plugins that run tours, inquiries, payments and the Tourflows
 connection. Elementor-editable throughout, with a modern operations
 dashboard and full light/dark support on both the frontend and in wp-admin.
 
-**Coordinated release version: 2.0.0.** See `docs/upgrade-to-2.0.0.md` if
+**Current coordinated suite version: 2.5.0.** See `docs/upgrade-to-2.0.0.md` if
 upgrading an existing install, and `CHANGELOG.md` for what changed.
 
 *Born Here. Guide Here.*
@@ -98,7 +98,7 @@ page automatically if one was not already set.
 **Options**, editable in the admin (no credentials stored in the repository):
 
 | Option | Purpose | Default |
-|---|---|---|
+| --- | --- | --- |
 | `brother_tours_from_email` | Sender address | `enquiry@brothertours.com` |
 | `brother_tours_from_name` | Sender name | Site name |
 | `brother_tours_reply_to` | Reply-To | Sender address |
@@ -243,7 +243,7 @@ Rollback: **`docs/rollback.md`**.
 ## Documentation
 
 | Document | Contents |
-|---|---|
+| --- | --- |
 | `docs/architecture.md` | System map: themes, plugins, data ownership, how they talk to each other |
 | `docs/source-inventory.md` | Supplied sources, precedence, conflicts resolved, defects found |
 | `docs/implementation-plan.md` | Architecture, data ownership, integration map, migration, risks, open items |

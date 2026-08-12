@@ -19,7 +19,7 @@ plugins/
                           configured for Brother Tours
 ```
 
-All four are versioned together (currently 2.0.0) but remain independently
+All four are versioned together (currently 2.5.0) but remain independently
 installable plugins/themes — nothing here creates a hard runtime dependency
 of one on another beyond the two documented integration points below.
 
@@ -82,7 +82,7 @@ functions and shortcodes rather than re-implementing their logic — see
 ## Data model quick reference
 
 | Post type / table | Owner | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | `wpistic_tour`, `wpistic_destination`, `wpistic_experience`, `wpistic_departure` | Tour Manager | Content model — see `PostTypes\ContentTypes` |
 | `{prefix}wpistic_bookings` | Tour Manager | Every inquiry/booking, one row per guest request |
 | `{prefix}wpistic_transactions` | Tour Manager | Payment attempts against a booking |
