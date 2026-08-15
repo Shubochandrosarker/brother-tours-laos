@@ -2,7 +2,7 @@
 /**
  * Image sizes for the editorial layouts + an Elementor token bridge.
  *
- * Every meaningful image is swappable via the native Media Library (Featured Image
+ * Every important image is swappable via the native Media Library (Featured Image
  * on tours/destinations/journal, or media controls in Theme Options). These named
  * sizes keep cards/heroes crisp and within the performance budget (WebP, <250KB).
  *

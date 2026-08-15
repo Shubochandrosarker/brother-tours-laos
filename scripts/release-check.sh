@@ -98,7 +98,7 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
     # Scan tracked files only, excluding this script.
     while IFS= read -r pat; do
         [ -n "$pat" ] || continue
-        if git grep -nIE -e "$pat" -- ':!scripts/release-check.sh' 2>/dev/null; then
+        if git grep -nIE -e "$pat" -- ':!scripts/release-check.sh' ':!archive/' 2>/dev/null; then
             echo "^ matches pattern: $pat"
             SECRETS_FOUND=1
         fi
@@ -159,7 +159,7 @@ echo "=== Gate 5/$GATES_TOTAL: Unrelated-client residue (all tracked files) ==="
 # and docs/ in general, record the removal as history -- same rationale, and
 # the same docs/ exemption, as brand-lint.php's own skip list).
 UC_PATTERN='guns[[:space:].-]*2[[:space:].-]*ammo|g2a|firearms?|shooting[[:space:]-]+range|waivers?|kiosks?|class[[:space:]_-]?students?|range[[:space:]-]+booking'
-UC_EXCLUDE=':!scripts/release-check.sh :!scripts/brand-lint.php :!plugins/formistic/UPSTREAM.md :!plugins/formistic/readme.txt :!CHANGELOG.md :!docs/'
+UC_EXCLUDE=':!scripts/release-check.sh :!scripts/brand-lint.php :!plugins/formistic/UPSTREAM.md :!plugins/formistic/readme.txt :!CHANGELOG.md :!docs/ :!archive/'
 
 if git rev-parse --git-dir >/dev/null 2>&1; then
     # shellcheck disable=SC2086

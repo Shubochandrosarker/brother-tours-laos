@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 2,
+  "assessmentDate": "2026-08-15",
+  "status": "NO_GO",
+  "branch": "codex/brother-tours-production-release",
+  "baseCommit": "e0cefe513d234982d67d9fd142dcf6eb1a3e7aba",
+  "sourceVersions": {
+    "coordinatedSuiteInGit": "2.0.0",
+    "contentStudioInWorktree": "1.0.2",
+    "operationsApiInWorktree": "1.0.1"
+  },
+  "stagingVersionsObserved": {
+    "brotherToursTheme": "2.5.0",
+    "formistic": "2.5.0",
+    "tourManager": "2.5.0",
+    "contentStudio": "1.0.2",
+    "operationsApi": "1.0.1"
+  },
+  "sourceWorkingTreeDirty": true,
+  "deploymentAttempted": false,
+  "productionMutation": false,
+  "rollbackBoundaries": {
+    "productionDatabaseTables": "snap_aeccc6224eccddd6f7f2",
+    "stagingDatabaseTables": "snap_a2e7e0df399835eea568"
+  },
+  "stagingEvidence": {
+    "frontPageId": 77,
+    "publishedTours": 37,
+    "publishedDestinations": 10,
+    "tourAndDestinationUrlsChecked": 47,
+    "tourAndDestinationUrlsFailed": 0,
+    "publishedRecordsMissingShortSummary": 0,
+    "recordsWithoutTrustworthyThumbnail": {
+      "tours": 29,
+      "destinations": 3
+    },
+    "activeMenuLegacy404s": 0,
+    "nonMenuLegacy404s": [
+      "/laos-travel-guide/",
+      "/privacy-policy/"
+    ],
+    "indexProtection": "noindex,nofollow,noarchive plus robots Disallow /; staging remains publicly reachable"
+  },
+  "deploymentBlockers": [
+    "staging runtime is newer than the tracked Git baseline",
+    "required source changes are uncommitted and Content Studio is not tracked",
+    "no verified full wp-content backup is available",
+    "privacy policy is placeholder/missing and requires approved legal copy",
+    "legacy source routes require the patched theme deployment",
+    "payment, webhook, outbound-email and real form-delivery gates remain unproven"
+  ],
+  "excludedComponents": [
+    "plugins/brother-tours-operations-api"
+  ],
+  "installableReleaseArtifacts": []
+}

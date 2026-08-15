@@ -1,5 +1,5 @@
 #!/bin/sh
-# Package the four shipped components (plus a combined suite bundle) into
+# Package the six production components plus a combined suite bundle into
 # installable release zips. Only files tracked in git are ever packaged
 # (via `git archive`), so untracked build litter can never leak into a
 # release by accident. See docs/release-checklist.md for the full process
@@ -28,8 +28,11 @@ ver_formistic=$(grep -m1 '^ \* Version:' plugins/formistic/formistic.php | sed -
 ver_tm=$(grep -m1 '^ \* Version:' plugins/wpistic-tour-manager/wpistic-tour-manager.php | sed -E 's/^ \* Version: *//')
 ver_formistic_stable=$(grep -m1 '^Stable tag:' plugins/formistic/readme.txt | sed 's/^Stable tag: *//')
 ver_tm_stable=$(grep -m1 '^Stable tag:' plugins/wpistic-tour-manager/readme.txt | sed 's/^Stable tag: *//')
+ver_btcs=$(grep -m1 '^ \* Version:' plugins/brother-tours-content-studio/brother-tours-content-studio.php | sed -E 's/^ \* Version: *//')
+ver_btoa=$(grep -m1 '^ \* Version:' plugins/brother-tours-operations-api/brother-tours-operations-api.php | sed -E 's/^ \* Version: *//')
+ver_btoa_const=$(grep -m1 "define( 'BTOA_VERSION'" plugins/brother-tours-operations-api/brother-tours-operations-api.php | sed -E "s/.*'BTOA_VERSION', *'([^']+)'.*/\1/")
 
-versions="$ver_wpistic_theme $ver_bt_theme $ver_wpistic_const $ver_formistic $ver_tm $ver_formistic_stable $ver_tm_stable"
+versions="$ver_wpistic_theme $ver_bt_theme $ver_wpistic_const $ver_formistic $ver_tm $ver_formistic_stable $ver_tm_stable $ver_btcs $ver_btoa $ver_btoa_const"
 first=$ver_wpistic_theme
 for v in $versions; do
     if [ "$v" != "$first" ]; then
@@ -41,6 +44,8 @@ for v in $versions; do
         echo "  plugins/wpistic-tour-manager/*.php:   $ver_tm" >&2
         echo "  plugins/formistic/readme.txt:         $ver_formistic_stable" >&2
         echo "  plugins/wpistic-tour-manager/readme.txt: $ver_tm_stable" >&2
+        echo "  plugins/brother-tours-content-studio/*.php: $ver_btcs" >&2
+        echo "  plugins/brother-tours-operations-api/*.php:  $ver_btoa / $ver_btoa_const" >&2
         exit 1
     fi
 done
@@ -111,7 +116,19 @@ archive_subtree plugins/wpistic-tour-manager wpistic-tour-manager "$WORK"
 prune_common "$WORK/wpistic-tour-manager"
 zip_package "$WORK" wpistic-tour-manager "$RELEASE_DIR/wpistic-tour-manager-$VERSION.zip"
 
-echo "=== brother-tours-suite ($VERSION) — all four + docs ==="
+echo "=== brother-tours-content-studio ($ver_btcs) ==="
+WORK="$STAGE/brother-tours-content-studio-plugin"
+archive_subtree plugins/brother-tours-content-studio brother-tours-content-studio "$WORK"
+prune_common "$WORK/brother-tours-content-studio"
+zip_package "$WORK" brother-tours-content-studio "$RELEASE_DIR/brother-tours-content-studio-$ver_btcs.zip"
+
+echo "=== brother-tours-operations-api ($ver_btoa) ==="
+WORK="$STAGE/brother-tours-operations-api-plugin"
+archive_subtree plugins/brother-tours-operations-api brother-tours-operations-api "$WORK"
+prune_common "$WORK/brother-tours-operations-api"
+zip_package "$WORK" brother-tours-operations-api "$RELEASE_DIR/brother-tours-operations-api-$ver_btoa.zip"
+
+echo "=== brother-tours-suite ($VERSION) — all components + docs ==="
 SUITE="$STAGE/brother-tours-suite/brother-tours-suite"
 mkdir -p "$SUITE/themes" "$SUITE/plugins"
 
@@ -119,6 +136,8 @@ archive_subtree themes/wpistic wpistic "$SUITE/themes"
 archive_subtree themes/brother-tours brother-tours "$SUITE/themes"
 archive_subtree plugins/formistic formistic "$SUITE/plugins"
 archive_subtree plugins/wpistic-tour-manager wpistic-tour-manager "$SUITE/plugins"
+archive_subtree plugins/brother-tours-content-studio brother-tours-content-studio "$SUITE/plugins"
+archive_subtree plugins/brother-tours-operations-api brother-tours-operations-api "$SUITE/plugins"
 archive_subtree docs docs "$SUITE"
 # Historical build-log documents, kept in the repo for provenance but never
 # part of a shipped release — see docs/release-checklist.md section 4.
@@ -140,12 +159,16 @@ echo "=== verifying checksums ==="
 
 echo ""
 echo "=== verifying root-folder shape ==="
-for pair in "wpistic:wpistic" "brother-tours:brother-tours" "formistic:formistic" "wpistic-tour-manager:wpistic-tour-manager" "brother-tours-suite:brother-tours-suite"; do
+for pair in "wpistic:wpistic" "brother-tours:brother-tours" "formistic:formistic" "wpistic-tour-manager:wpistic-tour-manager" "brother-tours-content-studio:brother-tours-content-studio" "brother-tours-operations-api:brother-tours-operations-api" "brother-tours-suite:brother-tours-suite"; do
     base=${pair%%:*}
     root=${pair##*:}
-    first_entry=$(unzip -Z1 "$RELEASE_DIR/$base-$VERSION.zip" | head -1)
-    if [ "$first_entry" != "$root/" ]; then
-        echo "error: $base-$VERSION.zip root entry is '$first_entry', expected '$root/'" >&2
+    entries=$(unzip -Z1 "$RELEASE_DIR/$base-$VERSION.zip")
+    if [ -z "$entries" ] || printf '%s\n' "$entries" | grep -v "^$root/" | grep -q .; then
+        echo "error: $base-$VERSION.zip contains paths outside '$root/'" >&2
+        exit 1
+    fi
+    if ! printf '%s\n' "$entries" | grep -q "^$root/"; then
+        echo "error: $base-$VERSION.zip has no '$root/' entries" >&2
         exit 1
     fi
     echo "OK: $base-$VERSION.zip -> $root/"

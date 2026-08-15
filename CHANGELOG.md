@@ -1,16 +1,37 @@
 # Changelog
 
-Version history across all four coordinated components (`wpistic` theme,
-`brother-tours` theme, `formistic`, `wpistic-tour-manager`). Per-component
-detail lives in each plugin's own `readme.txt`; this file is the top-level
+Version history across the six Brother Tours 3.0.0 components. Per-component
+detail lives in each plugin's own documentation; this file is the top-level
 summary of what shipped together.
 
-## 2.5.0 — coordinated suite release
+## 3.0.0 — clean client release
 
-### Updated
+### Added
 
-- Coordinated suite version bumped to **2.5.0** across the WPistic parent theme, Brother Tours child theme, WPistic Tour Manager, and Formistic.
-- Prepared the repository for the final 2.5.0 release by updating package metadata and current release documentation.
+- Version-aligned 3.0.0 parent and child themes.
+- Version-aligned Formistic, WPistic Tour Manager, Content Studio, and
+  Operations API packages.
+- Client-facing installation, configuration, migration, security, SEO,
+  rollback, and Operations API documentation.
+- A reproducible package builder for six individual components, one suite
+  bundle, and SHA-256 checksums.
+- An explicit `archive/pre-3.0.0/` boundary preserving the prior working tree
+  and historical artifacts without mixing them into deployable folders.
+
+### Changed
+
+- Review copy uses neutral guest-note wording and does not claim unverified
+  ratings or AggregateRating schema.
+- Content Studio and Operations API are packaged explicitly instead of being
+  silently omitted from the release bundle.
+- The release remains configuration-driven: secrets, credentials, database
+  exports, and production media are not stored in Git.
+
+### Upgrade note
+
+3.0.0 is a coordinated code/package version, not an automatic database
+migration. Follow `docs/content-migration.md`, take backups, and test the
+staging install before running any seeder or migration.
 
 ## 2.0.0 — coordinated suite release
 

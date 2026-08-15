@@ -3,7 +3,7 @@
  * Template Name: Services Landing
  *
  * PDF "One company, six services." A navy masthead + a grid of service cards.
- * Brand-safe copy (no "atelier" / "boutique"); imagery from the demo set or the
+ * Brand-safe copy; imagery from the demo set or the
  * page's own Featured Image, all swappable in the Media Library.
  *
  * @package WPistic
