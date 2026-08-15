@@ -1,0 +1,36 @@
+/*
+Theme Name: Brother Tours
+Theme URI: https://brothertours.com
+Template: wpistic
+Author: WordPressistic
+Author URI: https://wordpressistic.com
+Description: Brother Tours child theme — locks the premium Brother Tours design on top of the WPistic parent. Born Here. Guide Here.
+Version: 2.0.0
+Requires at least: 6.4
+Requires PHP: 8.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: brother-tours
+*/
+
+/*
+ * The locked Brother Tours design system lives in assets/css/brand-tokens.css,
+ * which is enqueued ahead of this file and overrides the WPistic palette and
+ * type stack wholesale. Only small brand details belong here.
+ */
+
+.site-footer__tagline {
+	color: var(--gold);
+	font-style: italic;
+}
+
+/*
+ * Founder signature. Caveat is reserved for this single use -- Ken's letter and
+ * its sign-off -- and appears nowhere else on the site.
+ */
+.founder-signature {
+	font-family: var(--hand);
+	font-size: 2.25rem;
+	line-height: 1.2;
+	color: var(--ink);
+}

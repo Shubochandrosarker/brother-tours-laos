@@ -78,7 +78,7 @@ class Brother_Tours_Widget_Build_My_Trip_Cta extends Wpistic_Elementor_Widget_Ba
  * 16. Brother Tours Reviews
  *
  * Text-only: two profile links plus an optional operator-supplied embed.
- * Never a star rating, a number, or AggregateRating schema -- the locked
+ * Never a star rating, a number, or aggregate review schema -- the locked
  * brand rule holds until the verified-review threshold is reached (see
  * docs/launch-checklist.md).
  * ========================================================================= */
@@ -118,7 +118,7 @@ class Brother_Tours_Widget_Reviews extends Wpistic_Elementor_Widget_Base {
 		}
 		?>
 		<div class="bt-ew-reviews">
-			<p class="bt-ew-reviews-line"><?php esc_html_e( 'Consistently top-rated on Google and TripAdvisor.', 'brother-tours' ); ?></p>
+			<p class="bt-ew-reviews-line"><?php esc_html_e( 'Read guest notes on Google and TripAdvisor.', 'brother-tours' ); ?></p>
 			<?php if ( function_exists( 'wpistic_review_links' ) ) : ?>
 				<?php wpistic_review_links(); ?>
 			<?php endif; ?>

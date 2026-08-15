@@ -117,7 +117,7 @@
 .founder-cred { border-left: 2px solid var(--gold); padding-left: 18px; margin: 26px 0; font-family: var(--mono); font-size: .66rem; letter-spacing: .04em; color: var(--ink-muted); line-height: 1.9; }
 .founder-signature { font-family: var(--script); font-size: 2.4rem; color: var(--gold-accent); margin-top: 6px; }
 
-/* ===== REVIEWS (no counts, no stars, no AggregateRating) ===== */
+/* ===== REVIEWS (no counts, no stars, no aggregate review schema) ===== */
 .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .review-card { background: var(--bg-card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 30px 28px; display: flex; flex-direction: column; }
 .review-quote { font-family: var(--serif); font-size: 17px; font-style: italic; color: var(--ink); line-height: 1.6; margin-bottom: 18px; }

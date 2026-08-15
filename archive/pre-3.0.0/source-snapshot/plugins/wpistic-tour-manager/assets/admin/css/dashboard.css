@@ -1,0 +1,537 @@
+/**
+ * Tour Manager admin dashboard — self-contained, scoped to .wpistic-tm-dashboard
+ * so it can never leak into other plugins' admin screens or wp-admin chrome.
+ *
+ * WordPressistic identity, distinct from the Brother Tours frontend palette
+ * (this is the operator's tool, not the guest-facing site): clean white/
+ * warm-light surfaces in light mode, deep navy in dark mode, green primary
+ * actions, a restrained gold accent for anything Brother Tours-specific
+ * (badges, links). Every text/background pairing below was checked against
+ * WCAG AA (4.5:1) with a short script before shipping.
+ *
+ * Defaults to the browser's prefers-color-scheme; a signed-in user's saved
+ * choice (light/dark/auto) overrides it via the data-theme attribute AdminAssets
+ * renders server-side — there is no separate no-flash script to write here,
+ * because wp-admin pages are never statically cached the way front-end pages
+ * can be, so the server already knows the right value at render time.
+ */
+
+.wpistic-tm-dashboard {
+	--wtm-bg:        #F8FAFC;
+	--wtm-surface:   #FFFFFF;
+	--wtm-surface-2: #F1F5F9;
+	--wtm-text:      #0F172A;
+	--wtm-muted:     #64748B;
+	--wtm-border:    rgba(15, 23, 42, 0.12);
+	--wtm-primary:   #15803D;
+	--wtm-primary-fg:#FFFFFF;
+	--wtm-accent:    #835D1E;
+	--wtm-success:   #2E7D4F;
+	--wtm-warning:   #87600F;
+	--wtm-danger:    #B84A34;
+	--wtm-focus:     #15803D;
+	--wtm-radius:    6px;
+	--wtm-shadow:    0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px -16px rgba(15, 23, 42, 0.16);
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+
+	.wpistic-tm-dashboard:not([data-theme]) {
+		--wtm-bg:        #0F172A;
+		--wtm-surface:   #1E293B;
+		--wtm-surface-2: #172033;
+		--wtm-text:      #F1F5F9;
+		--wtm-muted:     #94A3B8;
+		--wtm-border:    rgba(241, 245, 249, 0.12);
+		--wtm-primary:   #3DDC84;
+		--wtm-primary-fg:#0F172A;
+		--wtm-accent:    #C9A96E;
+		--wtm-success:   #4FAE7C;
+		--wtm-warning:   #D9A441;
+		--wtm-danger:    #E08469;
+		--wtm-focus:     #3DDC84;
+		--wtm-shadow:    0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px -18px rgba(0, 0, 0, 0.6);
+		color-scheme: dark;
+	}
+}
+
+.wpistic-tm-dashboard[data-theme="dark"] {
+	--wtm-bg:        #0F172A;
+	--wtm-surface:   #1E293B;
+	--wtm-surface-2: #172033;
+	--wtm-text:      #F1F5F9;
+	--wtm-muted:     #94A3B8;
+	--wtm-border:    rgba(241, 245, 249, 0.12);
+	--wtm-primary:   #3DDC84;
+	--wtm-primary-fg:#0F172A;
+	--wtm-accent:    #C9A96E;
+	--wtm-success:   #4FAE7C;
+	--wtm-warning:   #D9A441;
+	--wtm-danger:    #E08469;
+	--wtm-focus:     #3DDC84;
+	--wtm-shadow:    0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px -18px rgba(0, 0, 0, 0.6);
+	color-scheme: dark;
+}
+
+.wpistic-tm-dashboard {
+	background: var(--wtm-bg);
+	color: var(--wtm-text);
+	padding: 20px 20px 40px;
+	font-size: 14px;
+	transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.wpistic-tm-dashboard,
+	.wpistic-tm-dashboard * {
+		transition: none !important;
+		animation: none !important;
+	}
+}
+
+.wpistic-tm-dashboard a {
+	color: var(--wtm-primary);
+}
+
+.wpistic-tm-dashboard *:focus-visible {
+	outline: 2px solid var(--wtm-focus);
+	outline-offset: 2px;
+}
+
+/* ---- Topbar + theme toggle ---------------------------------------------- */
+
+.wpistic-tm-topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-bottom: 18px;
+}
+
+.wpistic-tm-topbar h1 {
+	color: var(--wtm-text);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.wpistic-tm-back {
+	text-decoration: none;
+	font-size: 20px;
+	line-height: 1;
+}
+
+.wpistic-tm-theme-toggle {
+	display: inline-flex;
+	border: 1px solid var(--wtm-border);
+	border-radius: var(--wtm-radius);
+	overflow: hidden;
+}
+
+.wpistic-tm-theme-btn {
+	border: 0;
+	background: var(--wtm-surface);
+	color: var(--wtm-muted);
+	padding: 6px 12px;
+	font-size: 12px;
+	cursor: pointer;
+	border-right: 1px solid var(--wtm-border);
+}
+
+.wpistic-tm-theme-btn:last-child {
+	border-right: 0;
+}
+
+.wpistic-tm-theme-btn[aria-pressed="true"] {
+	background: var(--wtm-primary);
+	color: var(--wtm-primary-fg);
+}
+
+/* ---- Layout grids + cards ------------------------------------------------ */
+
+.wpistic-tm-grid {
+	display: grid;
+	gap: 16px;
+	margin-bottom: 16px;
+}
+
+.wpistic-tm-grid--2 {
+	grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 900px) {
+
+	.wpistic-tm-grid--2 {
+		grid-template-columns: 1fr;
+	}
+}
+
+.wpistic-tm-card {
+	background: var(--wtm-surface);
+	border: 1px solid var(--wtm-border);
+	border-radius: var(--wtm-radius);
+	box-shadow: var(--wtm-shadow);
+	padding: 18px 20px;
+	margin-bottom: 16px;
+}
+
+.wpistic-tm-card > h2 {
+	margin: 0 0 4px;
+	font-size: 15px;
+	color: var(--wtm-text);
+}
+
+.wpistic-tm-card-note {
+	color: var(--wtm-muted);
+	font-size: 12px;
+	margin: 0 0 14px;
+}
+
+.wpistic-tm-empty {
+	color: var(--wtm-muted);
+	font-style: italic;
+}
+
+/* ---- KPI cards ------------------------------------------------------------ */
+
+.wpistic-tm-kpis {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 14px;
+	margin-bottom: 20px;
+}
+
+.wpistic-tm-kpi {
+	background: var(--wtm-surface);
+	border: 1px solid var(--wtm-border);
+	border-radius: var(--wtm-radius);
+	box-shadow: var(--wtm-shadow);
+	padding: 16px 18px;
+}
+
+.wpistic-tm-kpi--warn {
+	border-color: var(--wtm-danger);
+}
+
+.wpistic-tm-kpi-label {
+	color: var(--wtm-muted);
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	margin-bottom: 6px;
+}
+
+.wpistic-tm-kpi-value {
+	font-size: 26px;
+	font-weight: 600;
+	color: var(--wtm-text);
+	line-height: 1.1;
+}
+
+.wpistic-tm-kpi-delta {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 600;
+	margin-top: 6px;
+}
+
+.wpistic-tm-kpi-delta span {
+	font-weight: 400;
+	color: var(--wtm-muted);
+}
+
+.wpistic-tm-kpi-delta--up {
+	color: var(--wtm-success);
+}
+
+.wpistic-tm-kpi-delta--down {
+	color: var(--wtm-danger);
+}
+
+.wpistic-tm-kpi-delta--flat {
+	color: var(--wtm-muted);
+}
+
+.wpistic-tm-kpi-note {
+	color: var(--wtm-muted);
+	font-size: 11px;
+	margin-top: 8px;
+}
+
+/* ---- Bar charts (CSS-only, no chart library) ------------------------------ */
+
+.wpistic-tm-bars {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.wpistic-tm-bar-row {
+	display: grid;
+	grid-template-columns: 120px 1fr 48px;
+	align-items: center;
+	gap: 10px;
+}
+
+.wpistic-tm-bar-label {
+	font-size: 12px;
+	color: var(--wtm-muted);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.wpistic-tm-bar-track {
+	display: block;
+	background: var(--wtm-surface-2);
+	border-radius: 3px;
+	height: 8px;
+	overflow: hidden;
+}
+
+.wpistic-tm-bar-fill {
+	display: block;
+	height: 100%;
+	background: var(--wtm-primary);
+	border-radius: 3px;
+}
+
+.wpistic-tm-bar-value {
+	font-size: 12px;
+	color: var(--wtm-text);
+	text-align: right;
+}
+
+/* ---- Lists (recent inquiries, upcoming departures) ------------------------ */
+
+.wpistic-tm-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.wpistic-tm-list li {
+	padding: 8px 0;
+	border-bottom: 1px solid var(--wtm-border);
+}
+
+.wpistic-tm-list li:last-child {
+	border-bottom: 0;
+}
+
+.wpistic-tm-list-meta {
+	display: block;
+	color: var(--wtm-muted);
+	font-size: 12px;
+	margin-top: 2px;
+}
+
+/* ---- Badges ---------------------------------------------------------------- */
+
+.wpistic-tm-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 999px;
+	font-size: 11px;
+	font-weight: 600;
+	background: var(--wtm-surface-2);
+	color: var(--wtm-muted);
+	border: 1px solid var(--wtm-border);
+}
+
+.wpistic-tm-badge--success {
+	background: transparent;
+	color: var(--wtm-success);
+	border-color: currentColor;
+}
+
+.wpistic-tm-badge--danger {
+	background: transparent;
+	color: var(--wtm-danger);
+	border-color: currentColor;
+}
+
+.wpistic-tm-badge--new {
+	color: var(--wtm-accent);
+	border-color: currentColor;
+}
+
+/* ---- Tables ----------------------------------------------------------------- */
+
+.wpistic-tm-table {
+	background: var(--wtm-surface);
+	border: 1px solid var(--wtm-border);
+	color: var(--wtm-text);
+}
+
+.wpistic-tm-table th,
+.wpistic-tm-table td {
+	border-color: var(--wtm-border) !important;
+	color: var(--wtm-text);
+}
+
+.wpistic-tm-table thead th {
+	color: var(--wtm-muted);
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+.wpistic-tm-table.striped > tbody > :nth-child(odd) {
+	background: var(--wtm-surface-2);
+}
+
+.wpistic-tm-facts th {
+	width: 180px;
+	color: var(--wtm-muted);
+	font-weight: 600;
+}
+
+/* ---- Quick actions ------------------------------------------------------------ */
+
+.wpistic-tm-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+/* ---- Period / filter forms ------------------------------------------------- */
+
+.wpistic-tm-period-form,
+.wpistic-tm-filters,
+.wpistic-tm-bulkbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: end;
+	gap: 10px;
+	margin-bottom: 14px;
+}
+
+.wpistic-tm-filters select,
+.wpistic-tm-filters input,
+.wpistic-tm-period-form input {
+	background: var(--wtm-surface);
+	color: var(--wtm-text);
+	border: 1px solid var(--wtm-border);
+	border-radius: 4px;
+	padding: 6px 8px;
+}
+
+.wpistic-tm-period-form label {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	font-size: 12px;
+	color: var(--wtm-muted);
+}
+
+/* ---- Pagination ------------------------------------------------------------- */
+
+.wpistic-tm-pagination {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 16px 0;
+	color: var(--wtm-muted);
+	font-size: 12px;
+}
+
+.wpistic-tm-pagination-links a {
+	display: inline-block;
+	padding: 4px 9px;
+	margin-right: 4px;
+	border: 1px solid var(--wtm-border);
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+.wpistic-tm-pagination-links a.current {
+	background: var(--wtm-primary);
+	color: var(--wtm-primary-fg);
+	border-color: var(--wtm-primary);
+}
+
+/* ---- Tabs (booking detail) --------------------------------------------------- */
+
+.wpistic-tm-tabs {
+	display: flex;
+	gap: 4px;
+	border-bottom: 1px solid var(--wtm-border);
+	margin-bottom: 16px;
+	overflow-x: auto;
+}
+
+.wpistic-tm-tab {
+	padding: 10px 14px;
+	text-decoration: none;
+	color: var(--wtm-muted);
+	border-bottom: 2px solid transparent;
+	white-space: nowrap;
+}
+
+.wpistic-tm-tab.is-active {
+	color: var(--wtm-text);
+	border-bottom-color: var(--wtm-primary);
+	font-weight: 600;
+}
+
+/* ---- Booking detail layout: sticky aside on desktop, stacked on mobile ------- */
+
+.wpistic-tm-detail-layout {
+	display: grid;
+	grid-template-columns: 1fr 320px;
+	gap: 20px;
+	align-items: start;
+}
+
+.wpistic-tm-detail-aside {
+	position: sticky;
+	top: 40px;
+}
+
+.wpistic-tm-sticky-actions textarea,
+.wpistic-tm-sticky-actions select {
+	width: 100%;
+	background: var(--wtm-surface);
+	color: var(--wtm-text);
+	border: 1px solid var(--wtm-border);
+	border-radius: 4px;
+	padding: 6px 8px;
+	margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+
+	.wpistic-tm-detail-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.wpistic-tm-detail-aside {
+		position: static;
+	}
+}
+
+.wpistic-tm-notes-text {
+	color: var(--wtm-text);
+	line-height: 1.6;
+}
+
+.wpistic-tm-activity {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+}
+
+.wpistic-tm-activity li {
+	padding: 6px 0;
+	border-bottom: 1px solid var(--wtm-border);
+	color: var(--wtm-text);
+}
+
+.wpistic-tm-activity code {
+	color: var(--wtm-muted);
+}

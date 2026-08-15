@@ -19,14 +19,15 @@ any gate failing.
 
 ## 2. Version coordination
 
-Confirm all four components report the same version, and that no
-DB-schema version was bumped without an actual schema change:
+Confirm all six release components report `3.0.0`, and that no DB-schema
+version was bumped without an actual schema change:
 
 ```sh
 grep -H "^Version:" themes/wpistic/style.css themes/brother-tours/style.css
 grep -H "define( 'WPISTIC_VERSION'" themes/wpistic/functions.php
 grep -H "Version:" plugins/formistic/formistic.php plugins/wpistic-tour-manager/wpistic-tour-manager.php
 grep -H "Stable tag:" plugins/formistic/readme.txt plugins/wpistic-tour-manager/readme.txt
+grep -H "Version:" plugins/brother-tours-content-studio/brother-tours-content-studio.php plugins/brother-tours-operations-api/brother-tours-operations-api.php
 ```
 
 ## 3. Package
@@ -35,13 +36,18 @@ grep -H "Stable tag:" plugins/formistic/readme.txt plugins/wpistic-tour-manager/
 sh scripts/build-release.sh
 ```
 
+On Windows PowerShell, use `pwsh -File scripts/build-release.ps1` for the same
+component and suite package set.
+
 Produces, under `release/`:
 
 - `wpistic-{version}.zip`
 - `brother-tours-{version}.zip`
 - `formistic-{version}.zip`
 - `wpistic-tour-manager-{version}.zip`
-- `brother-tours-suite-{version}.zip` (all four, plus this documentation set)
+- `brother-tours-content-studio-{version}.zip`
+- `brother-tours-operations-api-{version}.zip`
+- `brother-tours-suite-{version}.zip` (all six, plus this documentation set)
 - `checksums.sha256`
 
 Each individual zip contains exactly one correctly named root folder
@@ -52,11 +58,12 @@ the shape WordPress's plugin/theme uploader expects. Verify:
 unzip -l release/formistic-*.zip | head -5
 ```
 
-The first real entry should be `formistic/`.
+Every entry should begin with the expected component root, such as
+`formistic/`; an explicit empty `formistic/` directory entry is optional.
 
 ## 4. What's excluded from every package
 
-`.git`, `.github` (unless a release explicitly needs it), development-only
+`.git`, `.github` (unless a release explicitly needs it), `archive/`, `work/`, development-only
 documents outside the shipped `docs/` set, raw source maps, tests,
 screenshots, preview HTML files (`themes/wpistic/_preview-*.html`), editor
 config, `node_modules`, unused source assets, secrets, local environment

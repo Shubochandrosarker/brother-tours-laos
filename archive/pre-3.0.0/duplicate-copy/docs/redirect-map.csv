@@ -1,0 +1,2 @@
+old_url,new_url,status,notes
+# /example-old-tour/,/tours/,301,EXAMPLE ROW ONLY — delete before use. Real old_url values must come from the Google Search Console export for brothertourslaos.com. Never guess old URLs.

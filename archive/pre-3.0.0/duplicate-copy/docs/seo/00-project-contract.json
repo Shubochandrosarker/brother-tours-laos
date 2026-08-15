@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "project_id": "brother-tours-launch-seo",
+  "name": "Brother Tours - Tour-Only Website Migration and SEO Program",
+  "mode": "draft",
+  "production_url": "https://www.brothertours.com/",
+  "staging_url": "https://staging.brothertours.com/",
+  "primary_markets": ["US", "UK", "English-speaking Europe"],
+  "primary_language": "English",
+  "primary_conversions": ["qualified tour enquiry", "tour booking request", "qualified phone or WhatsApp contact"],
+  "canonical_revenue_paths_proposed": ["/tours/", "/tour/{slug}/", "/destinations/", "/destinations/{slug}/"],
+  "included": ["read-only live and staging audit", "source audit", "URL migration specification", "SEO architecture", "staging and launch runbooks"],
+  "excluded_without_approval": ["production writes", "bulk redirects", "content removal", "canonical or robots changes", "schema deployment", "Search Console changes"],
+  "owners": {
+    "strategy": "WordPressistic - Shuvo",
+    "implementation": "WordPressistic - Shuvo",
+    "approval": "MISSING - OWNER INPUT REQUIRED",
+    "reporting": "WordPressistic - Shuvo"
+  },
+  "repository_state": "extracted non-Git bundle; reported branch and commit cannot be reproduced here",
+  "gate_a_status": "BLOCKED",
+  "last_evidence_utc": "2026-08-11T01:10:00Z"
+}

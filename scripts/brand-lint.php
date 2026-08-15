@@ -44,7 +44,6 @@
  *     markup ("...we were <em>born</em> in.") still matches.
  *   - Locked exception sentences are exempt wherever they appear verbatim:
  *       "We do not sell journeys. We share the country we were born in."
- *       "Consistently top-rated on Google and TripAdvisor."
  *
  * Skipped entirely: .git/, node_modules/, vendor/,
  * themes/wpistic/_preview-*.html (static
@@ -81,6 +80,11 @@ const BL_SKIP_PREFIXES = [
     // define the rules, so scanning them would drown real copy findings.
     // Site copy never ships from docs/; drop this line to scan it anyway.
     'docs/',
+    // Local package snapshots are scratch artifacts under work/; release
+    // packaging includes tracked files only, so these copies never ship.
+    'work/',
+    // Historical source is preserved for provenance but is never deployed.
+    'archive/',
 ];
 
 /**
@@ -134,7 +138,6 @@ const BL_MARKUP_EXTS = ['php', 'html', 'htm', 'md', 'pot'];
  */
 const BL_LOCKED_EXCEPTIONS = [
     'We do not sell journeys. We share the country we were born in.',
-    'Consistently top-rated on Google and TripAdvisor.',
 ];
 
 /** Rule set 6 — locked phrases whose presence is reported (informational). */
@@ -146,7 +149,6 @@ const BL_LOCKED_PHRASES = [
     'We design your journey, your way.',
     'Founder-set. Team-delivered.',
     'Each journey runs a fixed number of times each year. By design.',
-    'Consistently top-rated on Google and TripAdvisor.',
 ];
 
 // ---------------------------------------------------------------------------

@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "project_id": "brother-tours-launch-seo",
+  "name": "Brother Tours — Tour-Only Website Migration and SEO Program",
+  "site_url": "https://www.brothertours.com/",
+  "staging_url": "https://staging.brothertours.com/",
+  "business_model": "other",
+  "business_model_detail": "Laos-based tour operator selling tour packages and related tour-planning services to international travelers",
+  "timezone": "Asia/Vientiane",
+  "markets": [
+    "US — primary",
+    "GB — primary",
+    "English-speaking Europe — primary"
+  ],
+  "languages": [
+    "en-US",
+    "en-GB"
+  ],
+  "primary_conversions": [
+    "qualified_tour_enquiry",
+    "tour_booking_request",
+    "qualified_phone_or_whatsapp_contact"
+  ],
+  "revenue_paths": [
+    "/tours/",
+    "/tour/{slug}/",
+    "/destinations/",
+    "/destinations/{slug}/"
+  ],
+  "automation_mode": "draft",
+  "owners": {
+    "strategy": "WordPressistic — Shuvo",
+    "implementation": "WordPressistic — Shuvo",
+    "approval": "Brother Tours authorized approver — name missing",
+    "reporting": "WordPressistic — Shuvo"
+  },
+  "scope": {
+    "included": [
+      "Complete live and staging URL, sitemap, indexability, content, internal-link and technical audit",
+      "Page-level migration decisions and redirect mapping",
+      "Tour-only information architecture",
+      "SEOISTIC configuration and idempotent Brother Tours setup seeder",
+      "Metadata, canonicals, robots, sitemaps, redirects, breadcrumbs and 404 handling",
+      "TravelAgency, WebSite, WebPage, BreadcrumbList and eligible tour schema generated from verified data",
+      "AEO/GEO answer blocks, entity clarity, visible FAQs and E-E-A-T evidence",
+      "Priority tour and destination optimization for US, UK and European travelers",
+      "WordPress theme, template, plugin, form, mobile, accessibility, cache and Core Web Vitals QA",
+      "Launch validation and post-launch Search Console monitoring"
+    ],
+    "excluded": [
+      "Standalone sale of visa processing, accommodation booking, ticketing, rentals, private driver hire or guide-only services",
+      "Fake US or European business locations, NAP or doorway pages",
+      "Fabricated prices, availability, reviews, ratings, expertise, licenses or customer outcomes",
+      "Public publishing, bulk redirects, schema deployment or production changes without approval"
+    ]
+  },
+  "platform": {
+    "cms": "WordPress",
+    "production_theme_package": "brother-tours.zip",
+    "plugins_or_packages": [
+      "seoistic-1.5.1.zip",
+      "wpistic-tour-manager.zip",
+      "formistic (2).zip",
+      "wpistic.zip"
+    ],
+    "seo_plugin": "SEOISTIC",
+    "hosting": "missing",
+    "cdn": "missing",
+    "cache": "missing",
+    "analytics": "missing"
+  },
+  "data_sources": {
+    "public_live_site": "connected",
+    "staging_site": "limited",
+    "supplied_wordpress_packages": "connected",
+    "gsc": "missing",
+    "ga4": "missing",
+    "crawl_live": "limited",
+    "crawl_staging": "missing",
+    "backlinks": "missing",
+    "server_logs": "missing",
+    "rank_tracking": "missing",
+    "crm_or_booking_data": "missing",
+    "gbp": "missing"
+  },
+  "access_matrix": [
+    {
+      "source": "Live WordPress",
+      "status": "missing",
+      "required_access": "read-only initially",
+      "purpose": "inventory content, plugins, settings, redirects and authoritative URL state"
+    },
+    {
+      "source": "Staging WordPress",
+      "status": "missing",
+      "required_access": "administrator for approved implementation",
+      "purpose": "audit, repair, configure and run pre-launch QA"
+    },
+    {
+      "source": "Google Search Console",
+      "status": "missing",
+      "required_access": "read access or exports",
+      "purpose": "preserve clicks, queries, backlinks, indexed pages and migration signals"
+    },
+    {
+      "source": "GA4",
+      "status": "missing",
+      "required_access": "read access or landing-page and conversion exports",
+      "purpose": "protect high-value landing pages and establish conversion baseline"
+    },
+    {
+      "source": "Hosting/CDN",
+      "status": "missing",
+      "required_access": "implementation access later",
+      "purpose": "redirects, cache, headers, staging protection and launch controls"
+    },
+    {
+      "source": "Verified business data",
+      "status": "missing",
+      "required_access": "client-approved fact sheet",
+      "purpose": "NAP, founding year, licenses, hours, profiles, schema and E-E-A-T"
+    }
+  ],
+  "evidence_policy": {
+    "baseline_date": "2026-08-10",
+    "labels": {
+      "E0": "missing evidence",
+      "E1": "best-practice check",
+      "E2": "direct observation",
+      "E3": "correlated performance evidence",
+      "E4": "controlled or strongly triangulated evidence"
+    },
+    "rule": "Keep observed evidence, reproducible calculations, hypotheses and best-practice checks separate. Do not invent traffic, rankings, revenue, backlink or Core Web Vitals data."
+  },
+  "initial_issue_register": [
+    {
+      "id": "BTL-MIG-001",
+      "state": "validated",
+      "severity": "critical",
+      "evidence_level": "E2",
+      "evidence": "The live site exposes legacy service, personnel, landing, paginated taxonomy and multiple tour/destination URL structures, while the staging architecture uses a different tour-only structure.",
+      "affected_scope": "All legacy and replacement URLs",
+      "priority_score": 89,
+      "action": "Create a page-level keep, merge, 301, 404 or 410 migration map using crawl, sitemap, GSC, GA4 and backlink evidence.",
+      "acceptance": "Every discovered legacy URL has one reviewed action and valid target; no redirect chains, loops, irrelevant homepage redirects or orphaned high-value pages.",
+      "owner": "WordPressistic — Shuvo",
+      "dependency": "Full crawls plus GSC, GA4 and backlink exports",
+      "approval_required": true
+    },
+    {
+      "id": "BTL-IDX-001",
+      "state": "validated",
+      "severity": "critical",
+      "evidence_level": "E2",
+      "evidence": "Staging was not found in normal search results, but its exact authentication, robots, meta robots and X-Robots-Tag behavior has not been directly verified.",
+      "affected_scope": "Entire staging hostname",
+      "priority_score": 88,
+      "action": "Verify staging protection and keep it non-indexable until the approved launch event.",
+      "acceptance": "Staging requires authentication or returns crawlable noindex as designed; production is not accidentally blocked; launch checklist contains the exact unblock step.",
+      "owner": "WordPressistic — Shuvo",
+      "dependency": "Staging and hosting access",
+      "approval_required": true
+    },
+    {
+      "id": "BTL-ENT-001",
+      "state": "validated",
+      "severity": "high",
+      "evidence_level": "E2",
+      "evidence": "The supplied site materials conflict on founding year, email addresses, phone number and operating-history claims, including a placeholder telephone number and an email typo.",
+      "affected_scope": "Sitewide footer/header, contact/about pages, metadata and entity schema",
+      "priority_score": 87,
+      "action": "Obtain one client-approved business fact sheet and use it as the authoritative NAP/entity source.",
+      "acceptance": "Visible business data and JSON-LD match the approved facts everywhere; no placeholders, typos, fake locations or conflicting founding claims remain.",
+      "owner": "Brother Tours authorized approver — name missing",
+      "dependency": "Verified legal and public business facts",
+      "approval_required": true
+    },
+    {
+      "id": "BTL-URL-001",
+      "state": "validated",
+      "severity": "high",
+      "evidence_level": "E2",
+      "evidence": "Theme links reference destination slugs the seeder does not create, and privacy/terms/cancellation links use conflicting slug systems.",
+      "affected_scope": "Navigation, footer, destination and legal pages",
+      "priority_score": 83,
+      "action": "Choose one canonical slug for each destination and legal page, fix template links and add reviewed redirects from valid legacy alternatives.",
+      "acceptance": "All navigation/footer links return 200; canonical slugs are unique; legacy alternatives resolve with one-hop 301 redirects where appropriate.",
+      "owner": "WordPressistic — Shuvo",
+      "dependency": "Approved final information architecture",
+      "approval_required": true
+    },
+    {
+      "id": "BTL-SCH-001",
+      "state": "validated",
+      "severity": "high",
+      "evidence_level": "E2",
+      "evidence": "SEOISTIC tour schema may output an Offer without a verified price and LimitedAvailability regardless of actual availability; the entity graph is incomplete for the intended travel business.",
+      "affected_scope": "Tour pages and organization/site schema",
+      "priority_score": 78,
+      "action": "Generate schema conditionally from verified page data and connect Tour/Trip entities to the verified TravelAgency provider and destinations.",
+      "acceptance": "Representative pages pass schema syntax checks; no invented or empty commercial properties are emitted; visible content supports all structured data.",
+      "owner": "WordPressistic — Shuvo",
+      "dependency": "Verified tour and business data",
+      "approval_required": true
+    },
+    {
+      "id": "BTL-IDX-002",
+      "state": "validated",
+      "severity": "high",
+      "evidence_level": "E2",
+      "evidence": "Filtered tour URLs are indexable by default and paginated archive canonical behavior requires validation.",
+      "affected_scope": "Tour archive filters and pagination",
+      "priority_score": 73,
+      "action": "Define crawl/index rules for parameters and pagination without blocking useful discovery or canonical signals.",
+      "acceptance": "Approved archive pages are indexable and self-canonical; non-search filter combinations do not create crawlable index bloat; pagination links remain usable.",
+      "owner": "WordPressistic — Shuvo",
+      "dependency": "Rendered staging crawl and approved archive strategy",
+      "approval_required": true
+    },
+    {
+      "id": "BTL-CNT-001",
+      "state": "validated",
+      "severity": "high",
+      "evidence_level": "E2",
+      "evidence": "The 38 seeded tours largely use repeated short descriptions, generic itinerary sections, duplicated FAQs and mostly empty pricing.",
+      "affected_scope": "Tour detail templates and seeded tour content",
+      "priority_score": 72,
+      "action": "Replace boilerplate on priority tours with verified, intent-specific itinerary, logistics, seasonality, traveler-fit, safety, booking and local-expertise content.",
+      "acceptance": "Priority tours contain unique, fact-checked content, clear conversion paths, visible FAQs/answers, appropriate internal links and no unsupported claims.",
+      "owner": "WordPressistic — Shuvo",
+      "dependency": "Priority-tour list and client-supplied product facts",
+      "approval_required": true
+    },
+    {
+      "id": "BTL-GEO-001",
+      "state": "validated",
+      "severity": "medium",
+      "evidence_level": "E1",
+      "evidence": "SEOISTIC's default llms.txt does not enumerate tour and destination entities.",
+      "affected_scope": "llms.txt and machine-readable discovery",
+      "priority_score": 63,
+      "action": "Generate a concise custom llms.txt after the canonical tour and destination inventory is approved.",
+      "acceptance": "The file lists only canonical, indexable, useful URLs and contains no staging, filter, duplicate, legal-noise or retired pages.",
+      "owner": "WordPressistic — Shuvo",
+      "dependency": "Approved canonical inventory",
+      "approval_required": true
+    }
+  ],
+  "roadmap": {
+    "days_0_30": {
+      "objective": "Lock evidence, scope, URL decisions and launch risks before implementation.",
+      "deliverables": [
+        "Validated live/staging crawl and sitemap inventories",
+        "GSC/GA4/backlink/server-log evidence imports where available",
+        "Master old-URL to action to new-URL migration map",
+        "Approved tour-only architecture and canonical slug register",
+        "Verified NAP/entity fact sheet",
+        "Prioritized tour/content list and measurement baseline",
+        "Implementation tickets with rollback and acceptance tests"
+      ],
+      "exit_gate": "No high-value legacy URL, core business fact or indexation control remains undecided."
+    },
+    "days_31_60": {
+      "objective": "Repair the staging implementation and prepare unique priority content.",
+      "deliverables": [
+        "Fixed theme/template routes and legal slug consistency",
+        "SEOISTIC canonical, robots, sitemap, redirect, 404, breadcrumb and schema fixes",
+        "Idempotent Brother Tours SEOISTIC setup seeder",
+        "Validated archive/filter/pagination behavior",
+        "Optimized priority tour and destination pages",
+        "Verified AEO/GEO answer blocks, FAQs, entity and trust signals",
+        "Mobile, accessibility, form, cache and Core Web Vitals-sensitive QA"
+      ],
+      "exit_gate": "Staging passes representative template tests and all critical/high launch blockers are closed or explicitly accepted."
+    },
+    "days_61_90": {
+      "objective": "Launch safely, verify migration signals and stabilize performance.",
+      "deliverables": [
+        "Pre-launch backup and rollback package",
+        "Production redirect deployment and one-hop verification",
+        "Staging deindex protection retained and production indexing enabled",
+        "Production sitemap, canonical, robots and schema validation",
+        "Forms, conversions, analytics and key revenue-path smoke tests",
+        "Search Console sitemap submission and migration monitoring",
+        "Weekly exception brief and 30-day post-launch review"
+      ],
+      "exit_gate": "Production revenue paths work, critical SEO signals match the approved map, and monitoring has an owner and next measurement date."
+    }
+  },
+  "approval_gates": [
+    "Public content publishing",
+    "Bulk redirects or URL removals",
+    "Canonical, robots or noindex changes",
+    "Schema deployment",
+    "Production plugin/theme deployment",
+    "Analytics or Search Console configuration changes",
+    "External profile, GBP or outreach actions"
+  ],
+  "proposed_cadence": [
+    {
+      "task_id": "event-deploy-smoke",
+      "cadence": "after each approved deployment",
+      "state": "proposed",
+      "activation_condition": "manual staging workflow passes and deployment events are available"
+    },
+    {
+      "task_id": "weekly-launch-ops",
+      "cadence": "weekly during migration and first 30 days after launch",
+      "state": "proposed",
+      "activation_condition": "GSC or equivalent evidence access is connected"
+    },
+    {
+      "task_id": "monthly-report",
+      "cadence": "monthly after data settles",
+      "state": "proposed",
+      "activation_condition": "measurement sources and reporting approver are confirmed"
+    }
+  ],
+  "missing_decisions": [
+    "Name and authority of the Brother Tours final approver",
+    "Confirmed legal name, physical address, phone, primary email, founding year, opening hours, licenses and official profiles",
+    "Final tour categories, priority tour packages and allowed supporting services",
+    "Whether bookings are enquiry-only, deposit-based or fully paid online",
+    "Hosting, CDN, cache, forms, analytics and consent stack",
+    "GSC, GA4, backlink, server-log, GBP and booking/CRM access or exports",
+    "Approved reporting recipients and launch date"
+  ],
+  "program_status": "onboarding_blocked_on_access_and_client_facts",
+  "next_action": "Complete the full live/staging URL inventory and migration map after access/export requirements are supplied; do not launch or run the final SEOISTIC seeder first."
+}

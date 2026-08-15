@@ -4,7 +4,7 @@
  * Plugin Name:       Formistic
  * Plugin URI:        https://wordpressistic.com/marketplace/plugins/formistic/
  * Description:       Formistic centralizes form capture, lead inbox management, replies, consent capture and delivery logging. This install is the Brother Tours configuration of Formistic; see UPSTREAM.md for the upstream baseline and every local change.
- * Version:           2.5.0
+ * Version:           3.0.0
  * Requires at least: 6.2
  * Requires PHP:      7.4
  * Author:            WordPressistic
@@ -78,13 +78,13 @@ if (defined('WPISTIC_FORMISTIC_VERSION')) {
  *                                and the release checks can confirm the
  *                                right build is active.
  */
-define('WPISTIC_FORMISTIC_VERSION', '2.5.0');
+define('WPISTIC_FORMISTIC_VERSION', '3.0.0');
 define('WPISTIC_FORMISTIC_DB_VERSION', '1.3.0');
 define('WPISTIC_FORMISTIC_FILE', __FILE__);
 define('WPISTIC_FORMISTIC_PATH', plugin_dir_path(__FILE__));
 define('WPISTIC_FORMISTIC_URL', plugin_dir_url(__FILE__));
 define('WPISTIC_FORMISTIC_BASENAME', plugin_basename(__FILE__));
-define('BROTHER_TOURS_FORMISTIC', '2.5.0');
+define('BROTHER_TOURS_FORMISTIC', '2.0.0');
 
 require_once WPISTIC_FORMISTIC_PATH . 'includes/class-formistic-database.php';
 require_once WPISTIC_FORMISTIC_PATH . 'includes/class-formistic-attachments.php';

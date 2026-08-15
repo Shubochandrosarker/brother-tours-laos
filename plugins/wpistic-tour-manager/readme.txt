@@ -2,15 +2,10 @@
 Contributors: wordpressistic
 Requires at least: 6.4
 Requires PHP: 8.1
-Stable tag: 2.5.0
+Stable tag: 3.0.0
 License: GPLv2 or later
 
 Premium tour, booking, deposit and payment system for Brother Tours.
-
-== Changelog ==
-
-= 2.5.0 =
-* Bump release version to 2.5.0.
 
 == Architecture ==
 

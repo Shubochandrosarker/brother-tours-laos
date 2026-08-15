@@ -10,3 +10,7 @@
 - Recorded release-integrity mismatch: current non-Git bundle contains Operations API `1.0.0` / `bridgistic-api/v1`.
 - Ran source validation: 154 PHP files passed syntax; brand lint passed with warnings/manual review; live WordPress, staging runtime, email, payment, browser and production deployment remain unverified.
 - No production or staging writes, redirects, schema changes, removals or deployments were performed.
+
+## 2026-08-14
+
+- Follow-up implementation moved the Brother Tours Operations API source from `/wp-json/bt-ops/v1` to `/wp-json/bridgistic/v1` and prepared the Operations app production environment for `https://www.brothertours.com/wp-json/bridgistic/v1`.
