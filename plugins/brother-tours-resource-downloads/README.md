@@ -16,9 +16,10 @@ it renders nothing and opens nothing — deliberately. A download button pointin
 at a missing file is worse than no button. Attach the PDFs (§ Configuration) and
 each landing page lights up on its own.
 
-Also outstanding, and outside this plugin: the ten Elementor landing templates,
-the PDF documents themselves, and the legacy content migration. See
-§ What this does not cover.
+The ten Elementor landing templates now exist, in
+`brother-tours-elementor-landing-system/`, and each one calls this plugin's
+shortcode. Still outstanding: the PDF documents themselves and the legacy
+content migration. See § What this does not cover.
 
 ---
 
@@ -188,7 +189,7 @@ analytics. See `tests/README.md`.
 | Deliverable | Why not here |
 |---|---|
 | The ten PDF documents | Content, not code. Needs verified business facts and the production media library. |
-| Ten Elementor landing templates | Built in Elementor against the live site; cannot be authored blind. |
+| Ten Elementor landing templates | Built — `brother-tours-elementor-landing-system/`. Each calls `[bt_resource_download]`. |
 | Legacy content migration | `Landing-pages.zip` was not supplied. |
 | LCR factual verification | Railway rules change; 2026 rules need checking against the operator before publishing. |
 

@@ -1,0 +1,1625 @@
+{
+	"version": "0.4",
+	"title": "BT – Adventure Tours Landing",
+	"type": "page",
+	"content": [
+		{
+			"id": "2a6e7f9",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-hero"
+			},
+			"elements": [
+				{
+					"id": "8b8569d",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "df83b35",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_direction_tablet": "column",
+								"flex_align_items": "flex-start",
+								"flex_gap": {
+									"unit": "px",
+									"size": 56,
+									"column": "56",
+									"row": "56",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-row"
+							},
+							"elements": [
+								{
+									"id": "c987e0f",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__copy"
+									},
+									"elements": [
+										{
+											"id": "c9d7dc7",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Adventure travel",
+												"header_size": "p",
+												"_css_classes": "eyebrow"
+											},
+											"elements": []
+										},
+										{
+											"id": "46a2542",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Laos on foot, on water, and underground",
+												"header_size": "h1",
+												"_css_classes": "hero-v2-h1"
+											},
+											"elements": []
+										},
+										{
+											"id": "d70d1ae",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Trekking, rivers, caves and limestone — at a pace that leaves room for the place.</p>",
+												"_css_classes": "hero-v2-lede"
+											},
+											"elements": []
+										},
+										{
+											"id": "aece67e",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Brother Tours builds private adventure journeys across Laos: forest treks out of the northern hills, kayaking and slow river days, and the long dark passage through Kong Lor. Designed around your fitness and your appetite, not a fixed departure list.</p>",
+												"_css_classes": "hero-v2-sub"
+											},
+											"elements": []
+										},
+										{
+											"id": "cde6484",
+											"elType": "widget",
+											"widgetType": "icon-list",
+											"settings": {
+												"view": "inline",
+												"icon_list": [
+													{
+														"_id": "8855aa4",
+														"text": "Lao-led",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "6b63e12",
+														"text": "Private journeys",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "f04288d",
+														"text": "Licensed local guides",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													}
+												],
+												"_css_classes": "bt-landing-badges"
+											},
+											"elements": []
+										},
+										{
+											"id": "dc39401",
+											"elType": "container",
+											"settings": {
+												"content_width": "full",
+												"flex_direction": "row",
+												"flex_direction_tablet": "column",
+												"flex_align_items": "center",
+												"flex_gap": {
+													"unit": "px",
+													"size": 14,
+													"column": "14",
+													"row": "14",
+													"isLinked": true
+												},
+												"_css_classes": "bt-landing-row bt-landing-ctas"
+											},
+											"elements": [
+												{
+													"id": "c4bb07f",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Build My Trip",
+														"link": {
+															"url": "/build-my-trip/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn btn--primary"
+													},
+													"elements": []
+												},
+												{
+													"id": "b3a7b53",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Message Brother Tours",
+														"link": {
+															"url": "/contact/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn"
+													},
+													"elements": []
+												}
+											],
+											"isInner": false
+										},
+										{
+											"id": "dd942ad",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — the secondary hero CTA points at /contact/. Swap the href to the WhatsApp link if this page should open WhatsApp directly — the Final Invitation section at the foot of the page already uses the configured number.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "503a9ad",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__media"
+									},
+									"elements": [
+										{
+											"id": "0abd033",
+											"elType": "widget",
+											"widgetType": "image",
+											"settings": {
+												"image": {
+													"url": "",
+													"id": "",
+													"alt": "A trekking route through northern Laos limestone country",
+													"source": "library",
+													"size": ""
+												},
+												"image_size": "large",
+												"_css_classes": "bt-landing-hero__image"
+											},
+											"elements": []
+										},
+										{
+											"id": "2b9ade7",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — choose the hero image from the media library. Suggested subject: A trekking route through northern Laos limestone country. Do not reuse legacy stock or Picsum placeholders.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "43f6e78",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-quick tight"
+			},
+			"elements": [
+				{
+					"id": "cf4f6a3",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 18,
+							"column": "18",
+							"row": "18",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "c8966f9",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "In short",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "0747b77",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "What is a Brother Tours adventure journey, and who is it for?",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "ced083f",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>An adventure journey is a private, guided trip through the active side of Laos — walking, paddling, cycling or caving — built for one group at a time rather than sold as a scheduled departure. A licensed Lao guide travels with you throughout.</p>\n<p>It suits travellers who are comfortable on their feet for a few hours a day and would rather spend an afternoon on a river than in a queue. Families travel this way often; so do people in their sixties. Pace is a setting, not a fixed grade.</p>",
+								"_css_classes": "bt-landing-quick__body"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "a1a84e4",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-why"
+			},
+			"elements": [
+				{
+					"id": "3982743",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "a074af3",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Why here",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "b436213",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "What Laos gives an adventure traveller",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "79a4f81",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Laos is mountainous, forested and threaded with rivers, and it is quiet in a way its neighbours have stopped being. That quiet is the reason to come.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "7b23934",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 24,
+									"column": "24",
+									"row": "24",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-cards"
+							},
+							"elements": [
+								{
+									"id": "32bdafe",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "1b69fa3",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Limestone and caves",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "6211b02",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>The karst country around Vang Vieng and Thakhek is riddled with caves and rivers. Kong Lor runs roughly 7.5 km straight through a mountain, by boat, in the dark.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "10eeb0e",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "0434589",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Rivers you can travel on",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "d1d65dd",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>The Mekong and the Nam Ou are working roads as much as scenery. A river day is transport, landscape and village life at once.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "acf63ee",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "dba4b35",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Northern trekking",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "6bae799",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Forest and ridge walking out of Luang Prabang and Nong Khiaw, with village stays where they are genuinely welcome rather than staged.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "51fed23",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "2432edb",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "The Bolaven Plateau",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "eea0c7a",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Cooler, higher, and green: coffee country, waterfalls and back roads in the far south.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "3de40c8",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "cd67093",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Room to move",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "405520b",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Trails and rivers here are rarely crowded. Most days you will meet more water buffalo than other travellers.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "7de0085",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "57ee742",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "One group at a time",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "4344fb9",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Your itinerary is yours. Nobody is added to it, and it changes when you want it to change.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "8734580",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-journeys"
+			},
+			"elements": [
+				{
+					"id": "3156a7f",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "9501627",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Current journeys",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "57a1409",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Adventure journeys currently offered",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "6cbd06c",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Live from the Brother Tours catalogue. Price confirmed on request.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "417d7b3",
+							"elType": "widget",
+							"widgetType": "bt-tour-grid",
+							"settings": {
+								"wpistic_taxonomy": "tour_category",
+								"wpistic_term": "adventure",
+								"wpistic_count": 6,
+								"wpistic_columns": "3",
+								"wpistic_columns_tablet": "2",
+								"wpistic_columns_mobile": "1"
+							},
+							"elements": []
+						},
+						{
+							"id": "d5a3a55",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this grid filters tour_category = \"adventure\". Confirm that term slug exists in WordPress — if it does not, the grid renders \"No tours match this filter yet\" instead of journeys.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "5ab4dda",
+							"elType": "widget",
+							"widgetType": "button",
+							"settings": {
+								"text": "See all journeys",
+								"link": {
+									"url": "/tours/",
+									"is_external": "",
+									"nofollow": "",
+									"custom_attributes": ""
+								},
+								"_css_classes": "btn"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "5fc5a28",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-destinations"
+			},
+			"elements": [
+				{
+					"id": "5aa2b1b",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "f86a400",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Where this goes",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "4da60f8",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Where adventure journeys go",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "1333780",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Most itineraries combine two or three of these rather than crossing the whole country.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "fdb560f",
+							"elType": "widget",
+							"widgetType": "icon-list",
+							"settings": {
+								"view": "traditional",
+								"icon_list": [
+									{
+										"_id": "c6a37e8",
+										"text": "Vang Vieng — caves, lagoons and the Nam Song",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "0633288",
+										"text": "Kong Lor and Thakhek — the underground river and the loop",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "e44d5ee",
+										"text": "Nong Khiaw and the Nam Ou — northern trekking and river days",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "90aa2b7",
+										"text": "Luang Prabang — the usual base for northern routes",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "9cb51df",
+										"text": "The Bolaven Plateau — southern highlands and waterfalls",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "4e7f63d",
+										"text": "Si Phan Don (4,000 Islands) — the slow southern Mekong",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									}
+								],
+								"_css_classes": "bt-landing-places"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "edc1311",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-planning"
+			},
+			"elements": [
+				{
+					"id": "74d5edf",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "66c1163",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning guide",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "77f016e",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning an adventure trip to Laos",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "97e95b5",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 32,
+									"column": "32",
+									"row": "32",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-planning__grid"
+							},
+							"elements": [
+								{
+									"id": "4c31934",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "2cd792e",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How long",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "a5301a5",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Eight to fourteen days is the comfortable range for an adventure route. Under a week works if you stay in one region rather than crossing the country.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "7e1e472",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "0bb6430",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "When to go",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "0b96801",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>November to February is dry and cool — the easiest walking weather. March to May is hot. The green season, roughly June to October, brings full rivers and dramatic light, with some trails harder going and some roads slower.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "986cdc6",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "de32da2",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Pace",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "39f1bf0",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Active days are usually three to six hours of walking or paddling, with the rest of the day unstructured. Consecutive hard days are a choice, not a default.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "87a8650",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "a70f31c",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Getting around",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "53ba36a",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Private vehicle between regions, boats where the river is the better road, and the Lao-China Railway on the Vientiane–Luang Prabang corridor where it saves a long drive.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "8a5d6bc",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "f7d912d",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Who it suits",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "8c15c66",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Anyone in ordinary health who walks regularly. Tell us honestly what you are happy with and the route is built to it — including where a rest day should fall.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "5e5163e",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "140b093",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "What to bring",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "5c950d9",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Broken-in walking shoes, a dry bag for river days, and long sleeves for the cave. Everything technical is provided.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						},
+						{
+							"id": "05b900b",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — confirm which activities Brother Tours currently operates directly versus coordinates with local partners, and whether any require a minimum group size.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "6779ee2",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-resource"
+			},
+			"elements": [
+				{
+					"id": "a21af79",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "cba09df",
+							"elType": "widget",
+							"widgetType": "shortcode",
+							"settings": {
+								"shortcode": "[bt_resource_download id=\"adventure-planner\"]"
+							},
+							"elements": []
+						},
+						{
+							"id": "7178b69",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this renders the \"adventure-planner\" guide. It stays invisible to visitors until a PDF is attached via the btrd_resources filter — see the Brother Tours Resource Downloads plugin README.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "3ca358f",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-navy bt-landing-insight"
+			},
+			"elements": [
+				{
+					"id": "9c9fd82",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 20,
+							"column": "20",
+							"row": "20",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "1296625",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Ken's note",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "633f72b",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>The mistake most people make with an adventure trip here is booking too much of it. Laos rewards the day you did not plan — the village you walk into at the wrong hour, the boatman who suggests a different landing.</p>\n<p>So we build in slack deliberately. If a trek is going well we keep going; if the river is high we change the plan that morning. That only works when the guide is local, licensed and knows who to call.</p>",
+								"_css_classes": "bt-landing-insight__body"
+							},
+							"elements": []
+						},
+						{
+							"id": "ba20844",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Ken FJ Her — founder, Brother Tours. Licensed Lao National Tour Guide since 2010; founded Brother Tours in 2018.</p>",
+								"_css_classes": "bt-landing-insight__attribution"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "492611d",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-process"
+			},
+			"elements": [
+				{
+					"id": "3d05a55",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "36c0aaa",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "How Brother Tours plans it",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "0312d07",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Five steps, one conversation",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "bcc7731",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<ol class=\"bt-landing-steps\"><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">01</span><span class=\"bt-landing-step__title\">Tell us about your trip</span><span class=\"bt-landing-step__body\">Dates, pace, who is travelling, what you want the days to feel like.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">02</span><span class=\"bt-landing-step__title\">Brother Tours designs the journey</span><span class=\"bt-landing-step__body\">A route built around your answers, not assembled from a package shelf.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">03</span><span class=\"bt-landing-step__title\">Review and refine</span><span class=\"bt-landing-step__body\">Change anything. Most journeys go through two or three rounds before they settle.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">04</span><span class=\"bt-landing-step__title\">Human confirmation</span><span class=\"bt-landing-step__body\">Every element is confirmed with the people who will actually deliver it.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">05</span><span class=\"bt-landing-step__title\">Travel Laos</span><span class=\"bt-landing-step__body\">Your guide, your driver, your itinerary — and someone reachable in Vientiane throughout.</span></li></ol>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "583b0ea",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-faq-section"
+			},
+			"elements": [
+				{
+					"id": "fd26930",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "b80451b",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Questions",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "1f9875f",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Adventure travel in Laos — common questions",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "469415d",
+							"elType": "widget",
+							"widgetType": "accordion",
+							"settings": {
+								"tabs": [
+									{
+										"_id": "3ca447b",
+										"tab_title": "How fit do I need to be?",
+										"tab_content": "<p>For most routes, comfortable walking for three to five hours with breaks. Tell us what a normal week of exercise looks like for you and the itinerary is set to that. Harder options exist; none are compulsory.</p>"
+									},
+									{
+										"_id": "7dd4b38",
+										"tab_title": "Can we travel with children?",
+										"tab_content": "<p>Yes, and families do this often. Distances shorten, river and cave days usually stay, and the pace changes more than the destinations do.</p>"
+									},
+									{
+										"_id": "96c1997",
+										"tab_title": "Is the green season worth avoiding?",
+										"tab_content": "<p>No — it is worth understanding. Roughly June to October the landscape is at its best and rivers are full. Some trails get slippery and some roads slow down. We route around the worst of it rather than cancelling the season.</p>"
+									},
+									{
+										"_id": "125ead9",
+										"tab_title": "What is Kong Lor actually like?",
+										"tab_content": "<p>A boat journey of roughly 7.5 km through a mountain, in the dark, on an underground river. Cool, loud, and genuinely unlike anywhere else in Southeast Asia.</p>"
+									},
+									{
+										"_id": "100315f",
+										"tab_title": "Do we share the trip with strangers?",
+										"tab_content": "<p>No. Journeys are private to your group.</p>"
+									},
+									{
+										"_id": "00b4878",
+										"tab_title": "How is pricing handled?",
+										"tab_content": "<p>Price is confirmed on request, once the route is settled. There is no package rate because there is no package.</p>"
+									}
+								],
+								"title_html_tag": "h3",
+								"_css_classes": "bt-landing-faq"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "2fa502d",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-related tight"
+			},
+			"elements": [
+				{
+					"id": "d695184",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 16,
+							"column": "16",
+							"row": "16",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "de6f3ac",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Keep reading",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "849d2bf",
+							"elType": "widget",
+							"widgetType": "icon-list",
+							"settings": {
+								"view": "traditional",
+								"icon_list": [
+									{
+										"_id": "7520825",
+										"text": "All Brother Tours journeys",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/tours/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "0651723",
+										"text": "Destinations across Laos",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "325fab3",
+										"text": "When to visit Laos",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/when-to-visit/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "b9cb9e7",
+										"text": "Central Laos — Kong Lor and the karst",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/central-laos/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "43d3daa",
+										"text": "Laos Signature Tours",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/laos-signature-tours/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									}
+								],
+								"_css_classes": "bt-landing-related__links"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "5978db7",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "bt-landing-invitation"
+			},
+			"elements": [
+				{
+					"id": "b4ebd81",
+					"elType": "widget",
+					"widgetType": "bt-build-my-trip-cta",
+					"settings": {
+						"wpistic_context": "Adventure Tours"
+					},
+					"elements": []
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": {
+		"template": "elementor_header_footer"
+	},
+	"metadata": {}
+}

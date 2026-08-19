@@ -1,0 +1,1589 @@
+{
+	"version": "0.4",
+	"title": "BT – Laos Signature Tours Landing",
+	"type": "page",
+	"content": [
+		{
+			"id": "5cbc569",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-hero"
+			},
+			"elements": [
+				{
+					"id": "06cc9fc",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "5486b67",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_direction_tablet": "column",
+								"flex_align_items": "flex-start",
+								"flex_gap": {
+									"unit": "px",
+									"size": 56,
+									"column": "56",
+									"row": "56",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-row"
+							},
+							"elements": [
+								{
+									"id": "dd71870",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__copy"
+									},
+									"elements": [
+										{
+											"id": "d012c7f",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "The collection",
+												"header_size": "p",
+												"_css_classes": "eyebrow"
+											},
+											"elements": []
+										},
+										{
+											"id": "109536b",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Laos Signature Journeys",
+												"header_size": "h1",
+												"_css_classes": "hero-v2-h1"
+											},
+											"elements": []
+										},
+										{
+											"id": "b83bcbd",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>The routes we would travel ourselves.</p>",
+												"_css_classes": "hero-v2-lede"
+											},
+											"elements": []
+										},
+										{
+											"id": "ff23dd2",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Signature journeys are the itineraries Brother Tours has refined over years of running them — the ones where the order of the days, the length of each stay and the choice of guide have all been argued about. Private, Lao-led, and adjustable in every direction.</p>",
+												"_css_classes": "hero-v2-sub"
+											},
+											"elements": []
+										},
+										{
+											"id": "8109189",
+											"elType": "widget",
+											"widgetType": "icon-list",
+											"settings": {
+												"view": "inline",
+												"icon_list": [
+													{
+														"_id": "0c87c04",
+														"text": "Lao-led",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "ecba573",
+														"text": "Private journeys",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "aa47983",
+														"text": "Refined over years",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													}
+												],
+												"_css_classes": "bt-landing-badges"
+											},
+											"elements": []
+										},
+										{
+											"id": "5f5e541",
+											"elType": "container",
+											"settings": {
+												"content_width": "full",
+												"flex_direction": "row",
+												"flex_direction_tablet": "column",
+												"flex_align_items": "center",
+												"flex_gap": {
+													"unit": "px",
+													"size": 14,
+													"column": "14",
+													"row": "14",
+													"isLinked": true
+												},
+												"_css_classes": "bt-landing-row bt-landing-ctas"
+											},
+											"elements": [
+												{
+													"id": "9814b34",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Build My Trip",
+														"link": {
+															"url": "/build-my-trip/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn btn--primary"
+													},
+													"elements": []
+												},
+												{
+													"id": "4510367",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Message Brother Tours",
+														"link": {
+															"url": "/contact/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn"
+													},
+													"elements": []
+												}
+											],
+											"isInner": false
+										},
+										{
+											"id": "620e0ad",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — the secondary hero CTA points at /contact/. Swap the href to the WhatsApp link if this page should open WhatsApp directly — the Final Invitation section at the foot of the page already uses the configured number.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "5b85367",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__media"
+									},
+									"elements": [
+										{
+											"id": "efa9e13",
+											"elType": "widget",
+											"widgetType": "image",
+											"settings": {
+												"image": {
+													"url": "",
+													"id": "",
+													"alt": "A signature Brother Tours moment in the Lao landscape",
+													"source": "library",
+													"size": ""
+												},
+												"image_size": "large",
+												"_css_classes": "bt-landing-hero__image"
+											},
+											"elements": []
+										},
+										{
+											"id": "56320fb",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — choose the hero image from the media library. Suggested subject: A signature Brother Tours moment in the Lao landscape. Do not reuse legacy stock or Picsum placeholders.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "d4d4cf7",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-quick tight"
+			},
+			"elements": [
+				{
+					"id": "ee5c96a",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 18,
+							"column": "18",
+							"row": "18",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "6b8fc47",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "In short",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "e8295c4",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "What makes a journey a Signature journey?",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "5eb8183",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>A Signature journey is a Brother Tours itinerary that has been run, revised and run again — where the sequence and pacing are deliberate rather than assembled to order. Each is private to your group and adjustable.</p>\n<p>They suit travellers who want a designed route rather than a blank page, and who are happy to start from a strong itinerary and change what does not fit.</p>",
+								"_css_classes": "bt-landing-quick__body"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "db440d9",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-why"
+			},
+			"elements": [
+				{
+					"id": "be9d12d",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "9513fa6",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "What sets them apart",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "b5ef79f",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Designed, not assembled",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "0dccfa4",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 24,
+									"column": "24",
+									"row": "24",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-cards"
+							},
+							"elements": [
+								{
+									"id": "2a98423",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "464b082",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Sequence matters",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "3825275",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Which place comes third changes the whole trip. Signature routes are ordered on purpose, usually after we got it wrong once.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "e97f943",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "213c31b",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Local hosting",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "9b832d1",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Licensed Lao guides throughout, chosen for the region rather than dispatched from a pool.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "c2f1ff1",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "d9855ac",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Cultural depth",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "faf7d56",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Time with people who live where you are visiting, arranged where it is genuinely welcome rather than staged for a group.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "d60cd09",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "b56d6b5",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Responsible by construction",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "5acd306",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Lao-owned, Lao-staffed, spending locally. Small private groups rather than coaches.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "9143e7a",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "aacd75d",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Private and adjustable",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "744558c",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Start from the Signature route and change it. It is a proposal, not a product.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "b8a88cc",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "e0ec32e",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Founder-hosted as a subset",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "9354023",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>A small number of Signature journeys are hosted by Ken personally.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "1c838e4",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-journeys"
+			},
+			"elements": [
+				{
+					"id": "4c79e97",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "ea9499a",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Current journeys",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "810ed70",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Signature journeys currently offered",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "502318c",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Live from the catalogue — retired journeys disappear from this list on their own. Price confirmed on request.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "a26ee56",
+							"elType": "widget",
+							"widgetType": "bt-tour-grid",
+							"settings": {
+								"wpistic_taxonomy": "tour_category",
+								"wpistic_term": "signature-journeys",
+								"wpistic_count": 6,
+								"wpistic_columns": "3",
+								"wpistic_columns_tablet": "2",
+								"wpistic_columns_mobile": "1"
+							},
+							"elements": []
+						},
+						{
+							"id": "ea697ec",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this grid filters tour_category = \"signature-journeys\". Confirm that term slug exists in WordPress — if it does not, the grid renders \"No tours match this filter yet\" instead of journeys.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "ba86db1",
+							"elType": "widget",
+							"widgetType": "button",
+							"settings": {
+								"text": "See all journeys",
+								"link": {
+									"url": "/tours/",
+									"is_external": "",
+									"nofollow": "",
+									"custom_attributes": ""
+								},
+								"_css_classes": "btn"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "99f2d45",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-destinations"
+			},
+			"elements": [
+				{
+					"id": "8795eca",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "10fc3d4",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Where this goes",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "438a0f6",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Regions covered",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "d827462",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Signature routes are drawn across the whole country rather than one corner of it.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "0bb8e0c",
+							"elType": "widget",
+							"widgetType": "icon-list",
+							"settings": {
+								"view": "traditional",
+								"icon_list": [
+									{
+										"_id": "4b2056c",
+										"text": "Luang Prabang and the north",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "b8a29d3",
+										"text": "Nong Khiaw and the Nam Ou",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "77a8c1d",
+										"text": "Vientiane and Central Laos",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/central-laos/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "986b710",
+										"text": "Vang Vieng and the karst country",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "23776bd",
+										"text": "The Bolaven Plateau and the south",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "5b52999",
+										"text": "Si Phan Don (4,000 Islands)",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									}
+								],
+								"_css_classes": "bt-landing-places"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "9b5f017",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-planning"
+			},
+			"elements": [
+				{
+					"id": "6c7074b",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "e49529a",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning guide",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "1a9de8a",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning a Signature journey",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "6c53aad",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 32,
+									"column": "32",
+									"row": "32",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-planning__grid"
+							},
+							"elements": [
+								{
+									"id": "a6022d7",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "7b45524",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How long",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "8d191a9",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Most Signature routes run eight to fourteen days. Shorter versions exist; they cover one region rather than a compressed version of several.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "f2238f8",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "1d55636",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "When to go",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "1b97b21",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>November to February is dry and cool; March to May is hot; roughly June to October is the green season — quieter, greener, with afternoon rain.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "7c24428",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "e9d9e4b",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How much changes",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "9f2ec54",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Anything. The Signature route is the starting proposal, and most journeys end up two or three revisions from it.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "a0b1cd8",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "af45bfb",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Pace",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "b746844",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Two to three nights per base. Long single-day transfers are designed out wherever the railway or a short flight can replace them.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "cc2830c",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "c6a1416",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Who travels this way",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "f57c26e",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Couples, families and small private groups. All journeys are private to your party.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "562be08",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "ddc2fb5",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How pricing works",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "bfd1f88",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Confirmed on request, once the route and standard of accommodation are settled.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "8c9d9c9",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-resource"
+			},
+			"elements": [
+				{
+					"id": "915f317",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "b3fdc36",
+							"elType": "widget",
+							"widgetType": "shortcode",
+							"settings": {
+								"shortcode": "[bt_resource_download id=\"signature-guide\"]"
+							},
+							"elements": []
+						},
+						{
+							"id": "f7de75e",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this renders the \"signature-guide\" guide. It stays invisible to visitors until a PDF is attached via the btrd_resources filter — see the Brother Tours Resource Downloads plugin README.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "9bbe61b",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-navy bt-landing-insight"
+			},
+			"elements": [
+				{
+					"id": "39bcc2d",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 20,
+							"column": "20",
+							"row": "20",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "6e925e0",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Ken's note",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "5e1dc6e",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>A Signature journey is not the most places we can fit into your dates. It is the fewest places that make the trip make sense.</p>\n<p>The routes that lasted are the ones where the third day is quiet. Everybody remembers the arrival and the finale; what decides whether the journey worked is what happened in the middle, and that only works with room in it.</p>",
+								"_css_classes": "bt-landing-insight__body"
+							},
+							"elements": []
+						},
+						{
+							"id": "452cdd4",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Ken FJ Her — founder, Brother Tours. Licensed Lao National Tour Guide since 2010; founded Brother Tours in 2018.</p>",
+								"_css_classes": "bt-landing-insight__attribution"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "319ce5c",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-process"
+			},
+			"elements": [
+				{
+					"id": "a86cbf7",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "9bd3e19",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "How Brother Tours plans it",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "a830f36",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Five steps, one conversation",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "2088152",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<ol class=\"bt-landing-steps\"><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">01</span><span class=\"bt-landing-step__title\">Tell us about your trip</span><span class=\"bt-landing-step__body\">Dates, pace, who is travelling, what you want the days to feel like.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">02</span><span class=\"bt-landing-step__title\">Brother Tours designs the journey</span><span class=\"bt-landing-step__body\">A route built around your answers, not assembled from a package shelf.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">03</span><span class=\"bt-landing-step__title\">Review and refine</span><span class=\"bt-landing-step__body\">Change anything. Most journeys go through two or three rounds before they settle.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">04</span><span class=\"bt-landing-step__title\">Human confirmation</span><span class=\"bt-landing-step__body\">Every element is confirmed with the people who will actually deliver it.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">05</span><span class=\"bt-landing-step__title\">Travel Laos</span><span class=\"bt-landing-step__body\">Your guide, your driver, your itinerary — and someone reachable in Vientiane throughout.</span></li></ol>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "46ba0c0",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-faq-section"
+			},
+			"elements": [
+				{
+					"id": "8cd7561",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "12825e3",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Questions",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "2ca68c1",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Signature journeys — common questions",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "0e867ce",
+							"elType": "widget",
+							"widgetType": "accordion",
+							"settings": {
+								"tabs": [
+									{
+										"_id": "be07bfa",
+										"tab_title": "How is this different from the Founder-Hosted page?",
+										"tab_content": "<p>Founder-hosted journeys are a small subset of Signature journeys on which Ken travels with you personally. This page is the wider collection.</p>"
+									},
+									{
+										"_id": "ff3b08c",
+										"tab_title": "Can we change the itinerary?",
+										"tab_content": "<p>Yes, in any direction. It is a designed starting point, not a fixed product.</p>"
+									},
+									{
+										"_id": "09b3481",
+										"tab_title": "Are these group departures?",
+										"tab_content": "<p>No. Every journey is private to your party.</p>"
+									},
+									{
+										"_id": "be8ae4a",
+										"tab_title": "What if a journey we saw before is gone?",
+										"tab_content": "<p>Then it is no longer offered — this page shows only current journeys. Tell us what appealed about it and we will build the equivalent.</p>"
+									},
+									{
+										"_id": "676caff",
+										"tab_title": "How far ahead should we book?",
+										"tab_content": "<p>For November to February, as early as you can. The green season is far more flexible.</p>"
+									}
+								],
+								"title_html_tag": "h3",
+								"_css_classes": "bt-landing-faq"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "13c7252",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-related tight"
+			},
+			"elements": [
+				{
+					"id": "181cdda",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 16,
+							"column": "16",
+							"row": "16",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "b9d9901",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Keep reading",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "7e669cc",
+							"elType": "widget",
+							"widgetType": "icon-list",
+							"settings": {
+								"view": "traditional",
+								"icon_list": [
+									{
+										"_id": "9f9830d",
+										"text": "Founder-hosted signature journeys",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/founder-hosted-signature-journeys/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "4220e72",
+										"text": "Adventure journeys",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/adventure-tours/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "c03149a",
+										"text": "Private luxury travel in Laos",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/luxury-laos-tours/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "2e906cd",
+										"text": "All destinations",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									}
+								],
+								"_css_classes": "bt-landing-related__links"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "7d6f564",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "bt-landing-invitation"
+			},
+			"elements": [
+				{
+					"id": "3fbc9eb",
+					"elType": "widget",
+					"widgetType": "bt-build-my-trip-cta",
+					"settings": {
+						"wpistic_context": "Signature Journey"
+					},
+					"elements": []
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": {
+		"template": "elementor_header_footer"
+	},
+	"metadata": {}
+}

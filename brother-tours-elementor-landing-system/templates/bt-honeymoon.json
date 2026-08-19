@@ -1,0 +1,1550 @@
+{
+	"version": "0.4",
+	"title": "BT – Honeymoon Landing",
+	"type": "page",
+	"content": [
+		{
+			"id": "e3189d4",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-hero"
+			},
+			"elements": [
+				{
+					"id": "c4a179f",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "f20ef0c",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_direction_tablet": "column",
+								"flex_align_items": "flex-start",
+								"flex_gap": {
+									"unit": "px",
+									"size": 56,
+									"column": "56",
+									"row": "56",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-row"
+							},
+							"elements": [
+								{
+									"id": "841d824",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__copy"
+									},
+									"elements": [
+										{
+											"id": "0c6ba07",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Honeymoons",
+												"header_size": "p",
+												"_css_classes": "eyebrow"
+											},
+											"elements": []
+										},
+										{
+											"id": "10ce176",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "A honeymoon built around two people",
+												"header_size": "h1",
+												"_css_classes": "hero-v2-h1"
+											},
+											"elements": []
+										},
+										{
+											"id": "3272b6b",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Not a package with your names on it.</p>",
+												"_css_classes": "hero-v2-lede"
+											},
+											"elements": []
+										},
+										{
+											"id": "812bec4",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Brother Tours does not sort honeymooners into tiers. We ask what the two of you actually want the days to feel like, and design the journey from there — typically seven to twelve nights across two or three places rather than a rush through many.</p>",
+												"_css_classes": "hero-v2-sub"
+											},
+											"elements": []
+										},
+										{
+											"id": "398080e",
+											"elType": "widget",
+											"widgetType": "icon-list",
+											"settings": {
+												"view": "inline",
+												"icon_list": [
+													{
+														"_id": "d6d2736",
+														"text": "Private throughout",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "7a209f4",
+														"text": "Lao-led",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "a10a607",
+														"text": "No fixed packages",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													}
+												],
+												"_css_classes": "bt-landing-badges"
+											},
+											"elements": []
+										},
+										{
+											"id": "6859534",
+											"elType": "container",
+											"settings": {
+												"content_width": "full",
+												"flex_direction": "row",
+												"flex_direction_tablet": "column",
+												"flex_align_items": "center",
+												"flex_gap": {
+													"unit": "px",
+													"size": 14,
+													"column": "14",
+													"row": "14",
+													"isLinked": true
+												},
+												"_css_classes": "bt-landing-row bt-landing-ctas"
+											},
+											"elements": [
+												{
+													"id": "4099b97",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Build My Trip",
+														"link": {
+															"url": "/build-my-trip/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn btn--primary"
+													},
+													"elements": []
+												},
+												{
+													"id": "a6e3eee",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Message Brother Tours",
+														"link": {
+															"url": "/contact/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn"
+													},
+													"elements": []
+												}
+											],
+											"isInner": false
+										},
+										{
+											"id": "ccf3e62",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — the secondary hero CTA points at /contact/. Swap the href to the WhatsApp link if this page should open WhatsApp directly — the Final Invitation section at the foot of the page already uses the configured number.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "86c60d2",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__media"
+									},
+									"elements": [
+										{
+											"id": "2fa75ff",
+											"elType": "widget",
+											"widgetType": "image",
+											"settings": {
+												"image": {
+													"url": "",
+													"id": "",
+													"alt": "A private river moment on the Mekong at dusk",
+													"source": "library",
+													"size": ""
+												},
+												"image_size": "large",
+												"_css_classes": "bt-landing-hero__image"
+											},
+											"elements": []
+										},
+										{
+											"id": "65c8adc",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — choose the hero image from the media library. Suggested subject: A private river moment on the Mekong at dusk. Do not reuse legacy stock or Picsum placeholders.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "5b7d490",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-quick tight"
+			},
+			"elements": [
+				{
+					"id": "034e5e0",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 18,
+							"column": "18",
+							"row": "18",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "ea3306f",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "In short",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "85ce111",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "What does a Brother Tours honeymoon in Laos look like?",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "d8fa97e",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>A private, unhurried journey of roughly seven to twelve nights, usually across two or three destinations, with private transfers, carefully chosen places to stay, and deliberate stretches of time without a guide.</p>\n<p>It suits couples who would rather have long mornings in one beautiful place than a photograph from six. Every element is chosen for you specifically; there is no bronze, silver or gold.</p>",
+								"_css_classes": "bt-landing-quick__body"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "d548d5e",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-why"
+			},
+			"elements": [
+				{
+					"id": "a0f9e15",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "b289578",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "How we do it",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "e1a2283",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Five things that make a honeymoon here work",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "0bc65dd",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 24,
+									"column": "24",
+									"row": "24",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-cards"
+							},
+							"elements": [
+								{
+									"id": "3e3f6b8",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "218bc73",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Fewer places, longer stays",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "b5189e4",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Two or three destinations across seven to twelve nights. Packing once and staying put is the luxury.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "3275611",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "54f830e",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Genuine privacy",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "56fc894",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Private guide, private vehicle, private boat where it matters. Nobody is added to your day.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "c73882e",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "fad25f2",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Time without us",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "317896a",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Guide-free afternoons are designed in, not squeezed out. Some of the trip should be nobody's but yours.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "9a2d127",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "7b73f27",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Places chosen for the two of you",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "9289e70",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Accommodation picked for the couple travelling rather than a standard tier — quiet over grand, where those conflict.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "ec5753c",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "b606b24",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Slower itinerary design",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "cee9d24",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>No 6am departures unless you want one. Days start when you start.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "7d3b7b7",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-journeys"
+			},
+			"elements": [
+				{
+					"id": "6e1abde",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "573d477",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Current journeys",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "faaff37",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Journeys couples travel most",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "1fef4aa",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Live from the catalogue — a starting point to shape, not a menu to pick from. Price confirmed on request.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "4f70c65",
+							"elType": "widget",
+							"widgetType": "bt-tour-grid",
+							"settings": {
+								"wpistic_taxonomy": "tour_category",
+								"wpistic_term": "honeymoon",
+								"wpistic_count": 6,
+								"wpistic_columns": "3",
+								"wpistic_columns_tablet": "2",
+								"wpistic_columns_mobile": "1"
+							},
+							"elements": []
+						},
+						{
+							"id": "c59b3c8",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this grid filters tour_category = \"honeymoon\". Confirm that term slug exists in WordPress — if it does not, the grid renders \"No tours match this filter yet\" instead of journeys.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "3c72ea3",
+							"elType": "widget",
+							"widgetType": "button",
+							"settings": {
+								"text": "See all journeys",
+								"link": {
+									"url": "/tours/",
+									"is_external": "",
+									"nofollow": "",
+									"custom_attributes": ""
+								},
+								"_css_classes": "btn"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "8534721",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-destinations"
+			},
+			"elements": [
+				{
+					"id": "9a1dda3",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "b87a72d",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Where this goes",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "9fbf4d5",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Where honeymoons tend to go",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "954d4df",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Most journeys combine two or three of these.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "07b6b1e",
+							"elType": "widget",
+							"widgetType": "icon-list",
+							"settings": {
+								"view": "traditional",
+								"icon_list": [
+									{
+										"_id": "c898593",
+										"text": "Luang Prabang — the UNESCO-listed old town, temples and the Mekong",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "ea891bf",
+										"text": "Nong Khiaw and the Nam Ou — river, limestone and near-total quiet",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "6dc299e",
+										"text": "The Mekong — private boat days and slow river travel",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "7b6adf4",
+										"text": "Si Phan Don (4,000 Islands) — the southern river, hammock pace",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "be595f2",
+										"text": "The Bolaven Plateau — cool highlands, coffee and waterfalls",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									}
+								],
+								"_css_classes": "bt-landing-places"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "817ecea",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-planning"
+			},
+			"elements": [
+				{
+					"id": "4bf8829",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "7745dcf",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning guide",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "26414dd",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning a honeymoon in Laos",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "11d9052",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 32,
+									"column": "32",
+									"row": "32",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-planning__grid"
+							},
+							"elements": [
+								{
+									"id": "08db36f",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "3a77772",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How long",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "8433328",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Seven to twelve nights is the range that works. Under a week and it becomes a tour; beyond twelve nights most couples add a beach elsewhere in the region.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "96d8a74",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "8b1ff6e",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "When to go",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "e91b198",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>November to February is dry and cool, and the most popular. March to May is hot. The green season, roughly June to October, is quieter and dramatic, with warm rain that usually falls in the afternoon rather than all day.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "8c7fb43",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "12c1589",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How many places",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "1adcbd9",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Two or three. Every additional destination costs a half-day of travel that would otherwise be yours.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "fc7cefd",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "03f83d2",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Getting around",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "f512c4f",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Private transfers throughout, private boat on river sections, and short flights or the railway where a drive would eat a day.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "47fdadd",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "cf946de",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Guide time",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "a0072f3",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>A guide for what benefits from one, and none for what does not. You choose the balance; most couples land near half.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "97597e4",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "86f447a",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Celebrations",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "ac0b259",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Anniversaries, proposals and quiet dinners can be arranged. Tell us and it is handled without turning into a performance.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						},
+						{
+							"id": "9f39f07",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — confirm which specific properties Brother Tours currently works with before naming any hotel, and confirm what honeymoon extras (private dining, in-room arrangements, transfers) are actually offered and at what cost.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "df578c6",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-resource"
+			},
+			"elements": [
+				{
+					"id": "a264bb1",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "c45ee95",
+							"elType": "widget",
+							"widgetType": "shortcode",
+							"settings": {
+								"shortcode": "[bt_resource_download id=\"honeymoon-guide\"]"
+							},
+							"elements": []
+						},
+						{
+							"id": "b6cd938",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this renders the \"honeymoon-guide\" guide. It stays invisible to visitors until a PDF is attached via the btrd_resources filter — see the Brother Tours Resource Downloads plugin README.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "99260e8",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-navy bt-landing-insight"
+			},
+			"elements": [
+				{
+					"id": "67cfef6",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 20,
+							"column": "20",
+							"row": "20",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "715b7fc",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Ken's note",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "59472fc",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>The honeymoons that go wrong are the over-planned ones. Couples arrive exhausted from a wedding and are handed a schedule that starts at seven.</p>\n<p>So we design the first two days almost empty. Sleep, eat well, walk somewhere beautiful without a plan. The journey proper starts on day three, and by then you actually want it.</p>",
+								"_css_classes": "bt-landing-insight__body"
+							},
+							"elements": []
+						},
+						{
+							"id": "2be48ae",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Ken FJ Her — founder, Brother Tours. Licensed Lao National Tour Guide since 2010; founded Brother Tours in 2018.</p>",
+								"_css_classes": "bt-landing-insight__attribution"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "e5d19c6",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-process"
+			},
+			"elements": [
+				{
+					"id": "90ff5d0",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "ffe7363",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "How Brother Tours plans it",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "1f28cf4",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Five steps, one conversation",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "6064d61",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<ol class=\"bt-landing-steps\"><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">01</span><span class=\"bt-landing-step__title\">Tell us about your trip</span><span class=\"bt-landing-step__body\">Dates, pace, who is travelling, what you want the days to feel like.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">02</span><span class=\"bt-landing-step__title\">Brother Tours designs the journey</span><span class=\"bt-landing-step__body\">A route built around your answers, not assembled from a package shelf.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">03</span><span class=\"bt-landing-step__title\">Review and refine</span><span class=\"bt-landing-step__body\">Change anything. Most journeys go through two or three rounds before they settle.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">04</span><span class=\"bt-landing-step__title\">Human confirmation</span><span class=\"bt-landing-step__body\">Every element is confirmed with the people who will actually deliver it.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">05</span><span class=\"bt-landing-step__title\">Travel Laos</span><span class=\"bt-landing-step__body\">Your guide, your driver, your itinerary — and someone reachable in Vientiane throughout.</span></li></ol>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "fc09ecc",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-faq-section"
+			},
+			"elements": [
+				{
+					"id": "b447ecf",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "d7fc998",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Questions",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "32874dd",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Honeymoons in Laos — common questions",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "d12c3b5",
+							"elType": "widget",
+							"widgetType": "accordion",
+							"settings": {
+								"tabs": [
+									{
+										"_id": "20648b9",
+										"tab_title": "Do you sell honeymoon packages?",
+										"tab_content": "<p>No. Journeys are designed around the two people travelling. Price is confirmed on request once the itinerary is settled.</p>"
+									},
+									{
+										"_id": "3e9061e",
+										"tab_title": "How many nights should we plan?",
+										"tab_content": "<p>Seven to twelve, usually across two or three destinations. Fewer places, longer in each.</p>"
+									},
+									{
+										"_id": "85cad34",
+										"tab_title": "Is Laos a good honeymoon destination?",
+										"tab_content": "<p>If you want quiet, landscape and genuine privacy, yes. If you want beach resorts and nightlife, it pairs better as the first half of a trip that ends elsewhere in the region.</p>"
+									},
+									{
+										"_id": "314711e",
+										"tab_title": "Will we have a guide with us all the time?",
+										"tab_content": "<p>Only where you want one. Guide-free time is part of the design.</p>"
+									},
+									{
+										"_id": "1dea52a",
+										"tab_title": "Can we combine Laos with another country?",
+										"tab_content": "<p>Yes — Laos-led routes into Vietnam, Cambodia or Thailand are common. See our Indochina journeys.</p>"
+									},
+									{
+										"_id": "a2a64df",
+										"tab_title": "When is the best time of year?",
+										"tab_content": "<p>November to February for dry, cool weather. The green season is quieter and greener, with afternoon rain.</p>"
+									}
+								],
+								"title_html_tag": "h3",
+								"_css_classes": "bt-landing-faq"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "3b536d5",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-related tight"
+			},
+			"elements": [
+				{
+					"id": "5c686a3",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 16,
+							"column": "16",
+							"row": "16",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "7833b92",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Keep reading",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "59be777",
+							"elType": "widget",
+							"widgetType": "icon-list",
+							"settings": {
+								"view": "traditional",
+								"icon_list": [
+									{
+										"_id": "3dfcdc3",
+										"text": "Private luxury travel in Laos",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/luxury-laos-tours/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "dbd8f05",
+										"text": "Laos + Indochina journeys",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/indochina-tours/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "079b0a5",
+										"text": "When to visit Laos",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/when-to-visit/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "cc0c7ef",
+										"text": "All destinations",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									}
+								],
+								"_css_classes": "bt-landing-related__links"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "851d8d5",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "bt-landing-invitation"
+			},
+			"elements": [
+				{
+					"id": "659d98f",
+					"elType": "widget",
+					"widgetType": "bt-build-my-trip-cta",
+					"settings": {
+						"wpistic_context": "Honeymoon"
+					},
+					"elements": []
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": {
+		"template": "elementor_header_footer"
+	},
+	"metadata": {}
+}

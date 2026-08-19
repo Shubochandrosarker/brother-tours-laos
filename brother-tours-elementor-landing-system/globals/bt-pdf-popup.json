@@ -1,0 +1,29 @@
+{
+	"version": "0.4",
+	"title": "BT – PDF Download Popup (see plugin)",
+	"type": "section",
+	"content": [
+		{
+			"id": "6447ff4",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section tight bt-landing-note"
+			},
+			"elements": [
+				{
+					"id": "82383db",
+					"elType": "widget",
+					"widgetType": "html",
+					"settings": {
+						"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — the download popup is not an Elementor template. It is implemented once in the Brother Tours Resource Downloads plugin and appears automatically on any page whose resource has a PDF attached. Trigger timing is tuned via the btrd_trigger_config filter; content comes from the btrd_resources registry. Nothing needs to be inserted into a page.</p>"
+					},
+					"elements": []
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": [],
+	"metadata": {}
+}

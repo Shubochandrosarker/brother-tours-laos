@@ -10,7 +10,7 @@ define('ABSPATH', '/tmp/');
 define('BTOA_DIR', $argv[1] . '/');
 define('BTOA_NAMESPACE', 'bridgistic/v1');
 define('BTOA_SESSION_COOKIE', 'bt_ops_session');
-define('BTOA_VERSION', '1.1.0');
+define('BTOA_VERSION', '1.1.1');
 define('HOUR_IN_SECONDS', 3600);
 define('MINUTE_IN_SECONDS', 60);
 define('BTOA_SESSION_TTL', 12 * 3600);
@@ -67,4 +67,53 @@ foreach ($controllers as $short) {
 echo "\n--- registered routes ---\n";
 foreach ($GLOBALS['routes'] as $r) echo "  $r\n";
 printf("\n%d routes across %d controllers\n", count($GLOBALS['routes']), count($controllers));
+
+/*
+ * Collision guard.
+ *
+ * Two plugins share the bridgistic/v1 namespace: this one and the Bridgistic
+ * connector. WordPress does not treat that as an error. register_route()
+ * array_merges a second registration into the first, and dispatch() takes the
+ * first handler whose methods match — so whichever plugin loads earlier
+ * silently answers every request for a shared path. The connector loads first.
+ *
+ * This cost us a live media library: /media registered cleanly, activated
+ * cleanly, and returned "Missing authentication headers" to the dashboard,
+ * because the request never reached this plugin at all.
+ *
+ * The paths below are connector-owned, confirmed by a rest_get_server()
+ * ->get_routes() read against production on 19 Aug 2026. Registering any of
+ * them here produces a route that looks registered and is not.
+ *
+ * The real fix is a namespace of our own (bt-ops/v2). Until that ships, this
+ * turns a silent outage into a failing test.
+ */
+$connector_owned = [
+    '/execute', '/db/query',
+    '/fs/read', '/fs/write', '/fs/list', '/fs/delete',
+    '/snapshot', '/snapshot/restore', '/snapshot/delete',
+    '/system/health', '/site-info',
+    '/posts', '/media', '/users', '/options', '/plugins', '/plugins/toggle',
+    '/woo/products', '/woo/orders', '/woo/customers', '/woo/inventory', '/woo/sales-summary',
+];
+
+echo "\n--- namespace collision guard ---\n";
+$collisions = 0;
+foreach ($GLOBALS['routes'] as $r) {
+    // "GET bridgistic/v1/content/media" -> "/content/media"
+    $path = substr((string) strstr($r, BTOA_NAMESPACE), strlen(BTOA_NAMESPACE));
+    // A path with a capture group can only collide as its literal prefix.
+    $base = (string) strstr($path, '/(?P', true) ?: $path;
+    $base = rtrim($base, '/');
+    if (in_array($base, $connector_owned, true)) {
+        echo "FAIL  $base is registered by the Bridgistic connector; this route is unreachable\n";
+        $collisions++;
+    }
+}
+if (0 === $collisions) {
+    printf("PASS  no route collides with the %d known connector paths\n", count($connector_owned));
+} else {
+    $fail = 1;
+}
+
 exit($fail);

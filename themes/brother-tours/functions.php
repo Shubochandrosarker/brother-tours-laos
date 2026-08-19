@@ -114,7 +114,74 @@ function brother_tours_enqueue() {
 		$version,
 		true
 	);
+
+	if ( brother_tours_is_landing_template() ) {
+		wp_enqueue_style(
+			'brother-tours-landing',
+			get_stylesheet_directory_uri() . '/assets/css/bt-landing.css',
+			array( 'brother-tours-style' ),
+			$version
+		);
+	}
 }
+
+/* =============================================================================
+ * Elementor landing templates
+ *
+ * Support for the template kit in brother-tours-elementor-landing-system/.
+ * The stylesheet is small, but a page that does not use a landing template
+ * should not pay for it at all, so it loads only where the Elementor document
+ * actually contains one of its classes.
+ * ========================================================================== */
+
+/**
+ * Whether the current singular view was built from a Brother Tours landing
+ * template.
+ *
+ * Elementor stores its document in the `_elementor_data` postmeta as JSON, so
+ * the class names the templates carry are present in that string. Checking for
+ * the namespace prefix is enough and costs one meta read that is already in
+ * the object cache by the time styles are enqueued.
+ *
+ * @return bool
+ */
+function brother_tours_is_landing_template() {
+	if ( ! is_singular() ) {
+		return false;
+	}
+
+	$post_id = get_queried_object_id();
+	if ( ! $post_id ) {
+		return false;
+	}
+
+	$data = get_post_meta( $post_id, '_elementor_data', true );
+	if ( ! is_string( $data ) || '' === $data ) {
+		return false;
+	}
+
+	return false !== strpos( $data, 'bt-landing-' );
+}
+
+/**
+ * Reveals the REQUIRES BUSINESS VERIFICATION notes to an editor viewing the
+ * published page.
+ *
+ * The notes are display:none for visitors and visible inside the Elementor
+ * editor. This adds the third case: someone with edit rights reading the live
+ * page, who can then see what still needs confirming without opening the
+ * builder. Visitors and logged-out crawlers never match this.
+ *
+ * @param array $classes Body classes.
+ * @return array
+ */
+function brother_tours_landing_body_class( $classes ) {
+	if ( brother_tours_is_landing_template() && current_user_can( 'edit_posts' ) ) {
+		$classes[] = 'bt-show-verify';
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'brother_tours_landing_body_class' );
 
 /* =============================================================================
  * Light / dark mode default

@@ -1,0 +1,87 @@
+{
+	"version": "0.4",
+	"title": "BT – FAQ Accordion",
+	"type": "section",
+	"content": [
+		{
+			"id": "310dece",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-faq-section"
+			},
+			"elements": [
+				{
+					"id": "6d471dd",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "3a8a6a4",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Questions",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "1f05203",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Frequently asked",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "5f393a4",
+							"elType": "widget",
+							"widgetType": "accordion",
+							"settings": {
+								"tabs": [
+									{
+										"_id": "f5739a6",
+										"tab_title": "First question",
+										"tab_content": "<p>Answer. Keep it to two or three sentences.</p>"
+									},
+									{
+										"_id": "972ba3a",
+										"tab_title": "Second question",
+										"tab_content": "<p>Answer.</p>"
+									},
+									{
+										"_id": "684fe03",
+										"tab_title": "Third question",
+										"tab_content": "<p>Answer.</p>"
+									}
+								],
+								"title_html_tag": "h3",
+								"_css_classes": "bt-landing-faq"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": [],
+	"metadata": {}
+}

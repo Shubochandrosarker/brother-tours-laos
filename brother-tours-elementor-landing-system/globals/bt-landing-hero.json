@@ -1,0 +1,279 @@
+{
+	"version": "0.4",
+	"title": "BT – Landing Hero",
+	"type": "section",
+	"content": [
+		{
+			"id": "ad8a8b7",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-hero"
+			},
+			"elements": [
+				{
+					"id": "3242768",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "f3eaf54",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_direction_tablet": "column",
+								"flex_align_items": "flex-start",
+								"flex_gap": {
+									"unit": "px",
+									"size": 56,
+									"column": "56",
+									"row": "56",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-row"
+							},
+							"elements": [
+								{
+									"id": "9e367af",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__copy"
+									},
+									"elements": [
+										{
+											"id": "b213295",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Eyebrow",
+												"header_size": "p",
+												"_css_classes": "eyebrow"
+											},
+											"elements": []
+										},
+										{
+											"id": "74c451e",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Page heading",
+												"header_size": "h1",
+												"_css_classes": "hero-v2-h1"
+											},
+											"elements": []
+										},
+										{
+											"id": "da93144",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>One-line positioning statement.</p>",
+												"_css_classes": "hero-v2-lede"
+											},
+											"elements": []
+										},
+										{
+											"id": "4305b97",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Two or three sentences saying what this page offers and who it is for.</p>",
+												"_css_classes": "hero-v2-sub"
+											},
+											"elements": []
+										},
+										{
+											"id": "dc05fa3",
+											"elType": "widget",
+											"widgetType": "icon-list",
+											"settings": {
+												"view": "inline",
+												"icon_list": [
+													{
+														"_id": "4789e96",
+														"text": "Lao-led",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "113a714",
+														"text": "Private journeys",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "82405d7",
+														"text": "Licensed local guides",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													}
+												],
+												"_css_classes": "bt-landing-badges"
+											},
+											"elements": []
+										},
+										{
+											"id": "89bf513",
+											"elType": "container",
+											"settings": {
+												"content_width": "full",
+												"flex_direction": "row",
+												"flex_direction_tablet": "column",
+												"flex_align_items": "center",
+												"flex_gap": {
+													"unit": "px",
+													"size": 14,
+													"column": "14",
+													"row": "14",
+													"isLinked": true
+												},
+												"_css_classes": "bt-landing-row bt-landing-ctas"
+											},
+											"elements": [
+												{
+													"id": "484809b",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Build My Trip",
+														"link": {
+															"url": "/build-my-trip/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn btn--primary"
+													},
+													"elements": []
+												},
+												{
+													"id": "ff953d4",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Message Brother Tours",
+														"link": {
+															"url": "/contact/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn"
+													},
+													"elements": []
+												}
+											],
+											"isInner": false
+										},
+										{
+											"id": "2a8a612",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — the secondary hero CTA points at /contact/. Swap the href to the WhatsApp link if this page should open WhatsApp directly — the Final Invitation section at the foot of the page already uses the configured number.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "34bbb1e",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__media"
+									},
+									"elements": [
+										{
+											"id": "d9dc5ba",
+											"elType": "widget",
+											"widgetType": "image",
+											"settings": {
+												"image": {
+													"url": "",
+													"id": "",
+													"alt": "Hero image for this page",
+													"source": "library",
+													"size": ""
+												},
+												"image_size": "large",
+												"_css_classes": "bt-landing-hero__image"
+											},
+											"elements": []
+										},
+										{
+											"id": "f637fb5",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — choose the hero image from the media library. Suggested subject: Hero image for this page. Do not reuse legacy stock or Picsum placeholders.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": [],
+	"metadata": {}
+}
