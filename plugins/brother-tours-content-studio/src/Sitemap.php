@@ -87,3 +87,4 @@ final class Sitemap {
 		return $out . '</urlset>';
 	}
 }
+

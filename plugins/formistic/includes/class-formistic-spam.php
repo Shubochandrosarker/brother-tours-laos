@@ -297,7 +297,7 @@ class Wpistic_Formistic_Spam {
 		if ( ! is_object( $wpdb ) || ! method_exists( $wpdb, 'get_var' ) ) {
 			return true;
 		}
-		return 1 === (int) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, %d)', self::lock_name( $key ), max( 0, $timeout ) ) );
+		return 1 === (int) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, %d)', 'formistic_rl_lock_' . $key, max( 0, $timeout ) ) );
 	}
 
 	private static function release_lock( $key ) {
@@ -305,15 +305,7 @@ class Wpistic_Formistic_Spam {
 		if ( ! is_object( $wpdb ) || ! method_exists( $wpdb, 'get_var' ) ) {
 			return;
 		}
-		$wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', self::lock_name( $key ) ) );
-	}
-
-	/**
-	 * MySQL and MariaDB cap advisory-lock names at 64 characters. Hash the
-	 * transient key so the lock is stable without inheriting its full length.
-	 */
-	private static function lock_name( $key ) {
-		return 'formistic_rl_' . substr( hash( 'sha256', (string) $key ), 0, 50 );
+		$wpdb->get_var( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', 'formistic_rl_lock_' . $key ) );
 	}
 
 	/**

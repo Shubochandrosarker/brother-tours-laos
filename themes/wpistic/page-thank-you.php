@@ -18,7 +18,7 @@ get_header();
 	<p>Your request is with our team in Vientiane. We reply within 24 hours — designed to you, no pressure, no upselling.</p>
 	<div class="final-btns">
 		<a class="btn btn-solid" href="<?php echo esc_url( home_url( '/' ) ); ?>">Back to home</a>
-		<a class="btn btn-ghost on-dark" href="<?php echo esc_url( home_url( '/travel-guide/' ) ); ?>">Read the travel guide</a>
+		<a class="btn btn-ghost on-dark" href="<?php echo esc_url( home_url( '/laos-travel-guide/' ) ); ?>">Read the travel guide</a>
 	</div>
 </section>
 

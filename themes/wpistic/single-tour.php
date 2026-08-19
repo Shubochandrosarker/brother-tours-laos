@@ -28,34 +28,32 @@ while ( have_posts() ) :
 	$wpistic_cap   = get_post_meta( $wpistic_id, 'wpistic_departures_label', true );
 	$wpistic_from  = get_post_meta( $wpistic_id, 'wpistic_from_price', true );
 	$wpistic_dur   = get_post_meta( $wpistic_id, 'wpistic_duration', true );
-	$wpistic_start  = (string) get_post_meta( $wpistic_id, 'wpistic_start_location', true );
-	$wpistic_end    = (string) get_post_meta( $wpistic_id, 'wpistic_end_location', true );
-	$wpistic_styles = wp_get_post_terms( $wpistic_id, 'travel_style', array( 'fields' => 'names' ) );
-	$wpistic_style  = is_wp_error( $wpistic_styles ) ? '' : implode( ', ', $wpistic_styles );
+	$wpistic_route = get_post_meta( $wpistic_id, 'wpistic_route', true );
 	$wpistic_glance = array(
-		array( 'label' => 'Duration', 'value' => $wpistic_dur ),
-		array( 'label' => 'Start', 'value' => $wpistic_start ),
-		array( 'label' => 'End', 'value' => $wpistic_end ),
-		array( 'label' => 'Style', 'value' => $wpistic_style ),
-		array( 'label' => 'Group', 'value' => get_post_meta( $wpistic_id, 'wpistic_group_size', true ) ),
-		array( 'label' => 'Best season', 'value' => get_post_meta( $wpistic_id, 'wpistic_season', true ) ),
+		array( 'label' => 'Duration', 'value' => $wpistic_dur ? $wpistic_dur : '—' ),
+		array( 'label' => 'Start', 'value' => get_post_meta( $wpistic_id, 'wpistic_start', true ) ?: 'Vientiane' ),
+		array( 'label' => 'End', 'value' => get_post_meta( $wpistic_id, 'wpistic_end', true ) ?: 'Luang Prabang' ),
+		array( 'label' => 'Style', 'value' => get_post_meta( $wpistic_id, 'wpistic_style', true ) ?: 'Private, hosted' ),
+		array( 'label' => 'Group', 'value' => get_post_meta( $wpistic_id, 'wpistic_group_size', true ) ?: 'Private' ),
+		array( 'label' => 'Best season', 'value' => get_post_meta( $wpistic_id, 'wpistic_season', true ) ?: 'Nov – Feb' ),
 	);
-	$wpistic_glance = array_values( array_filter( $wpistic_glance, static fn( array $item ): bool => '' !== trim( (string) $item['value'] ) ) );
 	?>
-	<?php $wpistic_tour_hero = has_post_thumbnail() ? get_the_post_thumbnail_url( $wpistic_id, 'bt-hero' ) : ''; ?>
+	<?php $wpistic_tour_hero = has_post_thumbnail() ? get_the_post_thumbnail_url( $wpistic_id, 'bt-hero' ) : wpistic_demo_img( 'hero-southern' ); ?>
 	<section class="page-hero">
 		<?php if ( $wpistic_tour_hero ) : ?>
 			<div class="page-hero__bg" aria-hidden="true"><img src="<?php echo esc_url( $wpistic_tour_hero ); ?>" alt="" fetchpriority="high"></div>
 		<?php endif; ?>
 		<div class="wrap">
 			<?php wpistic_breadcrumbs(); ?>
-			<?php if ( ! is_wp_error( $wpistic_styles ) && $wpistic_styles ) : ?>
-				<div class="hero-tags"><?php foreach ( $wpistic_styles as $wpistic_style_name ) : ?><span class="tag"><?php echo esc_html( $wpistic_style_name ); ?></span><?php endforeach; ?></div>
-			<?php endif; ?>
+			<div class="hero-tags">
+				<span class="tag">Private</span>
+				<span class="tag">Founder-led</span>
+			</div>
 			<h1><?php the_title(); ?></h1>
 			<div class="tour-meta-row">
 				<?php if ( $wpistic_dur ) : ?><span><?php echo esc_html( $wpistic_dur ); ?></span><span class="dot" aria-hidden="true"></span><?php endif; ?>
-				<?php if ( '' !== $wpistic_start && '' !== $wpistic_end ) : ?><span><?php echo esc_html( $wpistic_start . ' → ' . $wpistic_end ); ?></span><span class="dot" aria-hidden="true"></span><?php endif; ?>
+				<span><?php echo esc_html( $wpistic_glance[1]['value'] . ' → ' . $wpistic_glance[2]['value'] ); ?></span>
+				<span class="dot" aria-hidden="true"></span>
 				<span class="price"><?php echo esc_html( wpistic_price_line( $wpistic_from ) ); ?></span>
 			</div>
 		</div>
@@ -65,14 +63,14 @@ while ( have_posts() ) :
 		<div class="wrap">
 			<div class="tour-layout">
 				<div class="tour-main">
-					<?php if ( $wpistic_glance ) : ?><div class="glance six">
+					<div class="glance six">
 						<?php foreach ( $wpistic_glance as $wpistic_g ) : ?>
 							<div class="glance-item">
 								<p class="glance-label"><?php echo esc_html( $wpistic_g['label'] ); ?></p>
 								<p class="glance-value"><?php echo esc_html( $wpistic_g['value'] ); ?></p>
 							</div>
 						<?php endforeach; ?>
-					</div><?php endif; ?>
+					</div>
 
 					<?php if ( get_the_content() ) : ?>
 						<h2 class="block-title"><em>Overview</em>.</h2>
@@ -81,9 +79,17 @@ while ( have_posts() ) :
 
 					<?php
 					$wpistic_highlights = get_post_meta( $wpistic_id, 'wpistic_highlights', true );
-					$wpistic_highlights = is_array( $wpistic_highlights ) ? array_filter( $wpistic_highlights ) : array();
+					if ( ! is_array( $wpistic_highlights ) || empty( $wpistic_highlights ) ) {
+						$wpistic_highlights = array(
+							'A private welcome from your host on the first evening.',
+							'Two slow days on the river, by boat where the road would rush you.',
+							'A named village homestay, with a weaving lesson at the loom.',
+							'A cooking class in a family kitchen, not a hotel.',
+							'Morning light over the karst country, before the day begins.',
+							'A farewell meal your host plans around you.',
+						);
+					}
 					?>
-					<?php if ( $wpistic_highlights ) : ?>
 					<h2 class="block-title">Moments you'll <em>remember</em>.</h2>
 					<div class="highlights">
 						<?php foreach ( $wpistic_highlights as $wpistic_hi => $wpistic_h ) : ?>
@@ -93,13 +99,18 @@ while ( have_posts() ) :
 							</div>
 						<?php endforeach; ?>
 					</div>
-					<?php endif; ?>
 
-					<?php $wpistic_days = get_post_meta( $wpistic_id, 'wpistic_itinerary', true ); ?>
-					<?php if ( is_array( $wpistic_days ) && $wpistic_days ) : ?>
 					<h2 class="block-title">Day by <em>day</em>.</h2>
 					<div class="itinerary">
 						<?php
+						$wpistic_days = get_post_meta( $wpistic_id, 'wpistic_itinerary', true );
+						if ( ! is_array( $wpistic_days ) || empty( $wpistic_days ) ) {
+							$wpistic_days = array(
+								array( 'title' => 'Arrival in Vientiane', 'body' => 'Met by your host. An easy first evening by the river.' ),
+								array( 'title' => 'North by road and water', 'body' => 'The country opens up — villages reached by boat, not by bus.' ),
+								array( 'title' => 'Into the highlands', 'body' => 'Weaving houses, named hosts, a meal in a family kitchen.' ),
+							);
+						}
 						foreach ( $wpistic_days as $wpistic_n => $wpistic_day ) :
 							?>
 							<details class="itin-day"<?php echo 0 === $wpistic_n ? ' open' : ''; ?>>
@@ -111,26 +122,36 @@ while ( have_posts() ) :
 							</details>
 						<?php endforeach; ?>
 					</div>
-					<?php endif; ?>
 
-					<?php
-					$wpistic_inclusions = get_post_meta( $wpistic_id, 'wpistic_inclusions', true );
-					$wpistic_exclusions = get_post_meta( $wpistic_id, 'wpistic_exclusions', true );
-					$wpistic_inclusions = is_array( $wpistic_inclusions ) ? array_filter( $wpistic_inclusions ) : array();
-					$wpistic_exclusions = is_array( $wpistic_exclusions ) ? array_filter( $wpistic_exclusions ) : array();
-					?>
-					<?php if ( $wpistic_inclusions || $wpistic_exclusions ) : ?>
 					<h2 class="block-title">What's <em>included</em>.</h2>
+					<?php
+					$wpistic_incl = get_post_meta( $wpistic_id, 'wpistic_inclusions', true );
+					$wpistic_excl = get_post_meta( $wpistic_id, 'wpistic_exclusions', true );
+					if ( ! is_array( $wpistic_incl ) || ! $wpistic_incl ) {
+						$wpistic_incl = array( 'Licensed Lao host throughout', 'Private transfers and boats', 'Meals named in your itinerary' );
+					}
+					if ( ! is_array( $wpistic_excl ) || ! $wpistic_excl ) {
+						$wpistic_excl = array( 'International flights', 'Travel insurance', 'Personal spending' );
+					}
+					?>
 					<div class="incl-grid">
-						<?php if ( $wpistic_inclusions ) : ?><div class="incl-list"><?php foreach ( $wpistic_inclusions as $wpistic_item ) : ?><div class="row"><span class="incl-mark">✓</span><?php echo esc_html( $wpistic_item ); ?></div><?php endforeach; ?></div><?php endif; ?>
-						<?php if ( $wpistic_exclusions ) : ?><div class="incl-list"><?php foreach ( $wpistic_exclusions as $wpistic_item ) : ?><div class="row"><span class="incl-mark no">–</span><?php echo esc_html( $wpistic_item ); ?></div><?php endforeach; ?></div><?php endif; ?>
+						<div class="incl-list">
+							<?php foreach ( $wpistic_incl as $wpistic_line ) : ?>
+								<div class="row"><span class="incl-mark">✓</span><?php echo esc_html( $wpistic_line ); ?></div>
+							<?php endforeach; ?>
+						</div>
+						<div class="incl-list">
+							<?php foreach ( $wpistic_excl as $wpistic_line ) : ?>
+								<div class="row"><span class="incl-mark no">–</span><?php echo esc_html( $wpistic_line ); ?></div>
+							<?php endforeach; ?>
+						</div>
 					</div>
-					<?php endif; ?>
 
 					<?php
-					$wpistic_route_list = array_values( array_filter( array( $wpistic_start, $wpistic_end ) ) );
+					// No invented routes: the strip only renders when this tour has real route data.
+					$wpistic_route_list = is_array( $wpistic_route ) && $wpistic_route ? $wpistic_route : array();
+					if ( $wpistic_route_list ) :
 					?>
-					<?php if ( count( $wpistic_route_list ) > 1 ) : ?>
 					<h2 class="block-title">The <em>route</em>.</h2>
 					<div class="route-strip">
 						<?php
@@ -145,28 +166,48 @@ while ( have_posts() ) :
 					</div>
 					<?php endif; ?>
 
-					<?php $wpistic_gallery = get_post_meta( $wpistic_id, 'wpistic_gallery', true ); ?>
-					<?php if ( is_array( $wpistic_gallery ) && $wpistic_gallery ) : ?>
 					<h2 class="block-title"><em>Gallery</em>.</h2>
 					<div class="gallery-grid">
-						<?php foreach ( array_slice( $wpistic_gallery, 0, 8 ) as $wpistic_gid ) : ?>
-							<div class="cell"><?php echo wp_get_attachment_image( absint( $wpistic_gid ), 'bt-gallery', false, array( 'loading' => 'lazy' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-						<?php endforeach; ?>
+						<?php
+						$wpistic_gallery = get_post_meta( $wpistic_id, 'wpistic_gallery', true );
+						if ( is_array( $wpistic_gallery ) && $wpistic_gallery ) {
+							foreach ( array_slice( $wpistic_gallery, 0, 8 ) as $wpistic_gid ) {
+								echo '<div class="cell">' . wp_get_attachment_image( absint( $wpistic_gid ), 'bt-gallery', false, array( 'loading' => 'lazy' ) ) . '</div>';
+							}
+						} else {
+							for ( $wpistic_i = 0; $wpistic_i < 8; $wpistic_i++ ) {
+								echo '<div class="cell"></div>';
+							}
+						}
+						?>
 					</div>
-					<?php endif; ?>
 
-					<?php $wpistic_faq = get_post_meta( $wpistic_id, 'wpistic_faq', true ); ?>
-					<?php if ( is_array( $wpistic_faq ) && $wpistic_faq ) : ?>
 					<h2 class="block-title">Common <em>questions</em>.</h2>
-					<div class="faq">
-						<?php foreach ( $wpistic_faq as $wpistic_index => $wpistic_item ) : ?><details class="faq-item"<?php echo 0 === $wpistic_index ? ' open' : ''; ?>><summary class="faq-q"><?php echo esc_html( $wpistic_item['q'] ?? '' ); ?></summary><div class="faq-a"><?php echo esc_html( $wpistic_item['a'] ?? '' ); ?></div></details><?php endforeach; ?>
-					</div>
-					<?php endif; ?>
+					<?php
+					$wpistic_tour_faq = get_post_meta( $wpistic_id, 'wpistic_faq', true );
+					if ( ! is_array( $wpistic_tour_faq ) || ! $wpistic_tour_faq ) {
+						$wpistic_tour_faq = array(
+							array( 'q' => 'Is this a private journey?', 'a' => 'Yes. Every Brother Tours journey is private and hosted personally.' ),
+						);
+					}
+					echo '<div class="faq">';
+					$wpistic_fq_first = true;
+					foreach ( $wpistic_tour_faq as $wpistic_fq ) {
+						printf(
+							'<details class="faq-item"%1$s><summary class="faq-q">%2$s</summary><div class="faq-a">%3$s</div></details>',
+							$wpistic_fq_first ? ' open' : '',
+							esc_html( $wpistic_fq['q'] ?? '' ),
+							esc_html( $wpistic_fq['a'] ?? '' )
+						);
+						$wpistic_fq_first = false;
+					}
+					echo '</div>';
+					?>
 				</div>
 
 				<aside class="booking-aside">
 					<p class="price"><?php echo esc_html( wpistic_price_line( $wpistic_from ) ); ?></p>
-					<?php if ( $wpistic_cap ) : ?><p class="cap"><?php echo esc_html( $wpistic_cap ); ?></p><?php endif; ?>
+					<p class="cap"><?php echo esc_html( $wpistic_cap ? $wpistic_cap : __( 'Each journey runs a fixed number of times each year. By design.', 'wpistic' ) ); ?></p>
 
 					<?php
 					if ( shortcode_exists( 'wpistic_booking_widget' ) ) {
@@ -177,12 +218,17 @@ while ( have_posts() ) :
 							<a class="btn btn-navy" href="<?php echo esc_url( add_query_arg( 'tour', rawurlencode( get_the_title() ), wpistic_cta_url() ) ); ?>"><?php esc_html_e( 'Request Itinerary', 'wpistic' ); ?></a>
 							<a class="btn btn-green" href="<?php echo esc_url( wpistic_whatsapp_url( 'Hello — I would like to ask about the ' . get_the_title() . ' journey.' ) ); ?>" rel="noopener"><?php esc_html_e( 'Ask on WhatsApp', 'wpistic' ); ?></a>
 						</div>
+						<div class="ba-check">
+							<div class="row"><?php esc_html_e( 'Free cancellation up to 30 days', 'wpistic' ); ?></div>
+							<div class="row"><?php esc_html_e( 'No payment until your itinerary is approved', 'wpistic' ); ?></div>
+							<div class="row"><?php esc_html_e( 'Private — never shared with strangers', 'wpistic' ); ?></div>
+							<div class="row"><?php esc_html_e( 'Founder-led, Ken-reviewed', 'wpistic' ); ?></div>
+						</div>
 						<?php
 					}
 					?>
 
-					<?php $wpistic_host_name = trim( (string) wpistic_opt( 'hero_host_name', '' ) ); ?>
-					<?php if ( $wpistic_host_name ) : ?><div class="ba-host">
+					<div class="ba-host">
 						<span class="ba-host-avatar">
 							<?php
 							$wpistic_host_id = absint( wpistic_opt( 'hero_host_image', 0 ) );
@@ -192,10 +238,10 @@ while ( have_posts() ) :
 							?>
 						</span>
 						<span>
-							<span class="ba-host-name"><?php echo esc_html( $wpistic_host_name ); ?></span><br>
-							<span class="ba-host-role"><?php esc_html_e( 'Brother Tours team', 'wpistic' ); ?></span>
+							<span class="ba-host-name"><?php echo esc_html( wpistic_opt( 'hero_host_name', 'Ken FJ Her' ) ); ?></span><br>
+							<span class="ba-host-role"><?php esc_html_e( 'Your host · usually replies within a day', 'wpistic' ); ?></span>
 						</span>
-					</div><?php endif; ?>
+					</div>
 
 					<p class="secondary">
 						<?php esc_html_e( 'Not quite right?', 'wpistic' ); ?><br>

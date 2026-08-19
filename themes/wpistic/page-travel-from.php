@@ -77,7 +77,7 @@ $wpistic_routes = array(
 				wpistic_tour_card(
 					array(
 						'name'      => $wpistic_tour['name'],
-						'url'       => home_url( '/tour/' . $wpistic_tour['slug'] . '/' ),
+						'url'       => home_url( '/tours/' . $wpistic_tour['slug'] . '/' ),
 						'region'    => 'Laos',
 						'meta'      => $wpistic_tour['meta'],
 						'blurb'     => $wpistic_tour['blurb'],
@@ -118,7 +118,7 @@ $wpistic_routes = array(
 
 <section class="section section-sand reveal">
 	<div class="wrap">
-		<div class="section-head center"><span class="eyebrow center">From our American guests</span><h2 class="sec-h2">In their <em>words</em>.</h2><p class="sec-lead">Read guest notes on Google and TripAdvisor.</p></div>
+		<div class="section-head center"><span class="eyebrow center">From our American guests</span><h2 class="sec-h2">In their <em>words</em>.</h2><p class="sec-lead">Consistently top-rated on Google and TripAdvisor.</p></div>
 		<div class="reviews-grid">
 			<?php foreach ( wpistic_sample_reviews() as $wpistic_review ) : ?>
 				<div class="review-card reveal">

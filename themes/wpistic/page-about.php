@@ -152,7 +152,7 @@ $wpistic_ken  = wpistic_demo_img( 'ken-portrait' );
 		<div class="section-head center">
 			<span class="eyebrow center">Guest Reviews</span>
 			<h2 class="sec-h2">Read what guests have <em>written</em>.</h2>
-			<p class="sec-lead">Read guest notes on Google and TripAdvisor.</p>
+			<p class="sec-lead">Consistently top-rated on Google and TripAdvisor.</p>
 		</div>
 		<?php wpistic_review_links(); ?>
 	</div>

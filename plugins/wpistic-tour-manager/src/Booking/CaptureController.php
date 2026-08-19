@@ -88,13 +88,7 @@ final class CaptureController {
 		);
 
 		$id      = $this->bookings->create( $data );
-		if ( $id <= 0 ) {
-			return new WP_Error( 'wpistic_booking_not_saved', __( 'Your request could not be saved. Please try again.', 'wpistic-tour-manager' ), array( 'status' => 500 ) );
-		}
 		$booking = $this->bookings->get( $id );
-		if ( ! is_array( $booking ) ) {
-			return new WP_Error( 'wpistic_booking_not_found', __( 'Your request could not be confirmed. Please try again.', 'wpistic-tour-manager' ), array( 'status' => 500 ) );
-		}
 
 		do_action( 'wpistic/notify', array( 'event' => 'inquiry.created', 'booking' => $booking ) );
 		$this->connections->dispatch( 'inquiry.created', (array) $booking );

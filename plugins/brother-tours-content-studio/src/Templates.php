@@ -53,3 +53,4 @@ final class Templates {
 		return $content;
 	}
 }
+

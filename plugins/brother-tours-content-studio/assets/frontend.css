@@ -15,7 +15,7 @@
 .bt-cs-button{display:inline-flex;align-items:center;gap:.7rem;border:1px solid currentColor;padding:.9rem 1.2rem;text-decoration:none;font-weight:600;transition:transform .2s ease,background-color .2s ease,color .2s ease}
 .bt-cs-button:hover,.bt-cs-button:focus-visible{transform:translateY(-2px);outline:3px solid color-mix(in srgb,var(--bt-cs-gold),transparent 45%);outline-offset:3px}
 .bt-cs-button--primary{background:var(--bt-cs-green);border-color:var(--bt-cs-green);color:#fff}.bt-cs-button--primary:hover,.bt-cs-button--primary:focus-visible{background:#14472d;color:#fff}
-.bt-cs-button--secondary{background:transparent;color:inherit}.bt-cs-button--secondary:hover,.bt-cs-button--secondary:focus-visible{background:var(--bt-cs-sand);color:var(--bt-cs-ink)}
+.bt-cs-button--secondary{background:transparent;color:inherit}.bt-cs-button--secondary:hover,.bt-cs-button--secondary:focus-visible{background:var(--bt-sand);color:var(--bt-cs-ink)}
 .bt-cs-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid color-mix(in srgb,var(--bt-cs-ink),transparent 80%);padding-block:1.5rem}
 .bt-cs-fact{display:grid;gap:.25rem;padding:1rem;border-right:1px solid color-mix(in srgb,var(--bt-cs-ink),transparent 80%)}.bt-cs-fact:last-child{border-right:0}.bt-cs-fact strong{font:500 clamp(1.5rem,3vw,2.5rem)/1 Georgia,serif}.bt-cs-fact span{color:var(--bt-cs-muted);font-size:.9rem}
 .bt-cs-tour-grid,.bt-cs-destination-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}.bt-cs-tour-grid--list{grid-template-columns:1fr}

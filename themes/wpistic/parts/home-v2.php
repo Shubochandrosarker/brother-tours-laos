@@ -87,7 +87,7 @@ $wpistic_ken  = wpistic_demo_img( 'ken-portrait' );
 				wpistic_tour_card(
 					array(
 						'name'      => $wpistic_tour['name'],
-						'url'       => home_url( '/tour/' . $wpistic_tour['slug'] . '/' ),
+						'url'       => home_url( '/tours/' . $wpistic_tour['slug'] . '/' ),
 						'region'    => 'Laos',
 						'meta'      => $wpistic_tour['meta'],
 						'blurb'     => $wpistic_tour['blurb'],
@@ -129,7 +129,7 @@ $wpistic_ken  = wpistic_demo_img( 'ken-portrait' );
 		<div class="section-head center">
 			<span class="eyebrow center">Guest Reviews</span>
 			<h2 class="sec-h2">What our guests have <em>said</em>.</h2>
-			<p class="sec-lead">Read guest notes on Google and TripAdvisor.</p>
+			<p class="sec-lead">Consistently top-rated on Google and TripAdvisor.</p>
 		</div>
 		<div class="reviews-grid">
 			<?php foreach ( wpistic_sample_reviews() as $wpistic_review ) : ?>

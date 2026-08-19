@@ -141,7 +141,7 @@ while ( have_posts() ) :
 						wpistic_tour_card(
 							array(
 								'name'      => $wpistic_tour['name'],
-								'url'       => home_url( '/tour/' . $wpistic_tour['slug'] . '/' ),
+								'url'       => home_url( '/tours/' . $wpistic_tour['slug'] . '/' ),
 								'region'    => $wpistic_tag ? $wpistic_tag : 'Laos',
 								'meta'      => $wpistic_tour['meta'],
 								'blurb'     => $wpistic_tour['blurb'],
@@ -169,6 +169,12 @@ while ( have_posts() ) :
 						array( 'Respect the alms ceremony.', 'Stand quiet and at a distance. We brief you privately the morning of.' ),
 						array( 'Carry small kip notes.', 'Village markets rarely break large notes.' ),
 					);
+					/**
+					 * Filter the per-destination field notes.
+					 * @param array $wpistic_notes Array of [ title, body ] pairs.
+					 * @param int   $post_id       Destination post ID.
+					 */
+					$wpistic_notes = apply_filters( 'wpistic_destination_field_notes', $wpistic_notes, get_the_ID() );
 					foreach ( $wpistic_notes as $wpistic_ni => $wpistic_note ) :
 						?>
 						<div class="note-row">
@@ -179,12 +185,37 @@ while ( have_posts() ) :
 				</div>
 				<div>
 					<div class="section-head"><span class="eyebrow">Good to know</span><h2 class="sec-h2">Travelers frequently <em>ask</em>.</h2></div>
-					<div class="faq">
+					<?php
+					/**
+					 * Filter the destination FAQ block.
+					 * Return an array of [ 'q' => ..., 'a' => ... ] to replace the defaults,
+					 * or an empty array to hide the section.
+					 */
+					$wpistic_faq = apply_filters( 'wpistic_destination_faq', array(), get_the_ID() );
+					if ( ! empty( $wpistic_faq ) && is_array( $wpistic_faq ) ) :
+						echo '<div class="faq">';
+						$wpistic_first = true;
+						foreach ( $wpistic_faq as $wpistic_item ) {
+							printf(
+								'<details class="faq-item"%1$s><summary class="faq-q">%2$s</summary><div class="faq-a">%3$s</div></details>',
+								$wpistic_first ? ' open' : '',
+								esc_html( $wpistic_item['q'] ),
+								esc_html( $wpistic_item['a'] )
+							);
+							$wpistic_first = false;
+						}
+						echo '</div>';
+					else :
+						?>
+						<div class="faq">
 						<details class="faq-item" open><summary class="faq-q">Is this region safe for travelers?</summary><div class="faq-a">Yes. Laos is a calm, welcoming country. Your host is with you throughout.</div></details>
 						<details class="faq-item"><summary class="faq-q">How many days do I need here?</summary><div class="faq-a">Seven to fourteen days lets the region unfold at its own pace.</div></details>
 						<details class="faq-item"><summary class="faq-q">What is the best month to visit?</summary><div class="faq-a">November to February is cool and dry; the green season brings fewer travelers and lower light.</div></details>
 						<details class="faq-item"><summary class="faq-q">Can I combine it with another region?</summary><div class="faq-a">Yes — we design north-to-south journeys and cross-border routes on request.</div></details>
 					</div>
+						<?php
+					endif;
+					?>
 				</div>
 			</div>
 		</div>

@@ -24,7 +24,7 @@ final class InsightisticController
             array(
                 'methods'             => 'GET',
                 'callback'            => array($this, 'get'),
-                'permission_callback' => static fn(WP_REST_Request $request) => Csrf::authorize($request, 'bt_view_health', false),
+                'permission_callback' => static fn(WP_REST_Request $request) => Csrf::authorize($request, 'edit_posts', false),
             )
         );
     }

@@ -565,10 +565,6 @@ class Wpistic_Formistic_Capture {
 	 * @return bool
 	 */
 	public static function send_internal( $to, $subject, $body, $headers = [], $attach = [] ) {
-		if ( ( defined( 'WPISTIC_FORMISTIC_EMAIL_DISABLED' ) && WPISTIC_FORMISTIC_EMAIL_DISABLED )
-			|| ( defined( 'WPCF_EMAIL_DISABLED' ) && WPCF_EMAIL_DISABLED ) ) {
-			return false;
-		}
 		$prev = self::$sending_internal;
 		self::$sending_internal = true;
 		$ok = wp_mail( $to, $subject, $body, $headers, $attach );

@@ -51,11 +51,7 @@ final class Plugin {
 			( new Admin\AdminAssets() )->register();
 			( new Admin\Dashboard( $bookings, $connections ) )->register();
 			( new Admin\Bookings( $bookings, $gateways, $connections ) )->register();
-			/*
-			 * ContentSeeder contains an unapproved legacy catalog and is intentionally
-			 * quarantined. It must not be exposed until the owner approves the verified
-			 * facts and migration map required by the production release brief.
-			 */
+			( new Admin\ContentSeeder() )->register();
 			( new Admin\SiteSeeder( $connections ) )->register();
 		}
 

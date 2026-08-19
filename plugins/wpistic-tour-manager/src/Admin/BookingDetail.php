@@ -440,8 +440,6 @@ final class BookingDetail {
 				$result = $this->bookings->send_deposit_link( $id, $gateway );
 				if ( $result ) {
 					set_transient( 'wpistic_tm_link_' . $id, array( 'label' => __( 'Deposit payment link', 'wpistic-tour-manager' ), 'url' => $result->redirectUrl, 'instructions' => $result->instructions ), 600 );
-				} else {
-					set_transient( 'wpistic_tm_notice_' . $id, __( 'Deposit link could not be generated. The booking state was not changed.', 'wpistic-tour-manager' ), 600 );
 				}
 			}
 		}

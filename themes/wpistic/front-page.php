@@ -190,8 +190,8 @@ $wpistic_host_src = $wpistic_host_id ? wp_get_attachment_image_url( $wpistic_hos
 		<div class="sec-head-row">
 			<div class="section-head">
 				<span class="eyebrow">Signature Journeys</span>
-				<h2 class="sec-h2">Each journey runs a fixed number of times each <em>year</em>. By design.</h2>
-				<p class="sec-lead">Small numbers, hosted personally, held to one standard.</p>
+				<h2 class="sec-h2">Each runs a fixed number of times each <em>year</em>.</h2>
+				<p class="sec-lead">By design. Small numbers, hosted personally, held to one standard.</p>
 			</div>
 			<a class="btn-link" href="<?php echo esc_url( home_url( '/tours/' ) ); ?>"><?php esc_html_e( 'View all journeys', 'wpistic' ); ?> <span class="arr" aria-hidden="true">→</span></a>
 		</div>
@@ -231,7 +231,7 @@ $wpistic_host_src = $wpistic_host_id ? wp_get_attachment_image_url( $wpistic_hos
 		<div class="section-head center">
 			<span class="eyebrow center">Guest Reviews</span>
 			<h2 class="sec-h2">What our guests have <em>said</em>.</h2>
-			<p class="sec-lead">Read guest notes on Google and TripAdvisor.</p>
+			<p class="sec-lead">Consistently top-rated on Google and TripAdvisor.</p>
 		</div>
 		<?php
 		$wpistic_embed = function_exists( 'wpistic_reviews_embed' ) ? wpistic_reviews_embed() : '';
@@ -259,7 +259,7 @@ $wpistic_host_src = $wpistic_host_id ? wp_get_attachment_image_url( $wpistic_hos
 				<span class="eyebrow">The Journal</span>
 				<h2 class="sec-h2">Latest from the <em>Journal</em>.</h2>
 			</div>
-			<a class="btn-link" href="<?php echo esc_url( home_url( '/travel-guide/' ) ); ?>"><?php esc_html_e( 'All field notes', 'wpistic' ); ?> <span class="arr" aria-hidden="true">→</span></a>
+			<a class="btn-link" href="<?php echo esc_url( home_url( '/laos-travel-guide/' ) ); ?>"><?php esc_html_e( 'All field notes', 'wpistic' ); ?> <span class="arr" aria-hidden="true">→</span></a>
 		</div>
 		<div class="journal-grid">
 			<?php
@@ -287,7 +287,7 @@ $wpistic_host_src = $wpistic_host_id ? wp_get_attachment_image_url( $wpistic_hos
 				foreach ( wpistic_sample_journal() as $wpistic_jx => $wpistic_j ) :
 					$wpistic_jsrc = wpistic_demo_img( $wpistic_jimg[ $wpistic_jx % count( $wpistic_jimg ) ] );
 					?>
-					<a class="journal-card reveal" href="<?php echo esc_url( home_url( '/travel-guide/' ) ); ?>">
+					<a class="journal-card reveal" href="<?php echo esc_url( home_url( '/laos-travel-guide/' ) ); ?>">
 						<div class="journal-thumb"><?php if ( $wpistic_jsrc ) { printf( '<img src="%s" alt="" loading="lazy">', esc_url( $wpistic_jsrc ) ); } ?></div>
 						<span class="journal-cat"><?php echo esc_html( $wpistic_j['cat'] ); ?></span>
 						<h3 class="journal-title"><?php echo esc_html( $wpistic_j['title'] ); ?></h3>
