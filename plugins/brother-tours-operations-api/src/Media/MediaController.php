@@ -18,6 +18,18 @@ use function BrotherTours\OperationsApi\response;
  * The plugin README says to use the core wp/v2 media API for uploads. That is
  * wrong for this dashboard and will 401: determine_current_user() only resolves
  * the operations session for URIs inside BTOA_NAMESPACE, so wp/v2 sees user 0.
+ *
+ * The routes below live under /content/media, not /media, and that is not a
+ * matter of taste. Two plugins share the bridgistic/v1 namespace: this one and
+ * the Bridgistic connector, which registers /media and /media/{id} of its own.
+ * WP_REST_Server::register_route() array_merges a second registration into the
+ * first rather than rejecting it, and dispatch() takes the first handler whose
+ * methods match — so the connector, loading earlier, answered every request the
+ * dashboard made here and rejected it with "Missing authentication headers",
+ * demanding the HMAC headers of a plane the browser must never carry.
+ *
+ * Nothing errored. The route simply belonged to someone else. /content/* is
+ * already proven clear by the sibling content routes, so media joins them.
  */
 final class MediaController {
 
@@ -37,7 +49,7 @@ final class MediaController {
 	public function routes(): void {
 		register_rest_route(
 			BTOA_NAMESPACE,
-			'/media',
+			'/content/media',
 			array(
 				array(
 					'methods'             => 'GET',
@@ -53,7 +65,7 @@ final class MediaController {
 		);
 		register_rest_route(
 			BTOA_NAMESPACE,
-			'/media/(?P<id>\d+)',
+			'/content/media/(?P<id>\d+)',
 			array(
 				array(
 					'methods'             => 'GET',

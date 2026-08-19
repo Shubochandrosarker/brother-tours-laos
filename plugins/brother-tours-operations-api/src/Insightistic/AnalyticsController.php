@@ -98,7 +98,7 @@ final class AnalyticsController {
 	/* ---------------------------------------------------------------- status */
 
 	public function status( WP_REST_Request $request ) {
-		$cached = get_transient( 'bt_ops_analytics_status' );
+		$cached = get_transient( 'bt_ops_analytics_status_v2' );
 		if ( is_array( $cached ) ) {
 			return response( array_merge( $cached, array( 'cached' => true ) ) );
 		}
@@ -109,14 +109,31 @@ final class AnalyticsController {
 				'active'  => $active,
 				'version' => defined( 'INSIGHTISTIC_VERSION' ) ? INSIGHTISTIC_VERSION : null,
 			),
-			// Booleans only. Never the values behind them.
+			/*
+			 * Booleans only. Never the values behind them.
+			 *
+			 * These key names are read from Insightistic 4.4.0 rather than
+			 * guessed at, because guessing produced a dashboard that reported
+			 * "Not configured" while real GA4 channel data was flowing through
+			 * the panel directly underneath it:
+			 *
+			 *   class-insightistic-auth.php:32-35  api_email + api_private_key
+			 *   class-insightistic-ga.php:60       insightistic_property_id
+			 *   class-insightistic-gsc.php:45      insightistic_gsc_property_url
+			 *
+			 * GA4 needs both halves of the service account. A private key with
+			 * no client email fails at get_access_token() with missing_creds,
+			 * so reporting it as configured would only move the confusion.
+			 */
 			'ga4'          => array(
-				'configured' => $this->has_option( 'insightistic_api_private_key' ) && $this->has_option( 'insightistic_ga4_property_id' ),
-				'propertyId' => ( (string) get_option( 'insightistic_ga4_property_id', '' ) ) ?: null,
+				'configured' => $this->has_option( 'insightistic_api_private_key' )
+					&& $this->has_option( 'insightistic_api_email' )
+					&& $this->has_option( 'insightistic_property_id' ),
+				'propertyId' => ( (string) get_option( 'insightistic_property_id', '' ) ) ?: null,
 			),
 			'gsc'          => array(
-				'configured' => $this->has_option( 'insightistic_gsc_property' ),
-				'property'   => (string) get_option( 'insightistic_gsc_property', '' ),
+				'configured' => $this->has_option( 'insightistic_gsc_property_url' ),
+				'property'   => (string) get_option( 'insightistic_gsc_property_url', '' ),
 			),
 			'pagespeed'    => array(
 				'configured' => $this->has_option( 'insightistic_pagespeed_api_key_enc' ),
@@ -129,7 +146,7 @@ final class AnalyticsController {
 		);
 
 		$status = $this->scrub( $status );
-		set_transient( 'bt_ops_analytics_status', $status, self::TTL_STATUS );
+		set_transient( 'bt_ops_analytics_status_v2', $status, self::TTL_STATUS );
 
 		return response( $status );
 	}

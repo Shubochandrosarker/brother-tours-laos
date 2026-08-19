@@ -138,8 +138,8 @@ Optional query:
 
 Tour REST fields map to the exact Brother Tours 2.0 metadata already used by WPistic Tour Manager, including itinerary, FAQ, inclusions/exclusions, pricing and deposit override data.
 
-Use `POST /media` in this namespace for uploads, then provide the attachment ID
-as `featuredMedia`.
+Use `POST /content/media` in this namespace for uploads, then provide the
+attachment ID as `featuredMedia`.
 
 > Do **not** use the core `wp/v2` media API from the dashboard. `SessionController::determine_current_user()`
 > only resolves the operations session for request URIs containing `/bridgistic/v1/`,
@@ -341,14 +341,22 @@ plain text field destroys the layout.
 Send the record's `modifiedGmt` back on PATCH for optimistic concurrency; the
 server returns 409 if it changed underneath you.
 
-### Media (1.1.0)
+### Media (1.1.1)
 
 | Method | Route | Capability |
 |---|---|---|
-| GET, POST | `/media` | `upload_files` |
-| GET, PATCH, DELETE | `/media/{id}` | `upload_files` / `delete_posts` |
+| GET, POST | `/content/media` | `upload_files` |
+| GET, PATCH, DELETE | `/content/media/{id}` | `upload_files` / `delete_posts` |
 
-`POST /media` takes `multipart/form-data` with a `file` part, plus optional
+> **Not `/media`.** The Bridgistic connector plugin registers `/media` in this
+> same namespace. WordPress merges the two registrations instead of rejecting
+> them, and the earlier-loading plugin wins dispatch — so `/media` here looked
+> registered, activated without complaint, and answered the dashboard with
+> "Missing authentication headers" from the connector's HMAC plane. See
+> `tests/verify-routes.php` for the guard that now prevents a repeat, and
+> "Namespace sharing" below.
+
+`POST /content/media` takes `multipart/form-data` with a `file` part, plus optional
 `title`, `alt` and `caption`. Type is detected from the file itself and checked
 against both an explicit allowlist and the current user's permitted types. SVG
 is refused. 16 MB ceiling.
@@ -396,6 +404,46 @@ status five minutes.
 
 Read-only. Activation, updates and user creation stay in wp-admin.
 
+## Namespace sharing — read before adding a route
+
+This plugin does not own `bridgistic/v1`. The **Bridgistic connector plugin**
+registers into the same namespace, and WordPress treats that as legal:
+
+```php
+// WP_REST_Server::register_route()
+$this->endpoints[ $route ] = array_merge( $this->endpoints[ $route ], $route_args );
+```
+
+Two plugins registering the same path produce one route with both sets of
+handlers appended, and `dispatch()` takes the **first** handler whose methods
+match. The connector loads earlier, so on any shared path the connector answers
+and this plugin never runs. No warning, no error, no log line.
+
+That is not hypothetical. Version 1.1.0 shipped `/media` and the live media
+library returned **"Missing authentication headers"** — the connector's HMAC
+plane rejecting a browser that correctly carried a session cookie instead. The
+route was registered, active, and unreachable. Fixed in 1.1.1 by moving to
+`/content/media`.
+
+**Before adding a route, run the test.** `tests/verify-routes.php` carries the
+list of connector-owned paths confirmed against production and fails the build
+on a collision:
+
+```bash
+php tests/verify-routes.php .
+```
+
+Prefix new routes with a group this plugin already owns — `/content/*`,
+`/analytics/*`, `/site/*`, `/auth/session/*`, `/inbox/*`, `/reports/*` — rather
+than claiming a bare noun. Bare nouns are where the connector lives.
+
+The permanent fix is a namespace of this plugin's own (`bt-ops/v2`), which also
+requires updating `SessionController::determine_current_user()` — it resolves
+the operations session only for request URIs containing `/bridgistic/v1/` — and
+the dashboard's `VITE_BT_API_BASE` in the same deploy. Until those move
+together, the guard above is what stands between a new route and a silent
+outage.
+
 ## Capabilities
 
 `Csrf::authorize( $request, $capability, $write )` enforces the capability, and
@@ -405,7 +453,7 @@ CSRF on top of it when `$write` is true. Routes do not share one capability:
 |---|---|
 | Operations reads and writes (tours, bookings, inbox, connections, reports, team) | `bt_manage_operations` |
 | Health, analytics and site overview reads | `bt_view_health` |
-| Content and media (`/content/*`, `/media`) | `edit_posts` / `upload_files` |
+| Content and media (`/content/*`) | `edit_posts` / `upload_files` |
 | Deletion | the relevant WordPress delete capability |
 | Plugin, user and cron reads, and running PageSpeed | `manage_options` |
 
