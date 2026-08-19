@@ -200,9 +200,12 @@ function brother_tours_footer_menus( $menus, $location ) {
 			$r['build'] => __( 'Build My Trip', 'brother-tours' ),
 		),
 		'footer-destinations' => array(
-			'/northern-laos/' => __( 'Northern Laos', 'brother-tours' ),
-			'/central-laos/'  => __( 'Central Laos', 'brother-tours' ),
-			'/southern-laos/' => __( 'Southern Laos', 'brother-tours' ),
+			'/destinations/northern-laos/'    => __( 'Northern Laos', 'brother-tours' ),
+			'/destinations/southern-laos/'    => __( 'Southern Laos', 'brother-tours' ),
+			'/destinations/luang-prabang/'    => __( 'Luang Prabang', 'brother-tours' ),
+			'/destinations/vientiane/'        => __( 'Vientiane', 'brother-tours' ),
+			'/destinations/plain-of-jars/'    => __( 'Plain of Jars', 'brother-tours' ),
+			'/destinations/bolaven-plateau/'  => __( 'Bolaven Plateau', 'brother-tours' ),
 		),
 		'footer-company'      => array(
 			$r['about']   => __( 'About', 'brother-tours' ),
@@ -211,11 +214,12 @@ function brother_tours_footer_menus( $menus, $location ) {
 			$r['contact'] => __( 'Contact', 'brother-tours' ),
 		),
 		'footer-practical'    => array(
-			$r['visa']          => __( 'Visa Service', 'brother-tours' ),
-			'/personal-tour-guide/' => __( 'Personal Tour Guide', 'brother-tours' ),
-			'/laos-private-driver/' => __( 'Private Driver', 'brother-tours' ),
+			$r['faq']           => __( 'FAQ', 'brother-tours' ),
+			$r['visa']          => __( 'Visa Guide', 'brother-tours' ),
+			$r['when_to_visit'] => __( 'When to Visit', 'brother-tours' ),
+			$r['privacy']       => __( 'Privacy', 'brother-tours' ),
 			$r['terms']         => __( 'Terms', 'brother-tours' ),
-			'/services/'        => __( 'Services', 'brother-tours' ),
+			$r['cancellation']  => __( 'Cancellation', 'brother-tours' ),
 		),
 	);
 }

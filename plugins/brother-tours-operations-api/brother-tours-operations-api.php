@@ -3,7 +3,7 @@
  * Plugin Name:       Brother Tours Operations API
  * Plugin URI:        https://brothertours.com/
  * Description:       Secure REST operations bridge for the Brother Tours Horizons management app. Reuses WPistic Tour Manager, Formistic, and WordPress as the source of truth.
- * Version:           3.0.0
+ * Version:           1.1.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            WordPressistic
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BTOA_VERSION', '3.0.0' );
+define( 'BTOA_VERSION', '1.1.0' );
 define( 'BTOA_FILE', __FILE__ );
 define( 'BTOA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BTOA_NAMESPACE', 'bridgistic/v1' );
@@ -124,6 +124,10 @@ add_action(
 		( new Reports\ReportsController() )->register();
 		( new Team\TeamController() )->register();
 		( new Insightistic\InsightisticController() )->register();
+		( new Insightistic\AnalyticsController() )->register();
+		( new Content\ContentController() )->register();
+		( new Media\MediaController() )->register();
+		( new System\SiteController() )->register();
 		( new System\HealthController() )->register();
 	},
 	30
@@ -141,10 +145,10 @@ add_action(
 		}
 		$missing = array();
 		if ( ! class_exists( '\\Wpistic\\TourManager\\Booking\\BookingService' ) ) {
-			$missing[] = 'WPistic Tour Manager 3.0+';
+			$missing[] = 'WPistic Tour Manager 2.0+';
 		}
 		if ( ! class_exists( '\\Wpistic_Formistic_Database' ) ) {
-			$missing[] = 'Formistic 3.0+';
+			$missing[] = 'Formistic 2.0+';
 		}
 		if ( $missing ) {
 			echo '<div class="notice notice-warning"><p><strong>' . esc_html__( 'Brother Tours Operations API:', 'brother-tours-operations-api' ) . '</strong> ';

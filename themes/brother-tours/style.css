@@ -5,7 +5,7 @@ Template: wpistic
 Author: WordPressistic
 Author URI: https://wordpressistic.com
 Description: Brother Tours child theme — locks the premium Brother Tours design on top of the WPistic parent. Born Here. Guide Here.
-Version: 3.0.0
+Version: 2.5.1
 Requires at least: 6.4
 Requires PHP: 8.1
 License: GNU General Public License v2 or later
@@ -33,4 +33,62 @@ Text Domain: brother-tours
 	font-size: 2.25rem;
 	line-height: 1.2;
 	color: var(--ink);
+}
+
+/* ===========================================================================
+ * Ghost button hover — contrast repair
+ * ===========================================================================
+ *
+ * The WPistic parent (themes/wpistic/style.css) applies a solid gold fill to
+ * EVERY button on hover:
+ *
+ *     .btn:hover, .btn:focus-visible { background: var(--gold-fill); color: var(--on-gold); }
+ *
+ * Its ghost variants then override only the text colour and never reset that
+ * inherited background:
+ *
+ *     .btn-ghost:hover                                    { color: var(--gold); }
+ *     .on-dark .btn-ghost:hover, .btn-ghost.on-dark:hover { color: var(--gold-soft); }
+ *
+ * So a ghost button hovers to gold text on a gold ground and the label
+ * disappears:
+ *
+ *     dark  — #D8BE8B on #C9A96E ≈ 1.19:1
+ *     light — #835D1E on #C9A050 ≈ 2.44:1
+ *
+ * Both fail WCAG AA (4.5:1). Affects "See Our Journeys" in the hero and
+ * "WhatsApp Brother Tours" in the closing CTA — the two secondary conversion
+ * paths on the homepage.
+ *
+ * A ghost button is transparent by definition, so the fix resets the
+ * background the parent leaked in. A ~10% gold wash keeps the hover legible as
+ * a state change without reintroducing the fill. `background: transparent` is
+ * declared first as the fallback for engines without color-mix(); those keep
+ * the resting transparency and stay fully readable either way.
+ *
+ * Restored contrast:
+ *
+ *     dark  — #D8BE8B on #0E100D ≈ 11.2:1
+ *     light — #835D1E on #FAF6EC ≈ 6.0:1
+ *
+ * Fixed in the child theme, not the parent: WPistic is a reusable presentation
+ * base shipped to more than one site and must stay untouched.
+ * ========================================================================= */
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+	background: transparent;
+	background: color-mix(in srgb, var(--gold) 10%, transparent);
+	border-color: var(--gold);
+	color: var(--gold);
+}
+
+.on-dark .btn-ghost:hover,
+.on-dark .btn-ghost:focus-visible,
+.btn-ghost.on-dark:hover,
+.btn-ghost.on-dark:focus-visible {
+	background: transparent;
+	background: color-mix(in srgb, var(--gold-soft) 12%, transparent);
+	border-color: var(--gold-soft);
+	color: var(--gold-soft);
 }

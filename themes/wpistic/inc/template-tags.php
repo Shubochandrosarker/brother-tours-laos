@@ -414,7 +414,7 @@ function wpistic_primary_menu_fallback() {
 			'/destinations/'  => __( 'Destinations', 'wpistic' ),
 			'/tours/'         => __( 'Tours', 'wpistic' ),
 			'/about/'         => __( 'About', 'wpistic' ),
-			'/travel-guide/' => __( 'Travel Guide', 'wpistic' ),
+			'/laos-travel-guide/' => __( 'Travel Guide', 'wpistic' ),
 			'/contact/'       => __( 'Contact', 'wpistic' ),
 		)
 	);
@@ -433,10 +433,10 @@ function wpistic_primary_menu_fallback() {
 function wpistic_footer_menu_fallback( $args ) {
 	$location = isset( $args->theme_location ) ? $args->theme_location : '';
 	$menus = array(
-		'footer-journeys' => array( '/tours/' => __( 'All Tours', 'wpistic' ), '/northern-laos/' => __( 'Northern Laos', 'wpistic' ), '/central-laos/' => __( 'Central Laos', 'wpistic' ), '/southern-laos/' => __( 'Southern Laos', 'wpistic' ) ),
-		'footer-destinations' => array( '/destinations/' => __( 'All Destinations', 'wpistic' ), '/northern-laos/' => __( 'Northern Laos', 'wpistic' ), '/central-laos/' => __( 'Central Laos', 'wpistic' ), '/southern-laos/' => __( 'Southern Laos', 'wpistic' ) ),
-		'footer-company' => array( '/about/' => __( 'About', 'wpistic' ), '/travel-guide/' => __( 'Travel Guide', 'wpistic' ), '/contact/' => __( 'Contact', 'wpistic' ) ),
-		'footer-practical' => array( '/laos-visa/' => __( 'Visa Service', 'wpistic' ), '/personal-tour-guide/' => __( 'Personal Tour Guide', 'wpistic' ), '/laos-private-driver/' => __( 'Private Driver', 'wpistic' ), '/terms-and-conditions/' => __( 'Terms and Conditions', 'wpistic' ) ),
+		'footer-journeys' => array( '/tours/' => __( 'All Tours', 'wpistic' ), '/tour-category/signature-tours/' => __( 'Signature Tours', 'wpistic' ), '/tour-category/one-day-tours/' => __( 'One-Day Tours', 'wpistic' ), '/tour-category/adventure-tours/' => __( 'Adventure Tours', 'wpistic' ), '/plan-my-laos-trip/' => __( 'Custom Tours', 'wpistic' ) ),
+		'footer-destinations' => array( '/destinations/' => __( 'All Destinations', 'wpistic' ), '/region/northern-laos/' => __( 'Northern Laos', 'wpistic' ), '/region/central-laos/' => __( 'Central Laos', 'wpistic' ), '/region/southern-laos/' => __( 'Southern Laos', 'wpistic' ) ),
+		'footer-company' => array( '/about/' => __( 'About', 'wpistic' ), '/laos-travel-guide/' => __( 'Travel Guide', 'wpistic' ), '/contact/' => __( 'Contact', 'wpistic' ), '/plan-my-laos-trip/' => __( 'Plan My Trip', 'wpistic' ) ),
+		'footer-practical' => array( '/booking-conditions/' => __( 'Booking Conditions', 'wpistic' ), '/cancellation-policy/' => __( 'Cancellation Policy', 'wpistic' ), '/privacy-policy/' => __( 'Privacy Policy', 'wpistic' ), '/terms-and-conditions/' => __( 'Terms and Conditions', 'wpistic' ) ),
 	);
 	/**
 	 * Filter the fallback footer menus.
@@ -579,7 +579,7 @@ function wpistic_home_tours( $limit = 6 ) {
 		foreach ( array_slice( wpistic_sample_tours(), 0, (int) $limit ) as $i => $sample ) {
 			$out[] = array(
 				'name'      => $sample['name'],
-				'url'       => home_url( '/tour/' . $sample['slug'] . '/' ),
+				'url'       => home_url( '/tours/' . $sample['slug'] . '/' ),
 				'region'    => 'Laos',
 				'meta'      => $sample['meta'],
 				'blurb'     => $sample['blurb'],

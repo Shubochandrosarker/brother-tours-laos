@@ -237,7 +237,7 @@ final class Notifier {
 	}
 
 	private function send( string $to, string $subject, string $html ): bool {
-		if ( '' === $to || ( defined( 'WPISTIC_FORMISTIC_EMAIL_DISABLED' ) && WPISTIC_FORMISTIC_EMAIL_DISABLED ) ) {
+		if ( '' === $to ) {
 			return false;
 		}
 

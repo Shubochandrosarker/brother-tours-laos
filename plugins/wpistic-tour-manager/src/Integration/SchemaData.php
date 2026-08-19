@@ -23,36 +23,22 @@ final class SchemaData {
 	 */
 	public function tour( $data, $post_id ) {
 		$post_id = (int) $post_id;
-		$data    = (array) $data;
-		unset( $data['offers'] );
-		$schema  = array_merge(
-			$data,
+		return array_merge(
+			(array) $data,
 			array(
 				'@type'       => 'TouristTrip',
 				'name'        => get_the_title( $post_id ),
 				'description' => get_the_excerpt( $post_id ),
 				'url'         => get_permalink( $post_id ),
+				'offers'      => array(
+					'@type'         => 'Offer',
+					'priceCurrency' => (string) get_option( 'wpistic_tm_currency', 'USD' ),
+					'price'         => (string) get_post_meta( $post_id, 'wpistic_from_price', true ),
+					'availability'  => 'https://schema.org/LimitedAvailability',
+					'url'           => get_permalink( $post_id ),
+				),
 			)
 		);
-
-		/*
-		 * Commercial schema must mirror visible, authoritative data. An empty or
-		 * non-numeric price is an inquiry-only tour, so no Offer is emitted. The
-		 * plugin deliberately omits availability: a departure/inventory source has
-		 * to provide that signal rather than this integration guessing it.
-		 */
-		$price    = trim( (string) get_post_meta( $post_id, 'wpistic_from_price', true ) );
-		$currency = strtoupper( trim( (string) get_option( 'wpistic_tm_currency', '' ) ) );
-		if ( is_numeric( $price ) && (float) $price > 0 && 1 === preg_match( '/^[A-Z]{3}$/', $currency ) ) {
-			$schema['offers'] = array(
-				'@type'         => 'Offer',
-				'priceCurrency' => $currency,
-				'price'         => $price,
-				'url'           => get_permalink( $post_id ),
-			);
-		}
-
-		return $schema;
 	}
 
 	/**

@@ -52,11 +52,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 				'footer-company'      => __( 'The Company', 'wpistic' ),
 				'footer-practical'    => __( 'Practical', 'wpistic' ),
 			);
+			/**
+			 * Filter the footer link columns.
+			 * @param array $wpistic_footer_cols theme_location => column title.
+			 */
+			$wpistic_footer_cols = apply_filters( 'wpistic_footer_columns', $wpistic_footer_cols );
 			foreach ( $wpistic_footer_cols as $wpistic_loc => $wpistic_title ) :
 				?>
 				<div class="footer-col">
 					<p class="footer-col-title"><?php echo esc_html( $wpistic_title ); ?></p>
 					<?php
+					/**
+					 * Replace a footer column's contents entirely. Return non-empty HTML to
+					 * render that instead of the assigned menu — for a contact block, say.
+					 */
+					$wpistic_custom = apply_filters( 'wpistic_footer_column_content', '', $wpistic_loc );
+					if ( '' !== $wpistic_custom ) {
+						echo wp_kses_post( $wpistic_custom );
+					} else {
 					wp_nav_menu(
 						array(
 							'theme_location' => $wpistic_loc,
@@ -66,6 +79,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							'depth'          => 1,
 						)
 					);
+					}
 					?>
 				</div>
 				<?php
@@ -93,15 +107,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					}
 				}
 				?>
-				<?php
-				$wpistic_privacy = get_page_by_path( 'privacy', OBJECT, 'page' );
-				if ( ! $wpistic_privacy ) {
-					$wpistic_privacy = get_page_by_path( 'privacy-policy', OBJECT, 'page' );
-				}
-				if ( $wpistic_privacy && 'publish' === get_post_status( $wpistic_privacy ) ) :
-					?>
-					<a href="<?php echo esc_url( get_permalink( $wpistic_privacy ) ); ?>"><?php esc_html_e( 'Privacy', 'wpistic' ); ?></a>
-				<?php endif; ?>
+				<a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><?php esc_html_e( 'Privacy', 'wpistic' ); ?></a>
 				<a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>"><?php esc_html_e( 'Terms', 'wpistic' ); ?></a>
 			</span>
 		</div>

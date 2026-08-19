@@ -2,8 +2,6 @@
 
 Gutenberg-first visual content system for the Brother Tours WordPress site.
 
-**Version:** 3.0.0
-
 ## What it provides
 
 - Twelve dynamic Gutenberg blocks under the `Brother Tours` inserter category.
@@ -36,3 +34,4 @@ Hero, Tour Collection, Destination Grid, Trust/Facts Strip, Founder Profile, Rev
 - Review schema is disabled by default and must be enabled only for genuine visible reviews.
 - The newsletter block refuses to pretend that delivery is configured when no approved provider shortcode exists.
 - Staging protection still requires Cloudflare Access or HTTP authentication; robots directives are not access control.
+

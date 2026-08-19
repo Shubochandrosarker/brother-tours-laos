@@ -10,6 +10,9 @@ final class Blocks {
 	/** @var array<int,array<string,mixed>> */
 	private array $faq_schema = array();
 
+	/** @var array<int,array<string,mixed>> */
+	private array $review_schema = array();
+
 	/** @var array<string,array<string,mixed>> */
 	private const DEFINITIONS = array(
 		'hero' => array(
@@ -18,7 +21,7 @@ final class Blocks {
 			'body'       => array( 'type' => 'string', 'default' => '' ),
 			'imageId'    => array( 'type' => 'number', 'default' => 0 ),
 			'imageUrl'   => array( 'type' => 'string', 'default' => '' ),
-			'primaryText'=> array( 'type' => 'string', 'default' => 'See our journeys' ),
+			'primaryText'=> array( 'type' => 'string', 'default' => 'Explore our journeys' ),
 			'primaryUrl' => array( 'type' => 'string', 'default' => '/tours/' ),
 			'secondaryText' => array( 'type' => 'string', 'default' => 'Build my trip' ),
 			'secondaryUrl'  => array( 'type' => 'string', 'default' => '/build-my-trip/' ),
@@ -227,6 +230,9 @@ final class Blocks {
 		$author = trim( (string) ( $a['author'] ?? '' ) );
 		$rating = min( 5, max( 0, (int) ( $a['rating'] ?? 0 ) ) );
 		if ( $quote === '' ) { return ''; }
+		if ( $rating > 0 && $author !== '' && apply_filters( 'bt_cs_emit_review_schema', false ) ) {
+			$this->review_schema[] = array( '@type' => 'Review', 'reviewBody' => wp_strip_all_tags( $quote ), 'author' => array( '@type' => 'Person', 'name' => $author ), 'reviewRating' => array( '@type' => 'Rating', 'ratingValue' => $rating, 'bestRating' => 5 ), 'itemReviewed' => array( '@type' => 'Organization', 'name' => (string) Settings::get( 'organization_name', 'Brother Tours' ) ) );
+		}
 		return '<article class="' . esc_attr( $class ) . '"><div class="bt-cs-stars" aria-label="' . esc_attr( sprintf( __( '%d out of 5 stars', 'brother-tours-content-studio' ), $rating ) ) . '">' . esc_html( $rating ? str_repeat( '★', $rating ) : '' ) . '</div><blockquote>“' . esc_html( $quote ) . '”</blockquote><cite>' . esc_html( $author ) . '</cite><span>' . esc_html( (string) ( $a['tripReference'] ?? '' ) ) . '</span></article>';
 	}
 
@@ -323,6 +329,9 @@ final class Blocks {
 		$graphs = array();
 		if ( $this->faq_schema ) {
 			$graphs[] = array( '@type' => 'FAQPage', '@id' => trailingslashit( get_permalink() ) . '#faq', 'mainEntity' => array_values( $this->faq_schema ) );
+		}
+		if ( ! empty( $this->review_schema ) ) {
+			$graphs = array_merge( $graphs, $this->review_schema );
 		}
 		if ( ! $graphs ) { return; }
 		echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@graph' => $graphs ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';

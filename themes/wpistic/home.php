@@ -27,6 +27,21 @@ $wpistic_hero = wpistic_demo_img( 'hero-laos' );
 	</div>
 </section>
 
+<?php
+/**
+ * The posts page has editor content of its own, which WordPress does not render here.
+ * Output it above the article grid so the page can carry an intro or a link block.
+ */
+$wpistic_posts_page = (int) get_option( 'page_for_posts' );
+if ( $wpistic_posts_page ) :
+	$wpistic_intro = get_post_field( 'post_content', $wpistic_posts_page );
+	if ( trim( wp_strip_all_tags( $wpistic_intro ) ) !== '' ) :
+		?><section class="section"><div class="wrap"><div class="prose prose-narrow"><?php
+		echo apply_filters( 'the_content', $wpistic_intro );
+		?></div></div></section><?php
+	endif;
+endif;
+?>
 <section class="section">
 	<div class="wrap">
 		<?php
@@ -34,7 +49,7 @@ $wpistic_hero = wpistic_demo_img( 'hero-laos' );
 		if ( $wpistic_cats ) :
 			?>
 			<div class="chip-row journal-cats">
-				<a class="chip active" href="<?php echo esc_url( home_url( '/travel-guide/' ) ); ?>"><?php esc_html_e( 'All', 'wpistic' ); ?></a>
+				<a class="chip active" href="<?php echo esc_url( home_url( '/laos-travel-guide/' ) ); ?>"><?php esc_html_e( 'All', 'wpistic' ); ?></a>
 				<?php foreach ( $wpistic_cats as $wpistic_cat ) : ?>
 					<a class="chip" href="<?php echo esc_url( get_category_link( $wpistic_cat ) ); ?>"><?php echo esc_html( $wpistic_cat->name ); ?></a>
 				<?php endforeach; ?>

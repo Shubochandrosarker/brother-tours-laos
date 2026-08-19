@@ -28,11 +28,11 @@ final class Seo {
 		$description = $this->current_meta( 'bt_seo_description' );
 		$canonical   = $this->current_meta( 'bt_seo_canonical' ) ?: ( is_singular() ? get_permalink() : '' );
 		if ( $description ) {
-			printf( '<meta name="description" content="%s">\n', esc_attr( wp_strip_all_tags( $description ) ) );
-			printf( '<meta property="og:description" content="%s">\n', esc_attr( wp_strip_all_tags( $description ) ) );
+			printf( '<meta name="description" content="%s">' . "\n", esc_attr( wp_strip_all_tags( $description ) ) );
+			printf( '<meta property="og:description" content="%s">' . "\n", esc_attr( wp_strip_all_tags( $description ) ) );
 		}
 		if ( $canonical ) {
-			printf( '<link rel="canonical" href="%s">\n', esc_url( $canonical ) );
+			printf( '<link rel="canonical" href="%s">' . "\n", esc_url( $canonical ) );
 		}
 	}
 

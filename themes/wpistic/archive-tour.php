@@ -119,10 +119,9 @@ $wpistic_count = ( is_post_type_archive() && isset( $GLOBALS['wp_query'] ) ) ? (
 						$wpistic_feature = $wpistic_first[0];
 					}
 				}
-				$wpistic_feature_url   = $wpistic_feature ? get_permalink( $wpistic_feature ) : '';
-				$wpistic_feature_title = $wpistic_feature ? get_the_title( $wpistic_feature ) : '';
+				$wpistic_feature_url   = $wpistic_feature ? get_permalink( $wpistic_feature ) : home_url( '/tours/spine-of-the-country/' );
+				$wpistic_feature_title = $wpistic_feature ? get_the_title( $wpistic_feature ) : 'Spine of the Country';
 				?>
-				<?php if ( $wpistic_feature ) : ?>
 				<div class="jom reveal">
 					<div>
 						<p class="jom-eyebrow"><?php esc_html_e( 'Journey of the month', 'wpistic' ); ?></p>
@@ -131,7 +130,6 @@ $wpistic_count = ( is_post_type_archive() && isset( $GLOBALS['wp_query'] ) ) ? (
 					</div>
 					<a class="btn btn-solid" href="<?php echo esc_url( $wpistic_feature_url ); ?>"><?php esc_html_e( 'View journey', 'wpistic' ); ?> <span class="arr" aria-hidden="true">→</span></a>
 				</div>
-				<?php endif; ?>
 
 				<div class="tour-grid cols-2">
 					<?php
@@ -164,9 +162,21 @@ $wpistic_count = ( is_post_type_archive() && isset( $GLOBALS['wp_query'] ) ) ? (
 						</p>
 						<?php
 					else :
-						?>
-						<p class="tours-empty"><?php esc_html_e( 'Journeys are being prepared. Build a private Laos trip with our team in the meantime.', 'wpistic' ); ?> <a href="<?php echo esc_url( wpistic_cta_url() ); ?>"><?php echo esc_html( wpistic_cta_label() ); ?></a></p>
-						<?php
+						$wpistic_fb = array( 'tour-1', 'tour-2', 'tour-3', 'tour-4', 'tour-5' );
+						foreach ( wpistic_sample_tours() as $wpistic_i => $wpistic_tour ) :
+							wpistic_tour_card(
+								array(
+									'name'      => $wpistic_tour['name'],
+									'url'       => home_url( '/tours/' . $wpistic_tour['slug'] . '/' ),
+									'region'    => 'Laos',
+									'meta'      => $wpistic_tour['meta'],
+									'blurb'     => $wpistic_tour['blurb'],
+									'tags'      => array( $wpistic_tour['cap'] ),
+									'price'     => wpistic_price_line( '' ),
+									'image_url' => wpistic_demo_img( $wpistic_fb[ $wpistic_i % count( $wpistic_fb ) ] ),
+								)
+							);
+						endforeach;
 					endif;
 					?>
 				</div>

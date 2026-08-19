@@ -9,7 +9,6 @@ use Wpistic\TourCore\Booking\BookingStatus;
 use Wpistic\TourCore\Payment\PaymentGateway;
 use Wpistic\TourCore\Payment\PaymentRequest;
 use Wpistic\TourCore\Payment\PaymentResult;
-use Wpistic\TourCore\Payment\PaymentStatus;
 use Wpistic\TourCore\Pricing\DepositCalculator;
 use Wpistic\TourCore\Pricing\DepositPolicy;
 use Wpistic\TourCore\Pricing\DepositType;
@@ -69,11 +68,8 @@ final class BookingService {
 			'updated_at'       => $now,
 		);
 
-		$inserted = $wpdb->insert( $this->table( 'bookings' ), $row ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		$wpdb->insert( $this->table( 'bookings' ), $row ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
 		$id = (int) $wpdb->insert_id;
-		if ( false === $inserted || $id <= 0 ) {
-			return 0;
-		}
 		$this->audit( 'booking', $id, 'created', array( 'reference' => $reference, 'type' => $row['type'] ) );
 
 		return $id;
@@ -315,11 +311,6 @@ final class BookingService {
 			$request->idempotencyKey
 		);
 
-		if ( ! in_array( $result->status, array( PaymentStatus::Pending, PaymentStatus::Paid ), true ) ) {
-			$this->audit( 'booking', $id, 'deposit_link_failed', array( 'gateway' => $gateway->id(), 'status' => $result->status->value ) );
-			return null;
-		}
-
 		// inquiry -> quoted -> deposit_link_sent
 		$current = BookingStatus::tryFrom( (string) $row['status'] ) ?? BookingStatus::Inquiry;
 		if ( BookingStatus::Inquiry === $current ) {
@@ -378,11 +369,6 @@ final class BookingService {
 			$result->status->value,
 			$request->idempotencyKey
 		);
-
-		if ( ! in_array( $result->status, array( PaymentStatus::Pending, PaymentStatus::Paid ), true ) ) {
-			$this->audit( 'booking', $id, 'balance_link_failed', array( 'gateway' => $gateway->id(), 'status' => $result->status->value ) );
-			return null;
-		}
 
 		$current = BookingStatus::tryFrom( (string) $row['status'] ) ?? BookingStatus::Inquiry;
 		if ( BookingStatus::Confirmed === $current ) {

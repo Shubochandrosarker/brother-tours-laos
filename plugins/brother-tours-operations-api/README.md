@@ -2,9 +2,9 @@
 
 Secure REST adapter for the Brother Tours management app at `app.brothertours.com`.
 
-**Version:** 3.0.0
-**WordPress:** 6.4+
-**PHP:** 8.1+
+**Version:** 1.0.0  
+**WordPress:** 6.4+  
+**PHP:** 8.1+  
 **REST namespace:** `/wp-json/bridgistic/v1`
 
 ## Purpose
@@ -13,8 +13,8 @@ This plugin does **not** replace or duplicate the existing Brother Tours backend
 
 It exposes a clean REST control plane over the existing system:
 
-- **WPistic Tour Manager 3.0+** remains the owner of tours, destinations, experiences, departures, inquiries/bookings, lifecycle rules, payment metadata, webhooks, connections and audit data.
-- **Formistic 3.0+** remains the owner of form submissions, replies, notes, AI metadata and newsletter subscribers.
+- **WPistic Tour Manager 2.0+** remains the owner of tours, destinations, experiences, departures, inquiries/bookings, lifecycle rules, payment metadata, webhooks, connections and audit data.
+- **Formistic 2.0+** remains the owner of form submissions, replies, notes, AI metadata and newsletter subscribers.
 - **WordPress/MySQL** remains the source of truth.
 - **Horizons/React** is the operations user interface only.
 
@@ -23,8 +23,8 @@ No business tables are created by this plugin.
 ## Installation
 
 1. Install and activate:
-   - WPistic Tour Manager 3.0+
-   - Formistic 3.0+
+   - WPistic Tour Manager 2.0+
+   - Formistic 2.0+
 2. Upload `brother-tours-operations-api.zip` through **Plugins → Add New → Upload Plugin**.
 3. Activate **Brother Tours Operations API**.
 4. Open:
@@ -37,11 +37,10 @@ The health endpoint is authenticated. Sign in through `/auth/session/login` firs
 
 ## Horizons production origin
 
-By default the plugin allows the WordPress host, `app.<host>`, and the root-domain app host. This lets staging serve the dashboard from `https://app.brothertours.com` while production uses the same app domain after cutover:
+By default the plugin allows:
 
 ```text
 https://app.<your WordPress host>
-https://app.<root domain>
 ```
 
 For `brothertours.com`, that means:
@@ -109,7 +108,7 @@ The login endpoint permits five failed attempts per IP per 15-minute window.
 ### Auth
 
 | Method | Route | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | POST | `/auth/session/login` | Sign in with an authorized WordPress account |
 | GET | `/auth/session` | Hydrate current operations session |
 | POST | `/auth/session/logout` | Revoke current session |
@@ -130,7 +129,7 @@ Optional query:
 ### Tours
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/tours` |
 | POST | `/tours` |
 | GET | `/tours/{id}` |
@@ -139,12 +138,19 @@ Optional query:
 
 Tour REST fields map to the exact Brother Tours 2.0 metadata already used by WPistic Tour Manager, including itinerary, FAQ, inclusions/exclusions, pricing and deposit override data.
 
-Use the standard WordPress media REST API for media uploads, then provide the attachment ID as `featuredMedia`.
+Use `POST /media` in this namespace for uploads, then provide the attachment ID
+as `featuredMedia`.
+
+> Do **not** use the core `wp/v2` media API from the dashboard. `SessionController::determine_current_user()`
+> only resolves the operations session for request URIs containing `/bridgistic/v1/`,
+> so a `wp/v2` call carrying the `bt_ops_session` cookie resolves to user 0 and
+> returns 401. Earlier revisions of this README recommended `wp/v2` here; that
+> guidance was wrong.
 
 ### Destinations
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/destinations` |
 | POST | `/destinations` |
 | GET | `/destinations/{id}` |
@@ -154,7 +160,7 @@ Use the standard WordPress media REST API for media uploads, then provide the at
 ### Experiences
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/experiences` |
 | POST | `/experiences` |
 | GET | `/experiences/{id}` |
@@ -164,7 +170,7 @@ Use the standard WordPress media REST API for media uploads, then provide the at
 ### Departures
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/departures` |
 | POST | `/departures` |
 | GET | `/departures/{id}` |
@@ -188,7 +194,7 @@ A departure with linked inquiry/booking rows cannot be deleted through this API.
 ### Inquiries / Bookings
 
 | Method | Route | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | GET | `/bookings` | Search/filter/paginate existing Tour Manager inquiry/booking records |
 | GET | `/bookings/{id}` | Full operations detail: traveler, trip, transactions, activity, connection history and allowed lifecycle actions |
 | GET | `/bookings/{id}/actions` | Read backend-approved actions |
@@ -210,7 +216,7 @@ The valid lifecycle remains the Tour Manager 2.0 contract.
 ### Formistic inbox
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/inbox/submissions` |
 | GET | `/inbox/submissions/{id}` |
 | POST | `/inbox/submissions/{id}/status` |
@@ -224,7 +230,7 @@ Reply sending reuses Formistic's existing internal mail transport and reply logg
 ### Connections / Tourflows webhooks
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/connections` |
 | POST | `/connections` |
 | PATCH | `/connections/{id}` |
@@ -249,7 +255,7 @@ Production webhook targets must use HTTPS.
 ### Reports
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/reports/overview` |
 | GET | `/reports/bookings` |
 | GET | `/reports/forms` |
@@ -259,16 +265,24 @@ Booking revenue is grouped by currency. The API does not incorrectly combine USD
 ### Team
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/team` |
 | GET | `/team/{id}` |
 
 The Team API is read-only in v1.0. Assignments are changed through the booking action endpoint. WordPress roles/capabilities remain authoritative.
 
+### Insightistic
+
+| Method | Route | Purpose |
+| --- | --- | --- |
+| GET | `/insightistic` | Read active Insightistic plugin status and version |
+
+This route exposes Insightistic availability and version information for the site.
+
 ### System
 
 | Method | Route |
-|---|---|
+| --- | --- |
 | GET | `/system/health` |
 
 Checks:
@@ -301,15 +315,107 @@ Success:
 
 Errors use standard WordPress `WP_Error` REST responses with a machine-readable error code and HTTP status.
 
+### Content (1.1.0)
+
+| Method | Route | Capability |
+|---|---|---|
+| GET | `/content/types` | `edit_posts` |
+| GET, POST | `/content/posts` | `edit_posts` |
+| GET, PATCH, DELETE | `/content/posts/{id}` | `edit_posts` / `delete_posts` |
+| POST | `/content/posts/{id}/restore` | `edit_posts` |
+| GET | `/content/posts/{id}/revisions` | `edit_posts` |
+| GET | `/content/taxonomies` | `edit_posts` |
+| GET, POST | `/content/terms` | `edit_posts` / `manage_categories` |
+
+Post types are allowlisted to `post`, `page`, `wpistic_tour`,
+`wpistic_destination` and `wpistic_experience`. An unrecognised field returns
+422 rather than being forwarded to `wp_insert_post()`.
+
+`bt_seo_title`, `bt_seo_description` and `_wpistic_tone` are writable. The
+`_seoistic_*` keys are returned read-only — they are SEOISTIC's audit output.
+
+A record with `_elementor_edit_mode = builder` or `has_blocks()` rejects a
+`content` PATCH with 409 and an edit link. Round-tripping that markup through a
+plain text field destroys the layout.
+
+Send the record's `modifiedGmt` back on PATCH for optimistic concurrency; the
+server returns 409 if it changed underneath you.
+
+### Media (1.1.0)
+
+| Method | Route | Capability |
+|---|---|---|
+| GET, POST | `/media` | `upload_files` |
+| GET, PATCH, DELETE | `/media/{id}` | `upload_files` / `delete_posts` |
+
+`POST /media` takes `multipart/form-data` with a `file` part, plus optional
+`title`, `alt` and `caption`. Type is detected from the file itself and checked
+against both an explicit allowlist and the current user's permitted types. SVG
+is refused. 16 MB ceiling.
+
+### Analytics (1.1.0)
+
+| Method | Route | Capability |
+|---|---|---|
+| GET | `/analytics/status` | `bt_view_health` |
+| GET | `/analytics/search-console?days=28` | `bt_view_health` |
+| GET | `/analytics/ga4?days=28` | `bt_view_health` |
+| GET | `/analytics/pagespeed?url=&strategy=` | `bt_view_health` |
+| POST | `/analytics/pagespeed/run` | `manage_options` |
+| GET | `/analytics/404s` | `bt_view_health` |
+
+A server-side adapter over the Insightistic plugin, which registers no REST
+namespace of its own. Four behaviours are enforced in code:
+
+- **No secret is ever returned.** `/analytics/status` reports booleans, and a
+  recursive scrub drops any key matching
+  `private_key|api_key|secret|_enc$|password|token` at any depth.
+- **The `html` string from `get_dashboard_data()` is dropped** at the same
+  boundary, so pre-rendered markup from another plugin cannot reach a client.
+- **PageSpeed is asynchronous.** `GET` serves a cached result and reports
+  `fresh`, `stale` or `never_run`; `POST /run` schedules a cron event. A live
+  PSI call takes 10–30s and would hit the PHP timeout inside a request.
+- **PageSpeed targets are same-origin only**, or the route is an open relay on
+  the site's API key.
+
+GA4 responses carry `dailyAvailable`. On this property `daily` returns empty
+while `channels` returns rows, so a client must render an unavailable state
+rather than charting an empty series as a flat line.
+
+Responses are cached in transients: GSC and GA4 one hour, PageSpeed six hours,
+status five minutes.
+
+### Site (1.1.0)
+
+| Method | Route | Capability |
+|---|---|---|
+| GET | `/site/overview` | `bt_view_health` |
+| GET | `/site/plugins` | `manage_options` |
+| GET | `/site/users` | `list_users` |
+| GET | `/site/cron` | `manage_options` |
+
+Read-only. Activation, updates and user creation stay in wp-admin.
+
 ## Capabilities
 
-General read/operations endpoints require:
+`Csrf::authorize( $request, $capability, $write )` enforces the capability, and
+CSRF on top of it when `$write` is true. Routes do not share one capability:
 
-```text
-edit_posts
-```
+| Area | Capability |
+|---|---|
+| Operations reads and writes (tours, bookings, inbox, connections, reports, team) | `bt_manage_operations` |
+| Health, analytics and site overview reads | `bt_view_health` |
+| Content and media (`/content/*`, `/media`) | `edit_posts` / `upload_files` |
+| Deletion | the relevant WordPress delete capability |
+| Plugin, user and cron reads, and running PageSpeed | `manage_options` |
 
-Content deletion requires the relevant WordPress delete capability.
+**`bt_manage_operations` is not a content capability.** It gates dashboard
+login and is held by seven roles — `administrator`, `tour_staff`,
+`wpistic_travel_manager`, `wpistic_travel_agent`, `crm_owner`, `crm_manager`
+and `crm_sales` — but only `administrator` also holds `edit_posts`,
+`publish_posts`, `upload_files` or `manage_options`. Content routes therefore
+check the real WordPress capability, and per-object routes additionally check
+`current_user_can( 'edit_post', $id )` inside the handler.
 
 Publishing still checks WordPress publishing capability.
 

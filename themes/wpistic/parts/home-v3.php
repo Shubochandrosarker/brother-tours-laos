@@ -63,7 +63,7 @@ $wpistic_img   = array( 'tour-1', 'tour-2', 'tour-3', 'tour-4', 'tour-5' );
 					wpistic_tour_card(
 						array(
 							'name'      => $wpistic_tours[0]['name'],
-							'url'       => home_url( '/tour/' . $wpistic_tours[0]['slug'] . '/' ),
+							'url'       => home_url( '/tours/' . $wpistic_tours[0]['slug'] . '/' ),
 							'region'    => 'Editor’s pick · Laos',
 							'meta'      => $wpistic_tours[0]['meta'],
 							'blurb'     => $wpistic_tours[0]['blurb'],
@@ -81,7 +81,7 @@ $wpistic_img   = array( 'tour-1', 'tour-2', 'tour-3', 'tour-4', 'tour-5' );
 					wpistic_tour_card(
 						array(
 							'name'      => $wpistic_tour['name'],
-							'url'       => home_url( '/tour/' . $wpistic_tour['slug'] . '/' ),
+							'url'       => home_url( '/tours/' . $wpistic_tour['slug'] . '/' ),
 							'region'    => 'Laos',
 							'meta'      => $wpistic_tour['meta'],
 							'blurb'     => $wpistic_tour['blurb'],
@@ -156,7 +156,7 @@ $wpistic_img   = array( 'tour-1', 'tour-2', 'tour-3', 'tour-4', 'tour-5' );
 		<div class="section-head center">
 			<span class="eyebrow center">What travelers say</span>
 			<h2 class="sec-h2">Read what guests have <em>written</em>.</h2>
-			<p class="sec-lead">Read guest notes on Google and TripAdvisor.</p>
+			<p class="sec-lead">Consistently top-rated on Google and TripAdvisor.</p>
 		</div>
 		<div class="reviews-grid">
 			<?php foreach ( wpistic_sample_reviews() as $wpistic_review ) : ?>

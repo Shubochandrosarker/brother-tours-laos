@@ -275,7 +275,7 @@ final class SessionController {
 			header( 'Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS', true );
 			header( 'Vary: Origin', false );
 		} elseif ( $origin ) {
-			// WordPress' default REST CORS handler reflects arbitrary origins.
+			// WordPress' default REST CORS andler reflects arbitrary origins.
 			// Remove those credential-bearing headers for this private namespace
 			// when the caller is not explicitly allow-listed.
 			header_remove( 'Access-Control-Allow-Origin' );
