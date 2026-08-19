@@ -1,0 +1,5 @@
+# Copied from ../../assets/ by the test at run time so it always exercises the
+# shipped files rather than a stale duplicate.
+bt-resource.css
+bt-resource.js
+fake.pdf

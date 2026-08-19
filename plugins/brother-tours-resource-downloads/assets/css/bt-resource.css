@@ -1,0 +1,348 @@
+/**
+ * Brother Tours resource downloads.
+ *
+ * Every value below resolves to a token already defined by the Brother Tours
+ * theme (assets/css/brand-tokens.css), so the popup inherits the site's palette,
+ * typography and dark mode rather than carrying its own. The fallbacks exist
+ * only so the component degrades sanely if it is ever rendered outside the
+ * theme — they are not a second design system.
+ *
+ * Note the corner radius: the brand sets --radius to 0. The legacy popup used
+ * rounded corners; matching the current site means square ones. That is the
+ * single most visible "this belongs here" detail.
+ *
+ * Dark mode needs no work here: the theme flips [data-theme] on <html> and
+ * these tokens follow.
+ *
+ * All selectors are namespaced btrd-* so nothing collides with the theme,
+ * Elementor or WordPress core.
+ */
+
+/* ------------------------------------------------------------------ overlay */
+
+.btrd-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 10000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: clamp(1rem, 4vw, 2.5rem);
+	background: var(--color-overlay, rgba(14, 16, 13, 0.72));
+	opacity: 0;
+	transition: opacity 200ms var(--ease, ease);
+	overflow-y: auto;
+}
+
+.btrd-overlay.is-open {
+	opacity: 1;
+}
+
+.btrd-overlay[hidden] {
+	display: none;
+}
+
+/* ------------------------------------------------------------------- dialog */
+
+.btrd-dialog {
+	position: relative;
+	width: min(56rem, 100%);
+	max-height: calc(100vh - 3rem);
+	overflow-y: auto;
+	background: var(--color-surface-elevated, var(--color-surface, #fff));
+	color: var(--color-text, #14150f);
+	border: 1px solid var(--color-border, rgba(20, 21, 15, 0.14));
+	border-radius: var(--radius, 0);
+	box-shadow: 0 24px 60px -20px var(--color-shadow, rgba(0, 0, 0, 0.45));
+	transform: translateY(8px);
+	transition: transform 220ms var(--ease, ease);
+}
+
+.btrd-overlay.is-open .btrd-dialog {
+	transform: translateY(0);
+}
+
+.btrd-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: clamp(1.25rem, 3vw, 2rem);
+	padding: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+/* Two columns once there is genuinely room: cover beside the copy. */
+@media (min-width: 48rem) {
+	.btrd-grid:has(.btrd-cover-wrap) {
+		grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+		align-items: start;
+	}
+}
+
+.btrd-cover-wrap {
+	/* A tangible object rather than a generic red PDF glyph: the actual cover,
+	   lifted slightly off the surface. */
+	position: relative;
+	transform: rotate(-1.5deg);
+}
+
+.btrd-cover {
+	display: block;
+	width: 100%;
+	height: auto;
+	border: 1px solid var(--color-border, rgba(20, 21, 15, 0.14));
+	box-shadow: 0 14px 32px -12px var(--color-shadow, rgba(0, 0, 0, 0.4));
+}
+
+/* --------------------------------------------------------------------- copy */
+
+.btrd-eyebrow {
+	margin: 0 0 0.5rem;
+	font-family: var(--font-mono, ui-monospace, monospace);
+	font-size: 0.6875rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--color-text-muted, #6b6a5e);
+}
+
+.btrd-title {
+	margin: 0 0 0.35rem;
+	font-family: var(--font-display, Georgia, serif);
+	font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+	line-height: 1.15;
+	color: var(--color-text, #14150f);
+}
+
+.btrd-name {
+	margin: 0 0 0.75rem;
+	font-family: var(--font-body, Georgia, serif);
+	font-size: 0.95rem;
+	color: var(--color-primary, var(--green, #1b5e3b));
+}
+
+.btrd-desc,
+.btrd-inline__desc {
+	margin: 0 0 1rem;
+	font-family: var(--font-body, Georgia, serif);
+	font-size: 1rem;
+	line-height: 1.6;
+	color: var(--color-text-muted, #55544a);
+}
+
+.btrd-benefits {
+	list-style: none;
+	margin: 0 0 1.5rem;
+	padding: 0;
+	display: grid;
+	gap: 0.5rem 1.25rem;
+}
+
+@media (min-width: 30rem) {
+	.btrd-benefits {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.btrd-benefits li {
+	position: relative;
+	padding-left: 1.4rem;
+	font-family: var(--font-body, Georgia, serif);
+	font-size: 0.9375rem;
+	line-height: 1.45;
+	color: var(--color-text, #14150f);
+}
+
+.btrd-benefits li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.45em;
+	width: 0.55rem;
+	height: 0.3rem;
+	border-left: 1.5px solid var(--color-primary, var(--green, #1b5e3b));
+	border-bottom: 1.5px solid var(--color-primary, var(--green, #1b5e3b));
+	transform: rotate(-45deg);
+}
+
+/* ------------------------------------------------------------------ actions */
+
+.btrd-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	align-items: center;
+}
+
+.btrd-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	/* 44px minimum: a touch target you can actually hit. */
+	min-height: 2.75rem;
+	padding: 0.7rem 1.35rem;
+	border-radius: var(--radius, 0);
+	font-family: var(--font-body, Georgia, serif);
+	font-size: 0.9375rem;
+	line-height: 1.2;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 160ms var(--ease, ease), color 160ms var(--ease, ease), border-color 160ms var(--ease, ease);
+}
+
+.btrd-btn--primary {
+	background: var(--color-primary, var(--green, #1b5e3b));
+	color: var(--color-primary-fill, #fff);
+	border: 1px solid var(--color-primary, var(--green, #1b5e3b));
+}
+
+.btrd-btn--primary:hover,
+.btrd-btn--primary:focus-visible {
+	background: var(--color-primary-hover, #164c30);
+	border-color: var(--color-primary-hover, #164c30);
+}
+
+.btrd-btn--ghost {
+	background: transparent;
+	color: var(--color-text, #14150f);
+	border: 1px solid var(--color-border, rgba(20, 21, 15, 0.28));
+}
+
+.btrd-btn--ghost:hover,
+.btrd-btn--ghost:focus-visible {
+	border-color: var(--color-text, #14150f);
+}
+
+.btrd-btn:focus-visible,
+.btrd-close:focus-visible {
+	outline: 2px solid var(--color-focus, var(--gold, #b8873b));
+	outline-offset: 2px;
+}
+
+.btrd-reassure {
+	margin: 1rem 0 0;
+	font-family: var(--font-mono, ui-monospace, monospace);
+	font-size: 0.6875rem;
+	letter-spacing: 0.08em;
+	color: var(--color-text-muted, #6b6a5e);
+}
+
+/* -------------------------------------------------------------------- close */
+
+.btrd-close {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	width: 2.75rem;
+	height: 2.75rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	border: 0;
+	border-radius: var(--radius, 0);
+	font-size: 1.6rem;
+	line-height: 1;
+	color: var(--color-text-muted, #6b6a5e);
+	cursor: pointer;
+	transition: color 160ms var(--ease, ease);
+}
+
+.btrd-close:hover {
+	color: var(--color-text, #14150f);
+}
+
+/* ------------------------------------------------------------ inline module */
+
+.btrd-inline {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: clamp(1.25rem, 3vw, 2rem);
+	margin: clamp(2rem, 5vw, 3.5rem) 0;
+	padding: clamp(1.5rem, 4vw, 2.5rem);
+	background: var(--color-surface-elevated, var(--bg-raise, #f6f3ea));
+	border: 1px solid var(--color-border, rgba(20, 21, 15, 0.14));
+	border-radius: var(--radius, 0);
+}
+
+@media (min-width: 48rem) {
+	.btrd-inline:has(.btrd-inline__cover) {
+		grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+		align-items: center;
+	}
+}
+
+.btrd-inline--compact {
+	grid-template-columns: 1fr;
+}
+
+.btrd-inline__cover img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border: 1px solid var(--color-border, rgba(20, 21, 15, 0.14));
+	box-shadow: 0 12px 28px -14px var(--color-shadow, rgba(0, 0, 0, 0.4));
+}
+
+.btrd-inline__title {
+	margin: 0 0 0.5rem;
+	font-family: var(--font-display, Georgia, serif);
+	font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+	line-height: 1.2;
+	color: var(--color-text, #14150f);
+}
+
+/* -------------------------------------------------------------------- toast */
+
+.btrd-toast {
+	position: fixed;
+	left: 50%;
+	bottom: 1.5rem;
+	z-index: 10001;
+	max-width: min(28rem, calc(100vw - 2rem));
+	padding: 0.85rem 1.15rem;
+	background: var(--color-text, #14150f);
+	color: var(--color-surface, #fff);
+	border-radius: var(--radius, 0);
+	font-family: var(--font-body, Georgia, serif);
+	font-size: 0.9375rem;
+	line-height: 1.4;
+	box-shadow: 0 16px 36px -16px var(--color-shadow, rgba(0, 0, 0, 0.5));
+	transform: translate(-50%, 1rem);
+	opacity: 0;
+	transition: opacity 220ms var(--ease, ease), transform 220ms var(--ease, ease);
+	pointer-events: none;
+}
+
+.btrd-toast.is-visible {
+	opacity: 1;
+	transform: translate(-50%, 0);
+}
+
+.btrd-toast[hidden] {
+	display: none;
+}
+
+/* ------------------------------------------------------------ admin notice */
+
+.btrd-admin-notice {
+	margin: 1rem 0;
+	padding: 0.75rem 1rem;
+	border-left: 3px solid var(--color-warning, #b8873b);
+	background: var(--color-surface-elevated, #f6f3ea);
+	font-family: var(--font-mono, ui-monospace, monospace);
+	font-size: 0.8125rem;
+	color: var(--color-text, #14150f);
+}
+
+/* ------------------------------------------------------- reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+	.btrd-overlay,
+	.btrd-dialog,
+	.btrd-toast,
+	.btrd-btn {
+		transition: none;
+	}
+
+	.btrd-cover-wrap {
+		transform: none;
+	}
+}
