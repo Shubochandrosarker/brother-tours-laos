@@ -1,0 +1,36 @@
+<!doctype html><html data-theme="light"><head><meta charset="utf-8">
+<title>BTRD harness</title>
+<link rel="stylesheet" href="./bt-resource.css">
+<style>body{margin:0;font-family:Georgia,serif} .filler{height:3000px;padding:2rem}</style>
+</head><body>
+<div class="filler">
+  <h1>Landing page</h1>
+  <button type="button" data-btrd-open id="manual">Download Free Guide</button>
+  <a href="/build-my-trip/" id="bmt">Build My Trip</a>
+</div>
+<div class="btrd-overlay" data-btrd-overlay hidden>
+  <div class="btrd-dialog" role="dialog" aria-modal="true" aria-labelledby="btrd-title" aria-describedby="btrd-desc" data-btrd-dialog>
+    <button type="button" class="btrd-close" data-btrd-close aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div class="btrd-grid"><div class="btrd-body">
+      <h2 class="btrd-title" id="btrd-title">Keep the railway guide offline</h2>
+      <p class="btrd-desc" id="btrd-desc">Test</p>
+      <div class="btrd-actions">
+        <a class="btrd-btn btrd-btn--primary" href="./fake.pdf" download="guide.pdf" data-btrd-download>Download</a>
+        <a class="btrd-btn btrd-btn--ghost" href="./fake.pdf" target="_blank" rel="noopener" data-btrd-secondary="print">Print guide</a>
+      </div>
+    </div></div>
+  </div>
+</div>
+<div class="btrd-toast" data-btrd-toast role="status" aria-live="polite" hidden></div>
+<script>
+window.BTResourceConfig = {
+  resource: { resource_id:'lcr-guide', resource_name:'LCR Guide', resource_category:'practical',
+              pdf_url:'./fake.pdf', trip_interest:'railway_assistance' },
+  triggers: { delay_ms:10000, require_engagement:true, scroll_percent:40, exit_intent:true, suppress_days:5 },
+  landing: '/lcr-e-ticket-guide/',
+  i18n: { downloadToast:'Your guide is downloading.', openedToast:'Opening your guide in a new tab.' }
+};
+window.dataLayer = [];
+</script>
+<script src="./bt-resource.js"></script>
+</body></html>
