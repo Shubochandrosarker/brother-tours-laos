@@ -1,0 +1,57 @@
+{
+	"version": "0.4",
+	"title": "BT – PDF Resource CTA",
+	"type": "section",
+	"content": [
+		{
+			"id": "f1ceb41",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-resource"
+			},
+			"elements": [
+				{
+					"id": "8fae523",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "9dffeca",
+							"elType": "widget",
+							"widgetType": "shortcode",
+							"settings": {
+								"shortcode": "[bt_resource_download id=\"lcr-guide\"]"
+							},
+							"elements": []
+						},
+						{
+							"id": "749102f",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this renders the \"lcr-guide\" guide. It stays invisible to visitors until a PDF is attached via the btrd_resources filter — see the Brother Tours Resource Downloads plugin README.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": [],
+	"metadata": {}
+}

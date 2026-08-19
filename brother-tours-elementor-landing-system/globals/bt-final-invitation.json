@@ -1,0 +1,29 @@
+{
+	"version": "0.4",
+	"title": "BT – Final Invitation",
+	"type": "section",
+	"content": [
+		{
+			"id": "61bec4f",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "bt-landing-invitation"
+			},
+			"elements": [
+				{
+					"id": "dce055e",
+					"elType": "widget",
+					"widgetType": "bt-build-my-trip-cta",
+					"settings": {
+						"wpistic_context": ""
+					},
+					"elements": []
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": [],
+	"metadata": {}
+}

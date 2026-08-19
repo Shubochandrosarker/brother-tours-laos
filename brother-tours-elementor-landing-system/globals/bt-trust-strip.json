@@ -1,0 +1,69 @@
+{
+	"version": "0.4",
+	"title": "BT – Trust Strip",
+	"type": "section",
+	"content": [
+		{
+			"id": "1192f09",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-process"
+			},
+			"elements": [
+				{
+					"id": "5cf01e1",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "b1697e1",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "How Brother Tours plans it",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "374f835",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Five steps, one conversation",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "0bba6cb",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<ol class=\"bt-landing-steps\"><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">01</span><span class=\"bt-landing-step__title\">Tell us about your trip</span><span class=\"bt-landing-step__body\">Dates, pace, who is travelling, what you want the days to feel like.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">02</span><span class=\"bt-landing-step__title\">Brother Tours designs the journey</span><span class=\"bt-landing-step__body\">A route built around your answers, not assembled from a package shelf.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">03</span><span class=\"bt-landing-step__title\">Review and refine</span><span class=\"bt-landing-step__body\">Change anything. Most journeys go through two or three rounds before they settle.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">04</span><span class=\"bt-landing-step__title\">Human confirmation</span><span class=\"bt-landing-step__body\">Every element is confirmed with the people who will actually deliver it.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">05</span><span class=\"bt-landing-step__title\">Travel Laos</span><span class=\"bt-landing-step__body\">Your guide, your driver, your itinerary — and someone reachable in Vientiane throughout.</span></li></ol>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": [],
+	"metadata": {}
+}

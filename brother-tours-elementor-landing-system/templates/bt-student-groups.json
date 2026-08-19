@@ -1,0 +1,1453 @@
+{
+	"version": "0.4",
+	"title": "BT – Student Group Learning Landing",
+	"type": "page",
+	"content": [
+		{
+			"id": "0ac3cfd",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-hero"
+			},
+			"elements": [
+				{
+					"id": "569167a",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "8a06673",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_direction_tablet": "column",
+								"flex_align_items": "flex-start",
+								"flex_gap": {
+									"unit": "px",
+									"size": 56,
+									"column": "56",
+									"row": "56",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-row"
+							},
+							"elements": [
+								{
+									"id": "b0384c7",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__copy"
+									},
+									"elements": [
+										{
+											"id": "c62aa03",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Educational travel",
+												"header_size": "p",
+												"_css_classes": "eyebrow"
+											},
+											"elements": []
+										},
+										{
+											"id": "51e11eb",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Student group learning in Laos",
+												"header_size": "h1",
+												"_css_classes": "hero-v2-h1"
+											},
+											"elements": []
+										},
+										{
+											"id": "67be3d0",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Structured educational travel for schools and universities.</p>",
+												"_css_classes": "hero-v2-lede"
+											},
+											"elements": []
+										},
+										{
+											"id": "ce10200",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Brother Tours plans and runs learning journeys in Laos for school and university groups — ecology, history, language and community-based learning, with the logistics handled so that faculty can concentrate on the students.</p>",
+												"_css_classes": "hero-v2-sub"
+											},
+											"elements": []
+										},
+										{
+											"id": "7db2eb2",
+											"elType": "widget",
+											"widgetType": "icon-list",
+											"settings": {
+												"view": "inline",
+												"icon_list": [
+													{
+														"_id": "584ba52",
+														"text": "Lao-led",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "7c1656f",
+														"text": "Faculty coordination",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "d603cb2",
+														"text": "Structured logistics",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													}
+												],
+												"_css_classes": "bt-landing-badges"
+											},
+											"elements": []
+										},
+										{
+											"id": "e59cb64",
+											"elType": "container",
+											"settings": {
+												"content_width": "full",
+												"flex_direction": "row",
+												"flex_direction_tablet": "column",
+												"flex_align_items": "center",
+												"flex_gap": {
+													"unit": "px",
+													"size": 14,
+													"column": "14",
+													"row": "14",
+													"isLinked": true
+												},
+												"_css_classes": "bt-landing-row bt-landing-ctas"
+											},
+											"elements": [
+												{
+													"id": "5e64253",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Build My Trip",
+														"link": {
+															"url": "/build-my-trip/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn btn--primary"
+													},
+													"elements": []
+												},
+												{
+													"id": "b6f9059",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Message Brother Tours",
+														"link": {
+															"url": "/contact/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn"
+													},
+													"elements": []
+												}
+											],
+											"isInner": false
+										},
+										{
+											"id": "4e58258",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — the secondary hero CTA points at /contact/. Swap the href to the WhatsApp link if this page should open WhatsApp directly — the Final Invitation section at the foot of the page already uses the configured number.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "4998cc0",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__media"
+									},
+									"elements": [
+										{
+											"id": "795860f",
+											"elType": "widget",
+											"widgetType": "image",
+											"settings": {
+												"image": {
+													"url": "",
+													"id": "",
+													"alt": "A student group in a learning setting in Laos",
+													"source": "library",
+													"size": ""
+												},
+												"image_size": "large",
+												"_css_classes": "bt-landing-hero__image"
+											},
+											"elements": []
+										},
+										{
+											"id": "82a3ce1",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — choose the hero image from the media library. Suggested subject: A student group in a learning setting in Laos. Do not reuse legacy stock or Picsum placeholders.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "d051807",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-quick tight"
+			},
+			"elements": [
+				{
+					"id": "d6126c8",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 18,
+							"column": "18",
+							"row": "18",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "ded9ba6",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "In short",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "e000b6f",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "What is a student group learning journey?",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "0583c32",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>A structured educational trip to Laos designed with the visiting institution: learning objectives first, then the route, the sites and the people who will teach at each. Brother Tours handles transport, accommodation, guiding and on-the-ground coordination.</p>\n<p>It suits schools and universities running field courses, cultural immersion programmes, language study or service-learning components, from a short field week to a full semester module.</p>",
+								"_css_classes": "bt-landing-quick__body"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "893e8cc",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-why"
+			},
+			"elements": [
+				{
+					"id": "ca58eb7",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "2a17cdb",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "What we cover",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "2086546",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Learning areas",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "f9473d9",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Programmes are built to the syllabus rather than picked from a brochure.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "4415744",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 24,
+									"column": "24",
+									"row": "24",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-cards"
+							},
+							"elements": [
+								{
+									"id": "048b7a3",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "1428153",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Ecology and environment",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "69fbde6",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>River systems, forest, agriculture and the Bolaven highlands — field sites with people who work them.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "b15125d",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "b8d794e",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "History and heritage",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "ad3cb74",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>UNESCO-listed Luang Prabang, the Plain of Jars, the Vieng Xai caves and twentieth-century Lao history in the places it happened.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "51d13ec",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "40a0447",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Language and culture",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "f026199",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Lao language practice in context, with structured sessions and daily use rather than a phrasebook exercise.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "cacd93c",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "26f72b6",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Community-based learning",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "280ddb3",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Time with communities arranged where it is genuinely welcome and mutually useful, not staged for a visiting group.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "28fc82b",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "eabae59",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Service learning",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "4b93107",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Where a group wants a contribution component, it is designed with the receiving community and matched to what is actually needed.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "ef6d479",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "4a0a7f2",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Faculty coordination",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "727aa35",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>A single planning contact before departure and a coordinator on the ground throughout.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "90d97ff",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-journeys"
+			},
+			"elements": [
+				{
+					"id": "69a74cf",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "32ded4c",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Current journeys",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "fd249f3",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Related journeys",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "4bf84a0",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Group programmes are built from scratch; these show the regions and styles we work in. Price confirmed on request.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "097e648",
+							"elType": "widget",
+							"widgetType": "bt-tour-grid",
+							"settings": {
+								"wpistic_taxonomy": "",
+								"wpistic_term": "",
+								"wpistic_count": 6,
+								"wpistic_columns": "3",
+								"wpistic_columns_tablet": "2",
+								"wpistic_columns_mobile": "1"
+							},
+							"elements": []
+						},
+						{
+							"id": "59f72f3",
+							"elType": "widget",
+							"widgetType": "button",
+							"settings": {
+								"text": "See all journeys",
+								"link": {
+									"url": "/tours/",
+									"is_external": "",
+									"nofollow": "",
+									"custom_attributes": ""
+								},
+								"_css_classes": "btn"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "b60c365",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-planning"
+			},
+			"elements": [
+				{
+					"id": "bafbd17",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "a74b02a",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning guide",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "6ef5492",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning a student journey",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "df7228e",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 32,
+									"column": "32",
+									"row": "32",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-planning__grid"
+							},
+							"elements": [
+								{
+									"id": "5a964d1",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "bef2464",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How long",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "ac3d2e5",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>From a one-week field trip to a multi-week programme. Two weeks is the most common shape for an overseas module.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "cfda98f",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "636fd0b",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "When to go",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "2b52809",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>November to February is dry and cool and fits most northern-hemisphere academic calendars. The green season works for ecology-focused programmes where full rivers are the subject.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "7a5818f",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "bb7ae67",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Lead time",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "3b7a4fc",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Start early. Group programmes involve approvals on your side and site arrangements on ours, and both take longer than a private trip.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "5a1d21a",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "5b0f9ce",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How planning works",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "e13649d",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Send the learning objectives, group size, dates and budget range. The first draft is an itinerary mapped to those objectives, not a quotation.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "4de7f11",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "3e5916f",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Logistics",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "5965f9b",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Transport, accommodation, meals, guiding and site access are coordinated as one programme, with a named contact throughout.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "7a50ee5",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "777a622",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Safety and welfare",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "dae460c",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Group welfare arrangements are agreed with the institution in advance and documented as part of the programme.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						},
+						{
+							"id": "a93cc11",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this page makes no claim about curriculum accreditation, insurance cover, safeguarding certification, free teacher places, staff-to-student ratios, risk assessment documentation or fixed group pricing. Do not add any of these without written verification — the legacy page carried several. Confirm what Brother Tours actually provides on safety, insurance and safeguarding, and state only that.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "6effa24",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-resource"
+			},
+			"elements": [
+				{
+					"id": "fcd63c7",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "df085d5",
+							"elType": "widget",
+							"widgetType": "shortcode",
+							"settings": {
+								"shortcode": "[bt_resource_download id=\"student-group-planner\"]"
+							},
+							"elements": []
+						},
+						{
+							"id": "1285679",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this renders the \"student-group-planner\" guide. It stays invisible to visitors until a PDF is attached via the btrd_resources filter — see the Brother Tours Resource Downloads plugin README.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "af32eb3",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-navy bt-landing-insight"
+			},
+			"elements": [
+				{
+					"id": "7a3598b",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 20,
+							"column": "20",
+							"row": "20",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "baf416e",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Local planning note",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "81885f9",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>The programmes that work are the ones where the objectives arrive before the itinerary. When a faculty lead tells us what students should be able to do by the end, the route almost designs itself.</p>\n<p>The ones that struggle are built as a tour with a lecture attached. Laos is a small country with real access — a group that comes with questions gets time with people who can answer them.</p>",
+								"_css_classes": "bt-landing-insight__body"
+							},
+							"elements": []
+						},
+						{
+							"id": "845bdc2",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Ken FJ Her — founder, Brother Tours. Licensed Lao National Tour Guide since 2010; founded Brother Tours in 2018.</p>",
+								"_css_classes": "bt-landing-insight__attribution"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "b8942e1",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-process"
+			},
+			"elements": [
+				{
+					"id": "d6b90a0",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "b853939",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "How Brother Tours plans it",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "53801ba",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Five steps, one conversation",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "b053a35",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<ol class=\"bt-landing-steps\"><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">01</span><span class=\"bt-landing-step__title\">Tell us about your trip</span><span class=\"bt-landing-step__body\">Dates, pace, who is travelling, what you want the days to feel like.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">02</span><span class=\"bt-landing-step__title\">Brother Tours designs the journey</span><span class=\"bt-landing-step__body\">A route built around your answers, not assembled from a package shelf.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">03</span><span class=\"bt-landing-step__title\">Review and refine</span><span class=\"bt-landing-step__body\">Change anything. Most journeys go through two or three rounds before they settle.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">04</span><span class=\"bt-landing-step__title\">Human confirmation</span><span class=\"bt-landing-step__body\">Every element is confirmed with the people who will actually deliver it.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">05</span><span class=\"bt-landing-step__title\">Travel Laos</span><span class=\"bt-landing-step__body\">Your guide, your driver, your itinerary — and someone reachable in Vientiane throughout.</span></li></ol>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "2c8b7a8",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-faq-section"
+			},
+			"elements": [
+				{
+					"id": "3cab081",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "ec94ead",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Questions",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "308f976",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Student group travel — common questions",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "77750fc",
+							"elType": "widget",
+							"widgetType": "accordion",
+							"settings": {
+								"tabs": [
+									{
+										"_id": "f3a114b",
+										"tab_title": "What group sizes do you work with?",
+										"tab_content": "<p>Tell us your group size and staffing and we will confirm what we can support for your dates.</p>"
+									},
+									{
+										"_id": "c6f61e5",
+										"tab_title": "How far ahead should we plan?",
+										"tab_content": "<p>As early as possible. Institutional approvals and site arrangements both take time, and the best field sites are limited.</p>"
+									},
+									{
+										"_id": "2116609",
+										"tab_title": "Can the programme match our syllabus?",
+										"tab_content": "<p>That is how it is built. Send the learning objectives first and the itinerary is designed to them.</p>"
+									},
+									{
+										"_id": "46b9afc",
+										"tab_title": "Who is with the group on the ground?",
+										"tab_content": "<p>Licensed Lao guides and a Brother Tours coordinator, alongside your own faculty. Specific arrangements are agreed with your institution in advance.</p>"
+									},
+									{
+										"_id": "1636b1b",
+										"tab_title": "How is it priced?",
+										"tab_content": "<p>Per programme, confirmed on request once group size, dates and content are settled.</p>"
+									},
+									{
+										"_id": "c4ba64b",
+										"tab_title": "Do you arrange service-learning components?",
+										"tab_content": "<p>Where a community genuinely wants one and it can be done well. We would rather decline than arrange something performative.</p>"
+									}
+								],
+								"title_html_tag": "h3",
+								"_css_classes": "bt-landing-faq"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "baf9381",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-related tight"
+			},
+			"elements": [
+				{
+					"id": "f1dbfa7",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 16,
+							"column": "16",
+							"row": "16",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "6f92657",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Keep reading",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "8c42114",
+							"elType": "widget",
+							"widgetType": "icon-list",
+							"settings": {
+								"view": "traditional",
+								"icon_list": [
+									{
+										"_id": "ba1252e",
+										"text": "Destinations across Laos",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/destinations/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "729e94b",
+										"text": "When to visit Laos",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/when-to-visit/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "2875659",
+										"text": "Visa guide",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/visa-guide/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "ec3f4f7",
+										"text": "Talk to Brother Tours",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/contact/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									}
+								],
+								"_css_classes": "bt-landing-related__links"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "7596e5b",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "bt-landing-invitation"
+			},
+			"elements": [
+				{
+					"id": "0a1edcb",
+					"elType": "widget",
+					"widgetType": "bt-build-my-trip-cta",
+					"settings": {
+						"wpistic_context": "Student Group"
+					},
+					"elements": []
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": {
+		"template": "elementor_header_footer"
+	},
+	"metadata": {}
+}

@@ -1,0 +1,1347 @@
+{
+	"version": "0.4",
+	"title": "BT – Founder Hosted Journeys Landing",
+	"type": "page",
+	"content": [
+		{
+			"id": "7a0e128",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-hero"
+			},
+			"elements": [
+				{
+					"id": "3ecb048",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "faff9a4",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_direction_tablet": "column",
+								"flex_align_items": "flex-start",
+								"flex_gap": {
+									"unit": "px",
+									"size": 56,
+									"column": "56",
+									"row": "56",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-row"
+							},
+							"elements": [
+								{
+									"id": "1c357a3",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__copy"
+									},
+									"elements": [
+										{
+											"id": "a7397b5",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Hosted by Ken",
+												"header_size": "p",
+												"_css_classes": "eyebrow"
+											},
+											"elements": []
+										},
+										{
+											"id": "b32e958",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Founder-hosted signature journeys",
+												"header_size": "h1",
+												"_css_classes": "hero-v2-h1"
+											},
+											"elements": []
+										},
+										{
+											"id": "3ce3dc8",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>A small number of journeys each year, travelled with the person who built the company.</p>",
+												"_css_classes": "hero-v2-lede"
+											},
+											"elements": []
+										},
+										{
+											"id": "d7a36bd",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Ken FJ Her founded Brother Tours in 2018 and has been a licensed Lao National Tour Guide since 2010. On a founder-hosted journey he travels with you — not as an escort, but as the person who knows the households, the abbots and the boatmen by name.</p>",
+												"_css_classes": "hero-v2-sub"
+											},
+											"elements": []
+										},
+										{
+											"id": "449dfaa",
+											"elType": "widget",
+											"widgetType": "icon-list",
+											"settings": {
+												"view": "inline",
+												"icon_list": [
+													{
+														"_id": "1e36ae1",
+														"text": "Hosted by the founder",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "470c1c0",
+														"text": "Lao-born",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													},
+													{
+														"_id": "e18b82e",
+														"text": "Licensed since 2010",
+														"selected_icon": {
+															"value": "",
+															"library": ""
+														},
+														"link": {
+															"url": "",
+															"is_external": "",
+															"nofollow": ""
+														}
+													}
+												],
+												"_css_classes": "bt-landing-badges"
+											},
+											"elements": []
+										},
+										{
+											"id": "c01df66",
+											"elType": "container",
+											"settings": {
+												"content_width": "full",
+												"flex_direction": "row",
+												"flex_direction_tablet": "column",
+												"flex_align_items": "center",
+												"flex_gap": {
+													"unit": "px",
+													"size": 14,
+													"column": "14",
+													"row": "14",
+													"isLinked": true
+												},
+												"_css_classes": "bt-landing-row bt-landing-ctas"
+											},
+											"elements": [
+												{
+													"id": "9d13cc9",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Build My Trip",
+														"link": {
+															"url": "/build-my-trip/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn btn--primary"
+													},
+													"elements": []
+												},
+												{
+													"id": "cd10a46",
+													"elType": "widget",
+													"widgetType": "button",
+													"settings": {
+														"text": "Message Brother Tours",
+														"link": {
+															"url": "/contact/",
+															"is_external": "",
+															"nofollow": "",
+															"custom_attributes": ""
+														},
+														"_css_classes": "btn"
+													},
+													"elements": []
+												}
+											],
+											"isInner": false
+										},
+										{
+											"id": "9468622",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — the secondary hero CTA points at /contact/. Swap the href to the WhatsApp link if this page should open WhatsApp directly — the Final Invitation section at the foot of the page already uses the configured number.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "7b002bd",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 16,
+											"column": "16",
+											"row": "16",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-hero__media"
+									},
+									"elements": [
+										{
+											"id": "dec5733",
+											"elType": "widget",
+											"widgetType": "image",
+											"settings": {
+												"image": {
+													"url": "",
+													"id": "",
+													"alt": "Ken FJ Her with travellers in a Lao village",
+													"source": "library",
+													"size": ""
+												},
+												"image_size": "large",
+												"_css_classes": "bt-landing-hero__image"
+											},
+											"elements": []
+										},
+										{
+											"id": "6a1843f",
+											"elType": "widget",
+											"widgetType": "html",
+											"settings": {
+												"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — choose the hero image from the media library. Suggested subject: Ken FJ Her with travellers in a Lao village. Do not reuse legacy stock or Picsum placeholders.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "7cbfb93",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-quick tight"
+			},
+			"elements": [
+				{
+					"id": "5196440",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 18,
+							"column": "18",
+							"row": "18",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "4e7dd44",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "In short",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "99d20e9",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "What is a founder-hosted journey, and how is it different?",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "7d6125d",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>A founder-hosted journey is a private Brother Tours itinerary on which Ken FJ Her travels with you personally. The difference is access and interpretation: relationships built over a decade of guiding, and the context that turns a temple visit into an explanation.</p>\n<p>It is not a more expensive version of the same trip. It is the trip where the person answering your questions is the person who chose every element of it.</p>",
+								"_css_classes": "bt-landing-quick__body"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "3b49866",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-why"
+			},
+			"elements": [
+				{
+					"id": "51f2260",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "3b9808a",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "The difference",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "5aa7126",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "What \"hosted\" actually means here",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "e430763",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Not luxury by price. Luxury by who is standing next to you.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "b4f0c6c",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 24,
+									"column": "24",
+									"row": "24",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-cards"
+							},
+							"elements": [
+								{
+									"id": "9207e96",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "d794862",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Lao-born knowledge",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "2c296c3",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Ken grew up in this country and has guided it professionally since 2010. The reading of a place is first-hand, not researched.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "61b63ab",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "8e6c524",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Relationships, not bookings",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "964517c",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Doors open because of who is asking. Households, monasteries and boatmen respond to a familiar face differently than to an agency.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "ec3a506",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "8d2b086",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Context as you go",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "f78169f",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>What you are looking at, why it is there, and what it means to the people who use it — explained as it happens rather than read off a board.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "5acf908",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 10,
+											"column": "10",
+											"row": "10",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-card"
+									},
+									"elements": [
+										{
+											"id": "28e1179",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Flexibility in the moment",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-card__title"
+											},
+											"elements": []
+										},
+										{
+											"id": "5e10da5",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>A host who owns the company can change the day at breakfast. There is nobody to ask.</p>",
+												"_css_classes": "bt-landing-card__body"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "78125e9",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-journeys"
+			},
+			"elements": [
+				{
+					"id": "25133b3",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "5b4594e",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Current journeys",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "6375dce",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Founder-hosted journeys",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "2d9db0f",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Live from the catalogue. If only one founder-hosted journey is currently offered, one is what shows here — the list is never padded.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "7b2363d",
+							"elType": "widget",
+							"widgetType": "bt-tour-grid",
+							"settings": {
+								"wpistic_taxonomy": "tour_category",
+								"wpistic_term": "founder-hosted",
+								"wpistic_count": 3,
+								"wpistic_columns": "3",
+								"wpistic_columns_tablet": "2",
+								"wpistic_columns_mobile": "1"
+							},
+							"elements": []
+						},
+						{
+							"id": "0838a3b",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this grid filters tour_category = \"founder-hosted\". Confirm that term slug exists in WordPress — if it does not, the grid renders \"No tours match this filter yet\" instead of journeys.</p>"
+							},
+							"elements": []
+						},
+						{
+							"id": "c98a197",
+							"elType": "widget",
+							"widgetType": "button",
+							"settings": {
+								"text": "See all journeys",
+								"link": {
+									"url": "/tours/",
+									"is_external": "",
+									"nofollow": "",
+									"custom_attributes": ""
+								},
+								"_css_classes": "btn"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "3742ffd",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-planning"
+			},
+			"elements": [
+				{
+					"id": "358cb40",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "5e2e529",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning guide",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "aad8958",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Planning a founder-hosted journey",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "4bae840",
+							"elType": "container",
+							"settings": {
+								"content_width": "full",
+								"flex_direction": "row",
+								"flex_wrap": "wrap",
+								"flex_gap": {
+									"unit": "px",
+									"size": 32,
+									"column": "32",
+									"row": "32",
+									"isLinked": true
+								},
+								"_css_classes": "bt-landing-planning__grid"
+							},
+							"elements": [
+								{
+									"id": "4a55fcf",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "54ab71b",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How long",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "2d4142a",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>These journeys tend to run longer than a standard itinerary, because their value is in unhurried days rather than covered ground.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "a588dc6",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "7cdbb43",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "When",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "2d2b605",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Hosting depends on Ken's availability as well as the season. The earlier the conversation starts, the more the dates can be shaped around you.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "02096f5",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "517b318",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Who it suits",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "4eda480",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Travellers who have been somewhere before and want to understand the next place rather than tick it. Often returning guests; often small family groups.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "f89ffa5",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "fa60302",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "Pace",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "34d91df",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Slow. Two or three bases, long days in each, and the freedom to stay when somewhere is working.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								},
+								{
+									"id": "113b63e",
+									"elType": "container",
+									"settings": {
+										"content_width": "full",
+										"flex_direction": "column",
+										"flex_gap": {
+											"unit": "px",
+											"size": 8,
+											"column": "8",
+											"row": "8",
+											"isLinked": true
+										},
+										"_css_classes": "bt-landing-col bt-landing-planning__item"
+									},
+									"elements": [
+										{
+											"id": "86b9026",
+											"elType": "widget",
+											"widgetType": "heading",
+											"settings": {
+												"title": "How to start",
+												"header_size": "h3",
+												"_css_classes": "bt-landing-planning__label"
+											},
+											"elements": []
+										},
+										{
+											"id": "a6cc2c6",
+											"elType": "widget",
+											"widgetType": "text-editor",
+											"settings": {
+												"editor": "<p>Tell us the shape of the trip you are imagining. Availability is confirmed by a person, not a calendar widget.</p>"
+											},
+											"elements": []
+										}
+									],
+									"isInner": false
+								}
+							],
+							"isInner": false
+						},
+						{
+							"id": "3dcc028",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — confirm how many founder-hosted journeys run per year, the guest capacity per journey, whether specific dates are published, and the deposit and cancellation terms. The legacy page claimed \"12 departures per host per year\", \"6-8 guests\" and fixed cancellation percentages — none of those are reproduced here and none should be published until confirmed in the current business system.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "39005ec",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-resource"
+			},
+			"elements": [
+				{
+					"id": "3f9869b",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 0,
+							"column": "0",
+							"row": "0",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "1b73945",
+							"elType": "widget",
+							"widgetType": "shortcode",
+							"settings": {
+								"shortcode": "[bt_resource_download id=\"founder-hosted-guide\"]"
+							},
+							"elements": []
+						},
+						{
+							"id": "a12a7ef",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — this renders the \"founder-hosted-guide\" guide. It stays invisible to visitors until a PDF is attached via the btrd_resources filter — see the Brother Tours Resource Downloads plugin README.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "343b429",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-navy bt-landing-insight"
+			},
+			"elements": [
+				{
+					"id": "247d47f",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 20,
+							"column": "20",
+							"row": "20",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "955025c",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "From Ken",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "5c24c5b",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>I started Brother Tours in 2018 after eight years of guiding other people's itineraries. The reason was simple: the best days were always the ones nobody had planned, and I could not build those into someone else's schedule.</p>\n<p>When I host a journey I am not adding a layer of service. I am removing the layer between you and the country — the second-hand explanation, the fixed route, the guide who is following a brief. You get the version I would travel myself.</p>",
+								"_css_classes": "bt-landing-insight__body"
+							},
+							"elements": []
+						},
+						{
+							"id": "c2394ba",
+							"elType": "widget",
+							"widgetType": "text-editor",
+							"settings": {
+								"editor": "<p>Ken FJ Her — founder, Brother Tours. Licensed Lao National Tour Guide since 2010; founded Brother Tours in 2018.</p>",
+								"_css_classes": "bt-landing-insight__attribution"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "d7c6b11",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-process"
+			},
+			"elements": [
+				{
+					"id": "f39cacc",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "3244d75",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "How Brother Tours plans it",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "eb19282",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Five steps, one conversation",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "3031a16",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<ol class=\"bt-landing-steps\"><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">01</span><span class=\"bt-landing-step__title\">Tell us about your trip</span><span class=\"bt-landing-step__body\">Dates, pace, who is travelling, what you want the days to feel like.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">02</span><span class=\"bt-landing-step__title\">Brother Tours designs the journey</span><span class=\"bt-landing-step__body\">A route built around your answers, not assembled from a package shelf.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">03</span><span class=\"bt-landing-step__title\">Review and refine</span><span class=\"bt-landing-step__body\">Change anything. Most journeys go through two or three rounds before they settle.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">04</span><span class=\"bt-landing-step__title\">Human confirmation</span><span class=\"bt-landing-step__body\">Every element is confirmed with the people who will actually deliver it.</span></li><li class=\"bt-landing-step\"><span class=\"bt-landing-step__n\">05</span><span class=\"bt-landing-step__title\">Travel Laos</span><span class=\"bt-landing-step__body\">Your guide, your driver, your itinerary — and someone reachable in Vientiane throughout.</span></li></ol>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "f2299a8",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section section-sand bt-landing-faq-section"
+			},
+			"elements": [
+				{
+					"id": "7a2782e",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 28,
+							"column": "28",
+							"row": "28",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "5eb8f3b",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Questions",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "1e30dd6",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Founder-hosted journeys — common questions",
+								"header_size": "h2"
+							},
+							"elements": []
+						},
+						{
+							"id": "a0d4aa2",
+							"elType": "widget",
+							"widgetType": "accordion",
+							"settings": {
+								"tabs": [
+									{
+										"_id": "78e348c",
+										"tab_title": "Does Ken travel for the whole journey?",
+										"tab_content": "<p>Yes — that is what makes it founder-hosted. If a journey is only partly hosted, it is described that way before you book.</p>"
+									},
+									{
+										"_id": "bc2efa6",
+										"tab_title": "Is this a group trip?",
+										"tab_content": "<p>No. Founder-hosted journeys are private to your party.</p>"
+									},
+									{
+										"_id": "b17a23f",
+										"tab_title": "Is it more expensive?",
+										"tab_content": "<p>Hosting is a real cost and is reflected in the price, which is confirmed on request once the itinerary is settled.</p>"
+									},
+									{
+										"_id": "185d927",
+										"tab_title": "What if Ken is not available for our dates?",
+										"tab_content": "<p>Then we say so, and offer either different dates or the same journey with a senior licensed guide. We do not substitute quietly.</p>"
+									},
+									{
+										"_id": "f2690be",
+										"tab_title": "What qualifies Ken as a guide?",
+										"tab_content": "<p>He has held a Lao National Tour Guide licence since 2010 and founded Brother Tours in 2018.</p>"
+									}
+								],
+								"title_html_tag": "h3",
+								"_css_classes": "bt-landing-faq"
+							},
+							"elements": []
+						},
+						{
+							"id": "f7725da",
+							"elType": "widget",
+							"widgetType": "html",
+							"settings": {
+								"html": "<p class=\"bt-landing-verify\"><strong>REQUIRES BUSINESS VERIFICATION</strong> — confirm whether partial hosting is offered and how substitution is handled contractually before publishing the \"what if Ken is not available\" answer.</p>"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "22b8388",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "section bt-landing-related tight"
+			},
+			"elements": [
+				{
+					"id": "026df22",
+					"elType": "container",
+					"settings": {
+						"content_width": "full",
+						"flex_direction": "column",
+						"flex_gap": {
+							"unit": "px",
+							"size": 16,
+							"column": "16",
+							"row": "16",
+							"isLinked": true
+						},
+						"_css_classes": "wrap"
+					},
+					"elements": [
+						{
+							"id": "e78a69a",
+							"elType": "widget",
+							"widgetType": "heading",
+							"settings": {
+								"title": "Keep reading",
+								"header_size": "p",
+								"_css_classes": "eyebrow"
+							},
+							"elements": []
+						},
+						{
+							"id": "fc71533",
+							"elType": "widget",
+							"widgetType": "icon-list",
+							"settings": {
+								"view": "traditional",
+								"icon_list": [
+									{
+										"_id": "af2fc82",
+										"text": "Laos Signature Tours — the wider collection",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/laos-signature-tours/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "459eacd",
+										"text": "About Brother Tours",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/about/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "1dbc564",
+										"text": "Private luxury travel in Laos",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/luxury-laos-tours/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									},
+									{
+										"_id": "b985e75",
+										"text": "All journeys",
+										"selected_icon": {
+											"value": "",
+											"library": ""
+										},
+										"link": {
+											"url": "/tours/",
+											"is_external": "",
+											"nofollow": ""
+										}
+									}
+								],
+								"_css_classes": "bt-landing-related__links"
+							},
+							"elements": []
+						}
+					],
+					"isInner": false
+				}
+			],
+			"isInner": false
+		},
+		{
+			"id": "adcabe9",
+			"elType": "container",
+			"settings": {
+				"content_width": "full",
+				"_css_classes": "bt-landing-invitation"
+			},
+			"elements": [
+				{
+					"id": "5e89156",
+					"elType": "widget",
+					"widgetType": "bt-build-my-trip-cta",
+					"settings": {
+						"wpistic_context": "Founder-Hosted Journey"
+					},
+					"elements": []
+				}
+			],
+			"isInner": false
+		}
+	],
+	"page_settings": {
+		"template": "elementor_header_footer"
+	},
+	"metadata": {}
+}
