@@ -3,7 +3,7 @@
  * Plugin Name:       Brother Tours Operations API
  * Plugin URI:        https://brothertours.com/
  * Description:       Secure REST operations bridge for the Brother Tours Horizons management app. Reuses WPistic Tour Manager, Formistic, and WordPress as the source of truth.
- * Version:           1.0.1
+ * Version:           1.1.0
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            WordPressistic
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BTOA_VERSION', '1.0.1' );
+define( 'BTOA_VERSION', '1.1.0' );
 define( 'BTOA_FILE', __FILE__ );
 define( 'BTOA_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BTOA_NAMESPACE', 'bridgistic/v1' );
@@ -123,6 +123,11 @@ add_action(
 		( new Connections\ConnectionsController() )->register();
 		( new Reports\ReportsController() )->register();
 		( new Team\TeamController() )->register();
+		( new Insightistic\InsightisticController() )->register();
+		( new Insightistic\AnalyticsController() )->register();
+		( new Content\ContentController() )->register();
+		( new Media\MediaController() )->register();
+		( new System\SiteController() )->register();
 		( new System\HealthController() )->register();
 	},
 	30
