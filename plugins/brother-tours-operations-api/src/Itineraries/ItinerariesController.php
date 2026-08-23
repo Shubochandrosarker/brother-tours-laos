@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BrotherTours\OperationsApi\Itineraries;
 
 use BrotherTours\OperationsApi\Auth\Csrf;
+use BrotherTours\OperationsApi\Payments\PaymentsController;
 use WP_REST_Request;
 use wpdb;
 
@@ -287,7 +288,7 @@ final class ItinerariesController {
 		}
 		$token = $matches[1];
 		global $wpdb;
-		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT title, guest_name, status, days, pricing, updated_at FROM ' . self::table() . ' WHERE share_token = %s', $token ) ); // phpcs:ignore
+		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT id, title, guest_name, status, days, pricing, updated_at FROM ' . self::table() . ' WHERE share_token = %s', $token ) ); // phpcs:ignore
 		if ( null === $row ) {
 			status_header( 404 );
 			nocache_headers();
@@ -357,6 +358,8 @@ final class ItinerariesController {
 			echo '<div class="totals"><span>Deposit to confirm</span><span>' . $money( $deposit ) . '</span></div>';
 			echo '<div class="totals"><span>Balance</span><span>' . $money( $balance ) . '</span></div>';
 			echo '</section>';
+
+			Payments\PaymentsController::render_guest_section( $token, (int) $row->id, $total, $deposit, $currency );
 		}
 		echo '<footer>Brother Tours Sole Co., Ltd. · Vientiane, Laos · <a href="https://www.brothertours.com/" style="color:var(--gold)">brothertours.com</a><br>Questions about this itinerary? Reply to the email that shared this link.</footer>';
 		echo '</main></body></html>';
