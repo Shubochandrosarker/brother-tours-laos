@@ -359,7 +359,7 @@ final class ItinerariesController {
 			echo '<div class="totals"><span>Balance</span><span>' . $money( $balance ) . '</span></div>';
 			echo '</section>';
 
-			Payments\PaymentsController::render_guest_section( $token, (int) $row->id, $total, $deposit, $currency );
+			PaymentsController::render_guest_section( $token, (int) $row->id, $total, $deposit, $currency );
 		}
 		echo '<footer>Brother Tours Sole Co., Ltd. · Vientiane, Laos · <a href="https://www.brothertours.com/" style="color:var(--gold)">brothertours.com</a><br>Questions about this itinerary? Reply to the email that shared this link.</footer>';
 		echo '</main></body></html>';
