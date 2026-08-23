@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "mimosa-hook-status/v1",
+  "recordedAt": "2026-08-23T04:33:50.960Z",
+  "sessionId": "sess_23e05f57-d25a-41bf-b09a-916f101ec2f2",
+  "event": "PostToolUse",
+  "toolName": "Edit",
+  "file": "brother-tours-operations-api.php",
+  "outcome": "clear",
+  "coverage": "complete",
+  "findingCount": 0,
+  "durationMs": 20,
+  "hostState": "hook_complete",
+  "reportHint": ".mimosa/reports/"
+}
