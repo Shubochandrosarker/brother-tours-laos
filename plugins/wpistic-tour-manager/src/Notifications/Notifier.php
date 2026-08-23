@@ -63,16 +63,23 @@ final class Notifier {
 		$name      = (string) ( $booking['customer_name'] ?? __( 'Guest', 'wpistic-tour-manager' ) );
 		$type      = ucwords( str_replace( '_', ' ', (string) ( $booking['type'] ?? 'inquiry' ) ) );
 
+		/*
+		 * Client request (2026-08-23): the team must recognize the email type
+		 * at a glance in the inbox. Lead with "New Lead" and the customer
+		 * name; keep the reference at the end for lookup. Reply-To points at
+		 * the guest so "reply" answers the lead directly.
+		 */
 		$this->send(
 			$this->team_email(),
-			sprintf( '[%1$s] %2$s - %3$s', $reference, $type, $name ),
+			sprintf( 'New Lead — %1$s (%2$s)', $name, $reference ),
 			EmailTemplate::render(
 				array(
-					'heading' => __( 'New request', 'wpistic-tour-manager' ),
+					'heading' => sprintf( '%1$s: %2$s', __( 'New request', 'wpistic-tour-manager' ), $type ),
 					'intro'   => __( 'A new request just came in through the website.', 'wpistic-tour-manager' ),
 					'rows'    => $this->rows( $booking ),
 				)
-			)
+			),
+			(string) ( $booking['customer_email'] ?? '' )
 		);
 
 		if ( ! empty( $booking['customer_email'] ) ) {
@@ -236,7 +243,7 @@ final class Notifier {
 		return $rows;
 	}
 
-	private function send( string $to, string $subject, string $html ): bool {
+	private function send( string $to, string $subject, string $html, string $reply_to = '' ): bool {
 		if ( '' === $to ) {
 			return false;
 		}
@@ -246,6 +253,9 @@ final class Notifier {
 		$headers    = array( 'Content-Type: text/html; charset=UTF-8' );
 		if ( is_email( $from_email ) ) {
 			$headers[] = sprintf( 'From: %1$s <%2$s>', $from_name, $from_email );
+		}
+		if ( '' !== $reply_to && is_email( $reply_to ) ) {
+			$headers[] = sprintf( 'Reply-To: <%1$s>', $reply_to );
 		}
 
 		if ( class_exists( '\\Wpistic_Formistic_Capture' ) ) {
