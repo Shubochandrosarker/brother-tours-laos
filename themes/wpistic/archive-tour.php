@@ -14,6 +14,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/*
+ * SEO title for the tour archive (keyword-bearing; the default archive title
+ * is just "Tours"). Runs before get_header() so wp_head picks it up.
+ */
+add_filter(
+	'pre_get_document_title',
+	static function () {
+		return 'Laos Tours & Signature Journeys — Brother Tours';
+	}
+);
+
 get_header();
 
 if ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'archive' ) ) {
@@ -27,9 +38,9 @@ $wpistic_count = ( is_post_type_archive() && isset( $GLOBALS['wp_query'] ) ) ? (
 <section class="page-hero">
 	<div class="wrap">
 		<?php wpistic_breadcrumbs(); ?>
-		<span class="eyebrow">Signature Journeys</span>
-		<h1>Each runs a fixed number of times each <em>year</em>.</h1>
-		<p class="lede">By design. Small numbers, hosted personally, held to one standard.</p>
+			<span class="eyebrow">Signature Journeys</span>
+			<h1>Small-Group Laos Tours, Hosted Personally</h1>
+			<p class="lede">Each journey runs a fixed number of times each year — by design. Small numbers, hosted personally, held to one standard.</p>
 	</div>
 </section>
 
