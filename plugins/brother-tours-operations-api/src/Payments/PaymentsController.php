@@ -41,6 +41,17 @@ final class PaymentsController {
 	}
 
 	public function maybe_install_table(): void {
+		// Seed first (before the version gate) so the config lands even if the
+		// operator drops the file a few minutes after the plugin update.
+		$seed = trailingslashit( wp_upload_dir()['basedir'] ) . 'btoa-payments-seed.json';
+		if ( file_exists( $seed ) ) {
+			$cfg = json_decode( (string) file_get_contents( $seed ), true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
+			if ( is_array( $cfg ) && isset( $cfg['bcel']['secret_key'] ) && '' !== (string) $cfg['bcel']['secret_key'] ) {
+				update_option( 'btoa_payments_config', $cfg, false );
+			}
+			@unlink( $seed ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
+		}
+
 		if ( get_option( 'btoa_payments_db_version' ) === self::DB_VERSION ) {
 			return;
 		}
