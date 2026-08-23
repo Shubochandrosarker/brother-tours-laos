@@ -26,3 +26,15 @@ foreach (array('setup', 'images', 'enqueue', 'template-tags', 'sample-data', 'cu
 		require_once $wpistic_file;
 	}
 }
+
+/**
+ * Keyword-bearing archive title for the tours library. SEOistic composes
+ * "<archive title> – <site>", and the post type's label alone ("Tours")
+ * carries no keyword — this filter rewrites just the archive title output.
+ */
+add_filter('post_type_archive_title', static function ($title, $post_type) {
+	if ('wpistic_tour' === $post_type) {
+		return 'Laos Tours';
+	}
+	return $title;
+}, 10, 2);
